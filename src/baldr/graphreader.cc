@@ -278,6 +278,10 @@ TileCache* TileCacheFactory::createTileCache(const boost::property_tree::ptree& 
   static std::mutex globalCacheMutex_;
   static std::shared_ptr<TileCache> globalTileCache_;
 
+  // We need to lock the factory method itself to prevent races
+  static std::mutex factoryMutex;
+  std::lock_guard<std::mutex> lock(factoryMutex);
+
   size_t max_cache_size = pt.get<size_t>("max_cache_size", DEFAULT_MAX_CACHE_SIZE);
 
   bool use_lru_cache = pt.get<bool>("use_lru_mem_cache", false);
