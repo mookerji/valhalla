@@ -1,7 +1,7 @@
 #include "test.h"
 #include <cmath>
 
-#include "baldr/edge_elevation.h"
+#include "valhalla/baldr/edge_elevation.h"
 
 using namespace std;
 using namespace valhalla::baldr;

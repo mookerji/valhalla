@@ -1,0 +1,22 @@
+package(default_visibility=["//visibility:public"])
+
+filegroup(
+    name="headers",
+    srcs=[
+        "//valhalla/baldr:headers",
+        "//valhalla/loki:headers",
+        "//valhalla/meili:headers",
+        "//valhalla/midgard:headers",
+        "//valhalla/mjolnir:headers",
+        "//valhalla/odin:headers",
+        "//valhalla/sif:headers",
+        "//valhalla/skadi:headers",
+        "//valhalla/thor:headers",
+        "//valhalla/tyr:headers",
+        "config.h",
+        "filesystem.h",
+        "tile_server.h",
+        "valhalla.h",
+        "worker.h",
+    ],
+)

@@ -1,4 +1,4 @@
-#include "skadi/sample.h"
+#include "valhalla/skadi/sample.h"
 
 #include <cmath>
 #include <cstddef>
@@ -12,10 +12,10 @@
 
 #include <boost/optional.hpp>
 
-#include "baldr/compression_utils.h"
-#include "filesystem.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
+#include "valhalla/baldr/compression_utils.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
 
 namespace {
 // srtmgl1 holds 1x1 degree tiles but oversamples the egde of the tile

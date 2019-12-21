@@ -1,10 +1,10 @@
-#include "midgard/linesegment2.h"
+#include "valhalla/midgard/linesegment2.h"
 
 #include "test.h"
 
 #include <vector>
 
-#include "midgard/point2.h"
+#include "valhalla/midgard/point2.h"
 
 using namespace std;
 using namespace valhalla::midgard;

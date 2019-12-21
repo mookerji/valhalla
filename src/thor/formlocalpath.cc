@@ -1,8 +1,8 @@
 #include <cstdint>
 
-#include "thor/pathalgorithm.h"
+#include "valhalla/thor/pathalgorithm.h"
 
-#include "midgard/logging.h"
+#include "valhalla/midgard/logging.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::sif;

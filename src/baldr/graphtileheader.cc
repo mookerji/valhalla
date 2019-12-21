@@ -1,9 +1,9 @@
-#include "baldr/graphtileheader.h"
-#include "baldr/datetime.h"
-#include "baldr/directededge.h"
-#include "baldr/edgeinfo.h"
-#include "baldr/nodeinfo.h"
-#include "config.h"
+#include "valhalla/baldr/graphtileheader.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/directededge.h"
+#include "valhalla/baldr/edgeinfo.h"
+#include "valhalla/baldr/nodeinfo.h"
+#include "valhalla/config.h"
 #include <string.h>
 
 using namespace valhalla::baldr;

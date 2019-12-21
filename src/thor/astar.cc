@@ -1,6 +1,6 @@
-#include "thor/astar.h"
-#include "baldr/datetime.h"
-#include "midgard/logging.h"
+#include "valhalla/thor/astar.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/midgard/logging.h"
 #include <algorithm>
 #include <iostream> // TODO remove if not needed
 #include <map>

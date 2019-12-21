@@ -1,9 +1,9 @@
 #include "test.h"
 
-#include "midgard/logging.h"
-#include "thor/attributes_controller.h"
-#include "thor/worker.h"
-#include "tyr/actor.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/thor/attributes_controller.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/tyr/actor.h"
 #include <boost/property_tree/ptree.hpp>
 #include <thread>
 #include <unistd.h>

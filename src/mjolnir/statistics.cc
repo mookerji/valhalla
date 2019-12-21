@@ -1,7 +1,7 @@
 #include <cstdint>
 
-#include "mjolnir/graphtilebuilder.h"
-#include "mjolnir/graphvalidator.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/graphvalidator.h"
 #include "statistics.h"
 
 #include <boost/filesystem/operations.hpp>
@@ -19,12 +19,12 @@
 #include <unordered_set>
 #include <vector>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/json.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/aabb2.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/logging.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

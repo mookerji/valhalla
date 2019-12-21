@@ -4,7 +4,7 @@
 
 #include <valhalla/baldr/json.h>
 #include <valhalla/baldr/rapidjson_utils.h>
-#include <valhalla/proto/api.pb.h>
+#include "valhalla/proto/api.pb.h"
 #include <valhalla/valhalla.h>
 
 #ifdef HAVE_HTTP

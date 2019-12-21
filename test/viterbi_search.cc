@@ -4,8 +4,8 @@
 #include <iostream>
 #include <random>
 
-#include "meili/topk_search.h"
-#include "meili/viterbi_search.h"
+#include "valhalla/meili/topk_search.h"
+#include "valhalla/meili/viterbi_search.h"
 #include "test.h"
 
 using namespace valhalla::meili;

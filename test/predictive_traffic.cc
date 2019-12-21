@@ -4,14 +4,14 @@
 #include <string>
 #include <vector>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/nodeinfo.h"
-#include "midgard/util.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/nodeinfo.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 
 using namespace valhalla::baldr;

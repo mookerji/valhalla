@@ -5,7 +5,7 @@
 
 #include <valhalla/odin/enhancedtrippath.h>
 #include <valhalla/odin/maneuver.h>
-#include <valhalla/proto/api.pb.h>
+#include "valhalla/proto/api.pb.h"
 
 namespace valhalla {
 namespace odin {

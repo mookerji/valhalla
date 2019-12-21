@@ -7,14 +7,14 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/format.hpp>
 
-#include "baldr/verbal_text_formatter.h"
+#include "valhalla/baldr/verbal_text_formatter.h"
 
-#include "odin/enhancedtrippath.h"
-#include "odin/maneuver.h"
-#include "odin/narrative_dictionary.h"
-#include "odin/narrativebuilder.h"
-#include "odin/util.h"
-#include "worker.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/odin/maneuver.h"
+#include "valhalla/odin/narrative_dictionary.h"
+#include "valhalla/odin/narrativebuilder.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/worker.h"
 
 namespace {
 // Text instruction initial capacity

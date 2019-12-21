@@ -7,18 +7,18 @@
 #include <unordered_map>
 #include <vector>
 
-#include "baldr/json.h"
-#include "baldr/rapidjson_utils.h"
-#include "baldr/turn.h"
-#include "midgard/aabb2.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
-#include "odin/util.h"
-#include "tyr/serializers.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/baldr/turn.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/tyr/serializers.h"
 
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 
 using namespace valhalla;
 using namespace valhalla::baldr;

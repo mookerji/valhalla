@@ -1,9 +1,9 @@
-#include "mjolnir/graphbuilder.h"
-#include "mjolnir/admin.h"
-#include "mjolnir/ferry_connections.h"
-#include "mjolnir/linkclassification.h"
-#include "mjolnir/node_expander.h"
-#include "mjolnir/util.h"
+#include "valhalla/mjolnir/graphbuilder.h"
+#include "valhalla/mjolnir/admin.h"
+#include "valhalla/mjolnir/ferry_connections.h"
+#include "valhalla/mjolnir/linkclassification.h"
+#include "valhalla/mjolnir/node_expander.h"
+#include "valhalla/mjolnir/util.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/operations.hpp>
@@ -13,21 +13,21 @@
 #include <thread>
 #include <utility>
 
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/signinfo.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/aabb2.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/polyline2.h"
-#include "midgard/tiles.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/signinfo.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/polyline2.h"
+#include "valhalla/midgard/tiles.h"
+#include "valhalla/midgard/util.h"
 
-#include "mjolnir/edgeinfobuilder.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/edgeinfobuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

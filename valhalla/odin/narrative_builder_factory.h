@@ -6,7 +6,7 @@
 
 #include <valhalla/odin/enhancedtrippath.h>
 #include <valhalla/odin/narrativebuilder.h>
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 
 namespace valhalla {
 namespace odin {

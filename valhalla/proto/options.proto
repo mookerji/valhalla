@@ -1,7 +1,8 @@
 syntax = "proto2";
 option optimize_for = LITE_RUNTIME;
 package valhalla;
-import public "tripcommon.proto";
+
+import public "valhalla/proto/tripcommon.proto";
 
 message Contour {
   optional float time = 1;     // minutes

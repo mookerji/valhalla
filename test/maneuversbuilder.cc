@@ -4,13 +4,13 @@
 #include <utility>
 #include <vector>
 
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
-#include "odin/maneuver.h"
-#include "odin/maneuversbuilder.h"
+#include "valhalla/odin/maneuver.h"
+#include "valhalla/odin/maneuversbuilder.h"
 
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 
 #include "test.h"
 

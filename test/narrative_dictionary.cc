@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#include "odin/narrative_dictionary.h"
-#include "odin/util.h"
+#include "valhalla/odin/narrative_dictionary.h"
+#include "valhalla/odin/util.h"
 
 #include "test.h"
 

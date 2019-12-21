@@ -1,5 +1,5 @@
-#include "baldr/edgetracker.h"
-#include "baldr/graphreader.h"
+#include "valhalla/baldr/edgetracker.h"
+#include "valhalla/baldr/graphreader.h"
 
 namespace valhalla {
 namespace baldr {

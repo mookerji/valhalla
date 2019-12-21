@@ -67,3 +67,5 @@ lib/binding/node_valhalla.node
 site/
 
 .DS_Store
+
+bazel-*

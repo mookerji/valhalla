@@ -7,11 +7,11 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/classification.hpp>
 
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/timedomain.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/timedomain.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
 using namespace valhalla::baldr;
 namespace valhalla {

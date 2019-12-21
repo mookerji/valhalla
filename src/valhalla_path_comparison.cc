@@ -1,4 +1,4 @@
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -7,21 +7,21 @@
 #include <string>
 #include <vector>
 
-#include "config.h"
-#include "worker.h"
+#include "valhalla/config.h"
+#include "valhalla/worker.h"
 
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/pathlocation.h"
-#include "baldr/tilehierarchy.h"
-#include "loki/search.h"
-#include "meili/map_matcher.h"
-#include "meili/map_matcher_factory.h"
-#include "meili/match_result.h"
-#include "midgard/encoded.h"
-#include "sif/costfactory.h"
-#include "thor/pathinfo.h"
-#include "thor/route_matcher.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/meili/map_matcher.h"
+#include "valhalla/meili/map_matcher_factory.h"
+#include "valhalla/meili/match_result.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/sif/costfactory.h"
+#include "valhalla/thor/pathinfo.h"
+#include "valhalla/thor/route_matcher.h"
 
 using namespace valhalla;
 using namespace valhalla::sif;

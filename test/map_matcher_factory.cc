@@ -1,13 +1,13 @@
 // -*- mode: c++ -*-
 #include <string>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 
-#include "sif/costconstants.h"
-#include "sif/costfactory.h"
+#include "valhalla/sif/costconstants.h"
+#include "valhalla/sif/costfactory.h"
 
-#include "meili/map_matcher_factory.h"
+#include "valhalla/meili/map_matcher_factory.h"
 #include "test.h"
 
 #if !defined(VALHALLA_SOURCE_DIR)

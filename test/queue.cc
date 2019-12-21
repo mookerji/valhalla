@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <limits>
 
-#include "meili/priority_queue.h"
+#include "valhalla/meili/priority_queue.h"
 #include "test.h"
 
 class Label {

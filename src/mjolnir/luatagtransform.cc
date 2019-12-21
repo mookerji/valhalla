@@ -1,7 +1,7 @@
-#include "mjolnir/luatagtransform.h"
+#include "valhalla/mjolnir/luatagtransform.h"
 
-#include "midgard/logging.h"
-#include "mjolnir/osmdata.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/osmdata.h"
 #include <boost/format.hpp>
 #include <stdexcept>
 

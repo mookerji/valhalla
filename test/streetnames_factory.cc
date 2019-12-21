@@ -1,6 +1,6 @@
-#include "baldr/streetnames_factory.h"
-#include "baldr/streetnames.h"
-#include "baldr/streetnames_us.h"
+#include "valhalla/baldr/streetnames_factory.h"
+#include "valhalla/baldr/streetnames.h"
+#include "valhalla/baldr/streetnames_us.h"
 #include "test.h"
 
 #include <iostream>

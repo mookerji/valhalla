@@ -1,4 +1,4 @@
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -10,9 +10,9 @@
 #include <date/date.h>
 #include <date/tz.h>
 
-#include "locales.h"
-#include "midgard/logging.h"
-#include "odin/util.h"
+#include "valhalla/odin/locales.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/odin/util.h"
 
 namespace {
 

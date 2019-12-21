@@ -1,16 +1,16 @@
-#include "baldr/graphreader.h"
-#include "baldr/merge.h"
-#include "loki/node_search.h"
-#include "loki/search.h"
-#include "midgard/logging.h"
-#include "midgard/sequence.h"
-#include "mjolnir/graphtilebuilder.h"
-#include "thor/astar.h"
-#include "thor/pathalgorithm.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/merge.h"
+#include "valhalla/loki/node_search.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/sequence.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/thor/astar.h"
+#include "valhalla/thor/pathalgorithm.h"
 #include <cmath>
 #include <cstdint>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/algorithm/cxx11/all_of.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/filesystem.hpp>
@@ -24,7 +24,7 @@
 #include <mutex>
 #include <thread>
 
-#include "config.h"
+#include "valhalla/config.h"
 #include <valhalla/proto/segment.pb.h>
 #include <valhalla/proto/tile.pb.h>
 

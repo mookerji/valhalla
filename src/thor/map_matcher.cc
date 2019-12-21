@@ -1,10 +1,10 @@
-#include "midgard/logging.h"
+#include "valhalla/midgard/logging.h"
 #include <algorithm>
 #include <exception>
 #include <vector>
 
-#include "baldr/datetime.h"
-#include "thor/map_matcher.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/thor/map_matcher.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::sif;

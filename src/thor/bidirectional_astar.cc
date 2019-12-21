@@ -1,10 +1,10 @@
-#include "thor/bidirectional_astar.h"
-#include "baldr/datetime.h"
-#include "baldr/directededge.h"
-#include "baldr/graphid.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "sif/edgelabel.h"
+#include "valhalla/thor/bidirectional_astar.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/directededge.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/sif/edgelabel.h"
 #include <algorithm>
 #include <map>
 

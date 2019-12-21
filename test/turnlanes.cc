@@ -6,14 +6,14 @@
 #include <string>
 #include <vector>
 
-#include "baldr/turnlanes.h"
-#include "odin/directionsbuilder.h"
-#include "odin/enhancedtrippath.h"
+#include "valhalla/baldr/turnlanes.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/odin/enhancedtrippath.h"
 
-#include <valhalla/proto/api.pb.h>
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/api.pb.h"
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
 
 #include "test.h"
 

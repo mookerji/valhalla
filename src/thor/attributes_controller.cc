@@ -1,4 +1,4 @@
-#include <thor/attributes_controller.h>
+#include <valhalla/thor/attributes_controller.h>
 
 #include <string>
 

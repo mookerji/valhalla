@@ -8,15 +8,15 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "baldr/json.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/midgard/logging.h"
 
-#include "odin/directionsbuilder.h"
-#include "odin/util.h"
-#include "odin/worker.h"
-#include "tyr/serializers.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/odin/worker.h"
+#include "valhalla/tyr/serializers.h"
 
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/trip.pb.h"
 
 using namespace valhalla;
 using namespace valhalla::tyr;

@@ -1,9 +1,9 @@
-#include "loki/search.h"
-#include "baldr/tilehierarchy.h"
-#include "loki/reach.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/linesegment2.h"
-#include "midgard/util.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/loki/reach.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/linesegment2.h"
+#include "valhalla/midgard/util.h"
 
 #include <algorithm>
 #include <cmath>

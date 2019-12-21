@@ -1,11 +1,11 @@
 #include <algorithm>
 #include <cstdio>
 
-#include "meili/traffic_segment_matcher.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
-#include "worker.h"
+#include "valhalla/meili/traffic_segment_matcher.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/worker.h"
 
 namespace {
 

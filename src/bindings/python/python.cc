@@ -2,7 +2,7 @@
 // FreeBSD/macOS
 #include <boost/python.hpp>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/make_shared.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/optional.hpp>
@@ -11,9 +11,9 @@
 #include <sstream>
 #include <string>
 
-#include "midgard/logging.h"
-#include "midgard/util.h"
-#include "tyr/actor.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/tyr/actor.h"
 
 namespace {
 

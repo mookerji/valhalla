@@ -1,10 +1,10 @@
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
-#include "baldr/datetime.h"
-#include "baldr/edgeinfo.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/edgeinfo.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/logging.h"
 #include <algorithm>
 #include <boost/filesystem/operations.hpp>
 #include <boost/format.hpp>

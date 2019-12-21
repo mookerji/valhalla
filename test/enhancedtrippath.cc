@@ -1,6 +1,6 @@
-#include "odin/enhancedtrippath.h"
-#include "baldr/turnlanes.h"
-#include "midgard/util.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/baldr/turnlanes.h"
+#include "valhalla/midgard/util.h"
 
 #include "test.h"
 #include <cstdint>

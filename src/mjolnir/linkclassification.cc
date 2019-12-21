@@ -1,4 +1,4 @@
-#include "mjolnir/ferry_connections.h"
+#include "valhalla/mjolnir/ferry_connections.h"
 #include <valhalla/mjolnir/node_expander.h>
 
 #include <list>
@@ -6,8 +6,8 @@
 #include <unordered_set>
 #include <vector>
 
-#include "baldr/graphid.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/midgard/util.h"
 
 using namespace valhalla::baldr;
 

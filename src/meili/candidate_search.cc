@@ -1,6 +1,6 @@
-#include "meili/candidate_search.h"
-#include "baldr/tilehierarchy.h"
-#include "meili/geometry_helpers.h"
+#include "valhalla/meili/candidate_search.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/meili/geometry_helpers.h"
 
 using namespace valhalla::midgard;
 

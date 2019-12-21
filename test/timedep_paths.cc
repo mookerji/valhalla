@@ -4,13 +4,13 @@
 #include <string>
 #include <vector>
 
-#include "baldr/rapidjson_utils.h"
-#include "loki/worker.h"
-#include "midgard/logging.h"
-#include "sif/autocost.h"
-#include "thor/timedep.h"
-#include "thor/worker.h"
-#include "worker.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/sif/autocost.h"
+#include "valhalla/thor/timedep.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/worker.h"
 #include <boost/property_tree/ptree.hpp>
 
 using namespace valhalla;

@@ -1,4 +1,4 @@
-#include "mjolnir/osmaccessrestriction.h"
+#include "valhalla/mjolnir/osmaccessrestriction.h"
 
 using namespace valhalla::baldr;
 

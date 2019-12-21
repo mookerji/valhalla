@@ -1,8 +1,8 @@
-#include "midgard/aabb2.h"
-#include "midgard/linesegment2.h"
-#include "midgard/point2.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/linesegment2.h"
+#include "valhalla/midgard/point2.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
 
 #include <cmath>
 #include <list>

@@ -1,10 +1,10 @@
-#include "skadi/sample.h"
+#include "valhalla/skadi/sample.h"
 #include "pixels.h"
 #include "test.h"
 
-#include "baldr/compression_utils.h"
-#include "midgard/sequence.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/compression_utils.h"
+#include "valhalla/midgard/sequence.h"
+#include "valhalla/midgard/util.h"
 
 #include <cmath>
 #include <fstream>

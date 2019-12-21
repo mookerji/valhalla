@@ -18,20 +18,20 @@
 #include <boost/tokenizer.hpp>
 #include <curl/curl.h>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphtile.h"
-#include "baldr/rapidjson_utils.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/sequence.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/sequence.h"
 
-#include "mjolnir/admin.h"
-#include "mjolnir/servicedays.h"
-#include "mjolnir/transitpbf.h"
+#include "valhalla/mjolnir/admin.h"
+#include "valhalla/mjolnir/servicedays.h"
+#include "valhalla/mjolnir/transitpbf.h"
 
-#include <valhalla/proto/transit.pb.h>
+#include "valhalla/proto/transit.pb.h"
 
 using namespace boost::property_tree;
 using namespace valhalla::midgard;

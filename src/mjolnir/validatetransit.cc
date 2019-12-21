@@ -1,8 +1,8 @@
-#include "mjolnir/validatetransit.h"
-#include "mjolnir/dataquality.h"
-#include "mjolnir/graphtilebuilder.h"
-#include "mjolnir/osmrestriction.h"
-#include "mjolnir/servicedays.h"
+#include "valhalla/mjolnir/validatetransit.h"
+#include "valhalla/mjolnir/dataquality.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/osmrestriction.h"
+#include "valhalla/mjolnir/servicedays.h"
 
 #include <future>
 #include <queue>
@@ -13,15 +13,15 @@
 #include <boost/filesystem/operations.hpp>
 #include <boost/tokenizer.hpp>
 
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/graphtile.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "midgard/logging.h"
-#include "midgard/sequence.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/sequence.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

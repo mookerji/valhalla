@@ -1,5 +1,5 @@
-#include "mjolnir/transitbuilder.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/transitbuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
 #include <fstream>
 #include <future>
@@ -15,14 +15,14 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "baldr/datetime.h"
-#include "baldr/graphreader.h"
-#include "baldr/graphtile.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

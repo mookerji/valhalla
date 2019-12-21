@@ -8,19 +8,19 @@
 #include <string>
 #include <vector>
 
-#include "baldr/graphreader.h"
-#include "baldr/pathlocation.h"
-#include "loki/search.h"
-#include "midgard/logging.h"
-#include "sif/costconstants.h"
-#include "sif/costfactory.h"
-#include "thor/isochrone.h"
-#include "tyr/serializers.h"
-#include "worker.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/sif/costconstants.h"
+#include "valhalla/sif/costfactory.h"
+#include "valhalla/thor/isochrone.h"
+#include "valhalla/tyr/serializers.h"
+#include "valhalla/worker.h"
 
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 
-#include "config.h"
+#include "valhalla/config.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

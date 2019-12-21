@@ -1,14 +1,14 @@
-#include "sif/pedestriancost.h"
-#include "sif/costconstants.h"
+#include "valhalla/sif/pedestriancost.h"
+#include "valhalla/sif/costconstants.h"
 
-#include "baldr/accessrestriction.h"
-#include "baldr/graphconstants.h"
-#include "midgard/constants.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/accessrestriction.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/util.h"
 
 #ifdef INLINE_TEST
 #include "test/test.h"
-#include "worker.h"
+#include "valhalla/worker.h"
 #include <random>
 #endif
 

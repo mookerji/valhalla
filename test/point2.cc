@@ -1,4 +1,4 @@
-#include "midgard/point2.h"
+#include "valhalla/midgard/point2.h"
 
 #include "test.h"
 
@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "midgard/vector2.h"
+#include "valhalla/midgard/vector2.h"
 
 using namespace std;
 using namespace valhalla::midgard;

@@ -1,10 +1,10 @@
 #include <stdexcept>
 
-#include "baldr/location.h"
-#include "baldr/rapidjson_utils.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/location.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
 
 namespace valhalla {
 namespace baldr {

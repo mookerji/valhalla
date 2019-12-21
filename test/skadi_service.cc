@@ -1,4 +1,4 @@
-#include "loki/worker.h"
+#include "valhalla/loki/worker.h"
 #include "pixels.h"
 #include "test.h"
 

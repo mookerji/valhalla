@@ -37,8 +37,8 @@
 #include <vector>
 #include <zlib.h>
 
-#include "midgard/logging.h"
-#include "mjolnir/osmpbfparser.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/osmpbfparser.h"
 
 using namespace OSMPBF;
 

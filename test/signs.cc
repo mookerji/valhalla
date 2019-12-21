@@ -2,8 +2,8 @@
 #include <cstdint>
 #include <vector>
 
-#include "odin/sign.h"
-#include "odin/signs.h"
+#include "valhalla/odin/sign.h"
+#include "valhalla/odin/signs.h"
 
 #include "test.h"
 

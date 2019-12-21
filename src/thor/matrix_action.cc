@@ -1,10 +1,10 @@
-#include "sif/autocost.h"
-#include "sif/bicyclecost.h"
-#include "sif/pedestriancost.h"
-#include "thor/costmatrix.h"
-#include "thor/timedistancematrix.h"
-#include "thor/worker.h"
-#include "tyr/serializers.h"
+#include "valhalla/sif/autocost.h"
+#include "valhalla/sif/bicyclecost.h"
+#include "valhalla/sif/pedestriancost.h"
+#include "valhalla/thor/costmatrix.h"
+#include "valhalla/thor/timedistancematrix.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/tyr/serializers.h"
 
 using namespace valhalla;
 using namespace valhalla::tyr;

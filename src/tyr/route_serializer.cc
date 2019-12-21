@@ -3,16 +3,16 @@
 #include <sstream>
 #include <vector>
 
-#include "midgard/encoded.h"
-#include "midgard/util.h"
-#include "odin/util.h"
-#include "route_serializer_osrm.cc"
-#include "route_serializer_valhalla.cc"
-#include "tyr/serializers.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/tyr/route_serializer_osrm.h"
+#include "valhalla/tyr/route_serializer_valhalla.h"
+#include "valhalla/tyr/serializers.h"
 
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
 
 using namespace valhalla;
 using namespace valhalla::tyr;

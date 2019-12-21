@@ -1,24 +1,24 @@
-#include "loki/node_search.h"
+#include "valhalla/loki/node_search.h"
 #include "test.h"
 #include <cstdint>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 #include <unordered_set>
 
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/location.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/pointll.h"
-#include "midgard/vector2.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/location.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/vector2.h"
 
 namespace vm = valhalla::midgard;
 namespace vb = valhalla::baldr;
 
-#include "mjolnir/directededgebuilder.h"
-#include "mjolnir/graphtilebuilder.h"
-#include "mjolnir/graphvalidator.h"
+#include "valhalla/mjolnir/directededgebuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/graphvalidator.h"
 #include <boost/filesystem.hpp>
 
 namespace vj = valhalla::mjolnir;

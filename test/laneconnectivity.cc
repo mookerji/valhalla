@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "baldr/laneconnectivity.h"
+#include "valhalla/baldr/laneconnectivity.h"
 
 #include <string>
 

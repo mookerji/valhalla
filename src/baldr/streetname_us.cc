@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "baldr/streetname.h"
-#include "baldr/streetname_us.h"
+#include "valhalla/baldr/streetname.h"
+#include "valhalla/baldr/streetname_us.h"
 
 namespace valhalla {
 namespace baldr {

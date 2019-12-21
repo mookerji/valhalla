@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "mjolnir/idtable.h"
+#include "valhalla/mjolnir/idtable.h"
 #include <cstdint>
 #include <cstdlib>
 #include <unordered_set>

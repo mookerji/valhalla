@@ -1,10 +1,10 @@
-#include "sif/transitcost.h"
+#include "valhalla/sif/transitcost.h"
 
-#include "baldr/accessrestriction.h"
-#include "baldr/graphconstants.h"
-#include "midgard/constants.h"
-#include "midgard/logging.h"
-#include "worker.h"
+#include "valhalla/baldr/accessrestriction.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/worker.h"
 
 #ifdef INLINE_TEST
 #include "test/test.h"

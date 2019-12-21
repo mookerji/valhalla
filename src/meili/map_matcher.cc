@@ -1,11 +1,11 @@
 #include <cmath>
 
-#include "meili/emission_cost_model.h"
-#include "meili/geometry_helpers.h"
-#include "meili/map_matcher.h"
-#include "meili/routing.h"
-#include "meili/transition_cost_model.h"
-#include "midgard/distanceapproximator.h"
+#include "valhalla/meili/emission_cost_model.h"
+#include "valhalla/meili/geometry_helpers.h"
+#include "valhalla/meili/map_matcher.h"
+#include "valhalla/meili/routing.h"
+#include "valhalla/meili/transition_cost_model.h"
+#include "valhalla/midgard/distanceapproximator.h"
 
 namespace {
 

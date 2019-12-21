@@ -1,7 +1,7 @@
-#include "mjolnir/osmway.h"
-#include "mjolnir/util.h"
+#include "valhalla/mjolnir/osmway.h"
+#include "valhalla/mjolnir/util.h"
 
-#include "midgard/logging.h"
+#include "valhalla/midgard/logging.h"
 #include <iostream>
 
 using namespace valhalla::baldr;

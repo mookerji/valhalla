@@ -1,20 +1,20 @@
-#include "baldr/graphreader.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/sequence.h"
-#include "mjolnir/bssbuilder.h"
-#include "mjolnir/graphbuilder.h"
-#include "mjolnir/osmnode.h"
-#include "mjolnir/pbfgraphparser.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/sequence.h"
+#include "valhalla/mjolnir/bssbuilder.h"
+#include "valhalla/mjolnir/graphbuilder.h"
+#include "valhalla/mjolnir/osmnode.h"
+#include "valhalla/mjolnir/pbfgraphparser.h"
 #include "test.h"
 #include <cstdint>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <fstream>
 
-#include "baldr/directededge.h"
-#include "baldr/graphconstants.h"
+#include "valhalla/baldr/directededge.h"
+#include "valhalla/baldr/graphconstants.h"
 
 #if !defined(VALHALLA_SOURCE_DIR)
 #define VALHALLA_SOURCE_DIR

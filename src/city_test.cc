@@ -1,4 +1,4 @@
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
@@ -11,27 +11,27 @@
 #include <string>
 #include <vector>
 
-#include "config.h"
 
-#include "baldr/graphreader.h"
-#include "baldr/pathlocation.h"
-#include "loki/search.h"
-#include "midgard/logging.h"
-#include "mjolnir/util.h"
-#include "odin/directionsbuilder.h"
-#include "odin/util.h"
-#include "sif/costfactory.h"
-#include "thor/bidirectional_astar.h"
-#include "thor/pathalgorithm.h"
-#include "thor/triplegbuilder.h"
-
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/config.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/util.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
+#include "valhalla/sif/costfactory.h"
+#include "valhalla/thor/bidirectional_astar.h"
+#include "valhalla/thor/pathalgorithm.h"
+#include "valhalla/thor/triplegbuilder.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;
 using namespace valhalla::loki;
+using namespace valhalla::mjolnir;
 using namespace valhalla::odin;
 using namespace valhalla::sif;
 using namespace valhalla::thor;
@@ -138,16 +138,7 @@ std::string GetJSONRequest(const Location& originloc, const Location& destloc) {
 
 // Main method for testing city to city routing
 int main(int argc, char* argv[]) {
-  bpo::options_description options("citytest " VERSION "\n"
-                                   "\n"
-                                   " Usage: citytest [options]\n"
-                                   "\n"
-                                   "citytest is a simple command line test tool for shortest path "
-                                   "routing between cities within a single country. "
-                                   "\n"
-                                   "Use the -c option to specify a country. "
-                                   "\n"
-                                   "\n");
+  bpo::options_description options("citytest\n");
 
   std::string config = "conf/planet.json";
   std::string filename = "World_Cities_Location_table.csv";

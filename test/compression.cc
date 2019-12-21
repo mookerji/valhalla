@@ -1,4 +1,4 @@
-#include "baldr/compression_utils.h"
+#include "valhalla/baldr/compression_utils.h"
 #include "test.h"
 
 #include <string>

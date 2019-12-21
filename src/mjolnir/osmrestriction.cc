@@ -1,5 +1,5 @@
-#include "mjolnir/osmrestriction.h"
-#include "midgard/logging.h"
+#include "valhalla/mjolnir/osmrestriction.h"
+#include "valhalla/midgard/logging.h"
 
 using namespace valhalla::baldr;
 

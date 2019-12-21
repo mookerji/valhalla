@@ -1,20 +1,20 @@
 #include <cstdint>
 #include <regex>
 
-#include "baldr/verbal_text_formatter_factory.h"
+#include "valhalla/baldr/verbal_text_formatter_factory.h"
 
-#include "odin/enhancedtrippath.h"
-#include "odin/maneuver.h"
-#include "odin/narrative_builder_factory.h"
-#include "odin/narrative_dictionary.h"
-#include "odin/narrativebuilder.h"
-#include "odin/sign.h"
-#include "odin/signs.h"
-#include "odin/util.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/odin/maneuver.h"
+#include "valhalla/odin/narrative_builder_factory.h"
+#include "valhalla/odin/narrative_dictionary.h"
+#include "valhalla/odin/narrativebuilder.h"
+#include "valhalla/odin/sign.h"
+#include "valhalla/odin/signs.h"
+#include "valhalla/odin/util.h"
 
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/trip.pb.h>
-#include <valhalla/proto/tripcommon.pb.h>
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/trip.pb.h"
+#include "valhalla/proto/tripcommon.pb.h"
 
 #include "test.h"
 

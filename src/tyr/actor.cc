@@ -1,9 +1,9 @@
-#include "tyr/actor.h"
-#include "baldr/rapidjson_utils.h"
-#include "loki/worker.h"
-#include "odin/worker.h"
-#include "thor/worker.h"
-#include "tyr/serializers.h"
+#include "valhalla/tyr/actor.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/odin/worker.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/tyr/serializers.h"
 
 using namespace valhalla;
 using namespace valhalla::loki;

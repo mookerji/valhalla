@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <string>
 
-#include "baldr/graphconstants.h"
-#include "mjolnir/servicedays.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/mjolnir/servicedays.h"
 
 using namespace std;
 using namespace valhalla::baldr;

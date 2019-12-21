@@ -1,4 +1,4 @@
-#include "thor/worker.h"
+#include "valhalla/thor/worker.h"
 
 #include <algorithm>
 #include <limits>
@@ -7,13 +7,13 @@
 #include <utility>
 #include <vector>
 
-#include "meili/map_matcher.h"
+#include "valhalla/meili/map_matcher.h"
 
-#include "thor/attributes_controller.h"
-#include "thor/map_matcher.h"
-#include "thor/match_result.h"
-#include "thor/route_matcher.h"
-#include "thor/triplegbuilder.h"
+#include "valhalla/thor/attributes_controller.h"
+#include "valhalla/thor/map_matcher.h"
+#include "valhalla/thor/match_result.h"
+#include "valhalla/thor/route_matcher.h"
+#include "valhalla/thor/triplegbuilder.h"
 
 using namespace valhalla;
 using namespace valhalla::baldr;

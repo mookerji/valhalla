@@ -1,11 +1,10 @@
-
-#include "mjolnir/pbfadminparser.h"
-#include "admin_lua_proc.h"
-#include "mjolnir/idtable.h"
-#include "mjolnir/luatagtransform.h"
-#include "mjolnir/osmadmin.h"
-#include "mjolnir/osmpbfparser.h"
-#include "mjolnir/util.h"
+#include "valhalla/mjolnir/pbfadminparser.h"
+#include "valhalla/mjolnir/admin_lua_proc.h"
+#include "valhalla/mjolnir/idtable.h"
+#include "valhalla/mjolnir/luatagtransform.h"
+#include "valhalla/mjolnir/osmadmin.h"
+#include "valhalla/mjolnir/osmpbfparser.h"
+#include "valhalla/mjolnir/util.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/format.hpp>
@@ -13,8 +12,8 @@
 #include <thread>
 #include <utility>
 
-#include "baldr/tilehierarchy.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/logging.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

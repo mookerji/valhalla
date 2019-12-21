@@ -1,5 +1,5 @@
-#include "sif/dynamiccost.h"
-#include "baldr/graphconstants.h"
+#include "valhalla/sif/dynamiccost.h"
+#include "valhalla/baldr/graphconstants.h"
 
 using namespace valhalla::baldr;
 

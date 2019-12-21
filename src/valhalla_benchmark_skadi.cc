@@ -6,8 +6,8 @@
 #include <utility>
 #include <vector>
 
-#include "midgard/logging.h"
-#include "skadi/sample.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/skadi/sample.h"
 
 void get_samples(const valhalla::skadi::sample& sample,
                  const std::list<std::pair<double, double>>& postings,

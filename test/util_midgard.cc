@@ -1,8 +1,8 @@
-#include "midgard/constants.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/encoded.h"
-#include "midgard/polyline2.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/polyline2.h"
+#include "valhalla/midgard/util.h"
 #include "test.h"
 #include <cmath>
 #include <random>

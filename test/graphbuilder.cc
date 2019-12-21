@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "mjolnir/graphbuilder.h"
+#include "valhalla/mjolnir/graphbuilder.h"
 
 #include <algorithm>
 #include <boost/optional.hpp>

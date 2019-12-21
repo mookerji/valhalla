@@ -1,12 +1,12 @@
-#include "midgard/ellipse.h"
-#include "midgard/point2.h"
+#include "valhalla/midgard/ellipse.h"
+#include "valhalla/midgard/point2.h"
 #include <cstdint>
 
 #include "test.h"
 
-#include "midgard/aabb2.h"
-#include "midgard/linesegment2.h"
-#include "midgard/vector2.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/linesegment2.h"
+#include "valhalla/midgard/vector2.h"
 #include <vector>
 
 using namespace std;

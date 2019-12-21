@@ -2,7 +2,7 @@
 
 #include "statistics.h"
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/format.hpp>
 #include <boost/program_options.hpp>
@@ -19,15 +19,15 @@
 #include <utility>
 #include <vector>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/nodeinfo.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/aabb2.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/nodeinfo.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

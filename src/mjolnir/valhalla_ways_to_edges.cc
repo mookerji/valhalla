@@ -5,20 +5,20 @@
 #include <unordered_map>
 #include <vector>
 
-#include "config.h"
+#include "valhalla/config.h"
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <ostream>
 
-#include "baldr/directededge.h"
-#include "baldr/edgeinfo.h"
-#include "baldr/graphreader.h"
-#include "baldr/graphtile.h"
-#include "baldr/tilehierarchy.h"
+#include "valhalla/baldr/directededge.h"
+#include "valhalla/baldr/edgeinfo.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/tilehierarchy.h"
 
 namespace bpo = boost::program_options;
 

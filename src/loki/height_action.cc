@@ -1,7 +1,7 @@
-#include "loki/worker.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "tyr/serializers.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/tyr/serializers.h"
 
 using namespace valhalla;
 using namespace valhalla::tyr;

@@ -1,16 +1,16 @@
-#include "thor/worker.h"
+#include "valhalla/thor/worker.h"
 #include <cstdint>
 
-#include "baldr/json.h"
-#include "baldr/rapidjson_utils.h"
-#include "midgard/constants.h"
-#include "midgard/logging.h"
-#include "sif/autocost.h"
-#include "sif/bicyclecost.h"
-#include "sif/pedestriancost.h"
-#include "thor/attributes_controller.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/sif/autocost.h"
+#include "valhalla/sif/bicyclecost.h"
+#include "valhalla/sif/pedestriancost.h"
+#include "valhalla/thor/attributes_controller.h"
 
-#include <valhalla/proto/tripcommon.pb.h>
+#include "valhalla/proto/tripcommon.pb.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

@@ -1,9 +1,9 @@
 #include "test.h"
 #include <cstdint>
 
-#include "baldr/location.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/location.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
 #include <unordered_map>
 

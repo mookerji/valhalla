@@ -2,9 +2,9 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "midgard/logging.h"
+#include "valhalla/midgard/logging.h"
 
-#include "odin/narrative_dictionary.h"
+#include "valhalla/odin/narrative_dictionary.h"
 
 namespace {
 

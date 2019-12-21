@@ -1,0 +1,60 @@
+package(default_visibility=["//visibility:public"])
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+load("//:conf/flags.bzl", "LLVM_LAZY_FLAGS")
+
+cc_library(
+    name="mjolnir",
+    srcs=[
+        "admin.cc",
+        "bssbuilder.cc",
+        "complexrestrictionbuilder.cc",
+        "countryaccess.cc",
+        "dataquality.cc",
+        "directededgebuilder.cc",
+        "graphtilebuilder.cc",
+        "edgeinfobuilder.cc",
+        "elevationbuilder.cc",
+        "ferry_connections.cc",
+        "graphbuilder.cc",
+        "graphenhancer.cc",
+        "graphfilter.cc",
+        "graphvalidator.cc",
+        "hierarchybuilder.cc",
+        "linkclassification.cc",
+        "luatagtransform.cc",
+        "node_expander.cc",
+        "osmdata.cc",
+        "osmpbfparser.cc",
+        "osmaccessrestriction.cc",
+        "osmrestriction.cc",
+        "osmway.cc",
+        "pbfadminparser.cc",
+        "pbfgraphparser.cc",
+        "restrictionbuilder.cc",
+        "servicedays.cc",
+        "shortcutbuilder.cc",
+        "timeparsing.cc",
+        "transitbuilder.cc",
+        "util.cc",
+        "validatetransit.cc",
+    ],
+    hdrs=[
+        "//valhalla:headers",
+    ],
+    copts=LLVM_LAZY_FLAGS,
+    deps=[
+        "@boost//:geometry",
+        "@boost//:date_time",
+        "@boost//:filesystem",
+        "@boost//:property_tree",
+        "@date",
+        "@libspatialite",
+        "@lua",
+        "@sqlite3",
+        "//valhalla/proto:cc_proto_tripcommon",
+        "//valhalla/proto:cc_proto_fileformat",
+        "//valhalla/proto:cc_proto_osmformat",
+    ],
+)

@@ -3,14 +3,14 @@
 #include <sstream>
 #include <string>
 
-#include "baldr/rapidjson_utils.h"
-#include "odin/directionsbuilder.h"
-#include "tyr/serializers.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/tyr/serializers.h"
 
-#include <valhalla/proto/api.pb.h>
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/api.pb.h"
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
 
 #include "test.h"
 

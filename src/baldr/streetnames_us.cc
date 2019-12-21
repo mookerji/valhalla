@@ -1,8 +1,8 @@
 #include <iostream>
 #include <memory>
 
-#include "baldr/streetnames_us.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/streetnames_us.h"
+#include "valhalla/midgard/util.h"
 
 namespace valhalla {
 namespace baldr {

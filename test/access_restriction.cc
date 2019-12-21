@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <vector>
 
-#include "baldr/accessrestriction.h"
+#include "valhalla/baldr/accessrestriction.h"
 
 #include "test.h"
 

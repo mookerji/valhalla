@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "baldr/directededge.h"
+#include "valhalla/baldr/directededge.h"
 
 using namespace std;
 using namespace valhalla::baldr;

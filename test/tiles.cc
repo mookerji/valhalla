@@ -1,7 +1,7 @@
-#include "midgard/tiles.h"
-#include "midgard/aabb2.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/tiles.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
 #include "test.h"
 
 #include <random>

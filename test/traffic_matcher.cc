@@ -2,12 +2,12 @@
 
 #include <stdexcept>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "meili/traffic_segment_matcher.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/meili/traffic_segment_matcher.h"
 
 #if !defined(VALHALLA_SOURCE_DIR)
 #define VALHALLA_SOURCE_DIR

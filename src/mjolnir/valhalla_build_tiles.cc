@@ -1,21 +1,21 @@
 #include <string>
 #include <vector>
 
-#include "config.h"
-#include "mjolnir/util.h"
+#include "valhalla/config.h"
+#include "valhalla/mjolnir/util.h"
 
 using namespace valhalla::mjolnir;
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <iostream>
 
-#include "filesystem.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
 namespace bpo = boost::program_options;
 

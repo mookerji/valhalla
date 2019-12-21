@@ -1,6 +1,6 @@
-#include "baldr/graphconstants.h"
-#include "mjolnir/osmway.h"
-#include "mjolnir/uniquenames.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/mjolnir/osmway.h"
+#include "valhalla/mjolnir/uniquenames.h"
 #include <iostream>
 
 #include "test.h"

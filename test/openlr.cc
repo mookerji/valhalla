@@ -1,4 +1,4 @@
-#include "midgard/openlr.h"
+#include "valhalla/midgard/openlr.h"
 #include "test.h"
 
 #include <boost/archive/iterators/base64_from_binary.hpp>

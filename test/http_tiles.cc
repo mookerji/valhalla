@@ -1,8 +1,8 @@
 #include "test.h"
 
-#include "baldr/graphtile.h"
-#include "baldr/rapidjson_utils.h"
-#include "tyr/actor.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/tyr/actor.h"
 #include "valhalla/filesystem.h"
 #include "valhalla/tile_server.h"
 

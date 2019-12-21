@@ -5,10 +5,10 @@
 #include <iostream>
 #include <vector>
 
-#include "baldr/edgeinfo.h"
-#include "baldr/graphid.h"
-#include "baldr/sign.h"
-#include "mjolnir/edgeinfobuilder.h"
+#include "valhalla/baldr/edgeinfo.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/sign.h"
+#include "valhalla/mjolnir/edgeinfobuilder.h"
 #include <boost/shared_array.hpp>
 #include <memory>
 

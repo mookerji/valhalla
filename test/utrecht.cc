@@ -1,6 +1,6 @@
-#include "midgard/sequence.h"
-#include "mjolnir/osmnode.h"
-#include "mjolnir/pbfgraphparser.h"
+#include "valhalla/midgard/sequence.h"
+#include "valhalla/mjolnir/osmnode.h"
+#include "valhalla/mjolnir/pbfgraphparser.h"
 #include "test.h"
 #include <cstdint>
 
@@ -8,8 +8,8 @@
 #include <boost/property_tree/ptree.hpp>
 #include <fstream>
 
-#include "baldr/directededge.h"
-#include "baldr/graphconstants.h"
+#include "valhalla/baldr/directededge.h"
+#include "valhalla/baldr/graphconstants.h"
 
 #if !defined(VALHALLA_SOURCE_DIR)
 #define VALHALLA_SOURCE_DIR

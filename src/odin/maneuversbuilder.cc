@@ -8,26 +8,26 @@
 
 #include <boost/format.hpp>
 
-#include "baldr/streetnames.h"
-#include "baldr/streetnames_factory.h"
-#include "baldr/streetnames_us.h"
-#include "baldr/turn.h"
-#include "baldr/turnlanes.h"
-#include "baldr/verbal_text_formatter.h"
-#include "baldr/verbal_text_formatter_factory.h"
-#include "baldr/verbal_text_formatter_us.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
-#include "worker.h"
+#include "valhalla/baldr/streetnames.h"
+#include "valhalla/baldr/streetnames_factory.h"
+#include "valhalla/baldr/streetnames_us.h"
+#include "valhalla/baldr/turn.h"
+#include "valhalla/baldr/turnlanes.h"
+#include "valhalla/baldr/verbal_text_formatter.h"
+#include "valhalla/baldr/verbal_text_formatter_factory.h"
+#include "valhalla/baldr/verbal_text_formatter_us.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/worker.h"
 
-#include "odin/maneuversbuilder.h"
-#include "odin/sign.h"
-#include "odin/signs.h"
+#include "valhalla/odin/maneuversbuilder.h"
+#include "valhalla/odin/sign.h"
+#include "valhalla/odin/signs.h"
 
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

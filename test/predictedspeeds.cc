@@ -6,8 +6,8 @@
 
 #include <iostream>
 
-#include "baldr/predictedspeeds.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/predictedspeeds.h"
+#include "valhalla/midgard/util.h"
 
 using namespace std;
 using namespace valhalla::baldr;

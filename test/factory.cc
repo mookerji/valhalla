@@ -1,10 +1,10 @@
 #include "test.h"
 
-#include "sif/autocost.h"
-#include "sif/bicyclecost.h"
-#include "sif/costfactory.h"
-#include "sif/pedestriancost.h"
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/sif/autocost.h"
+#include "valhalla/sif/bicyclecost.h"
+#include "valhalla/sif/costfactory.h"
+#include "valhalla/sif/pedestriancost.h"
+#include "valhalla/proto/options.pb.h"
 
 using namespace std;
 using namespace valhalla;

@@ -2,9 +2,9 @@
 #include <cmath>
 #include <vector>
 
-#include "midgard/logging.h"
-#include "thor/costmatrix.h"
-#include "worker.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/thor/costmatrix.h"
+#include "valhalla/worker.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::sif;

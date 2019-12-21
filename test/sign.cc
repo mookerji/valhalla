@@ -2,10 +2,10 @@
 #include <cstdint>
 #include <vector>
 
-#include "baldr/sign.h"
-#include "baldr/signinfo.h"
+#include "valhalla/baldr/sign.h"
+#include "valhalla/baldr/signinfo.h"
 
-#include "odin/sign.h"
+#include "valhalla/odin/sign.h"
 
 #include "test.h"
 

@@ -9,7 +9,7 @@
 
 #include "test.h"
 
-#include "baldr/pathlocation.h"
+#include "valhalla/baldr/pathlocation.h"
 
 using namespace std;
 using namespace valhalla::baldr;

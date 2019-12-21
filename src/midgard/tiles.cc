@@ -1,7 +1,7 @@
-#include "midgard/tiles.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/polyline2.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/tiles.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/polyline2.h"
+#include "valhalla/midgard/util.h"
 #include <cmath>
 #include <set>
 

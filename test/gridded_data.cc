@@ -1,5 +1,5 @@
-#include "midgard/gridded_data.h"
-#include "midgard/pointll.h"
+#include "valhalla/midgard/gridded_data.h"
+#include "valhalla/midgard/pointll.h"
 #include "test.h"
 #include <limits>
 //#include <iostream>

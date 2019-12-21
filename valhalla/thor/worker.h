@@ -13,8 +13,8 @@
 #include <valhalla/baldr/graphtile.h>
 #include <valhalla/baldr/location.h>
 #include <valhalla/meili/map_matcher_factory.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
 #include <valhalla/sif/costfactory.h>
 #include <valhalla/sif/edgelabel.h>
 #include <valhalla/thor/astar.h>

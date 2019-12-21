@@ -1,12 +1,12 @@
-#include "baldr/graphreader.h"
-#include "baldr/rapidjson_utils.h"
-#include "filesystem.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/filesystem.h"
 
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <string>
 
-#include "config.h"
+#include "valhalla/config.h"
 
 namespace bpo = boost::program_options;
 namespace bpt = boost::property_tree;

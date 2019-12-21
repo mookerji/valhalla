@@ -4,12 +4,12 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "baldr/rapidjson_utils.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
-#include "tyr/actor.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/tyr/actor.h"
 
 #if !defined(VALHALLA_SOURCE_DIR)
 #define VALHALLA_SOURCE_DIR

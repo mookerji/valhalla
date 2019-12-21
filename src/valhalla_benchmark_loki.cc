@@ -1,10 +1,10 @@
-#include "config.h"
+#include "valhalla/config.h"
 
-#include "loki/search.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <algorithm>
 #include <atomic>
 #include <boost/filesystem/operations.hpp>

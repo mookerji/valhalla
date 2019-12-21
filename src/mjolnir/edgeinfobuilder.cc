@@ -2,11 +2,11 @@
 #include <iostream>
 #include <ostream>
 
-#include "baldr/edgeinfo.h"
-#include "baldr/graphconstants.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "mjolnir/edgeinfobuilder.h"
+#include "valhalla/baldr/edgeinfo.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/edgeinfobuilder.h"
 
 namespace valhalla {
 namespace mjolnir {

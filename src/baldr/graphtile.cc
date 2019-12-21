@@ -1,12 +1,12 @@
-#include "baldr/graphtile.h"
-#include "baldr/compression_utils.h"
-#include "baldr/datetime.h"
-#include "baldr/sign.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "midgard/aabb2.h"
-#include "midgard/pointll.h"
-#include "midgard/tiles.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/compression_utils.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/sign.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/tiles.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>

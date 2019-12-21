@@ -4,18 +4,18 @@
 #include <unordered_map>
 #include <vector>
 
-#include "baldr/json.h"
-#include "midgard/encoded.h"
-#include "midgard/pointll.h"
-#include "midgard/polyline2.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/polyline2.h"
 
-#include "odin/enhancedtrippath.h"
-#include "odin/util.h"
-#include "tyr/serializers.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/tyr/serializers.h"
 
-#include "proto/directions.pb.h"
-#include "proto/options.pb.h"
-#include "proto/trip.pb.h"
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

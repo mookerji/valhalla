@@ -1,5 +1,5 @@
 #include "test.h"
-#include "config.h"
+#include "valhalla/config.h"
 
 #include <cstdlib>
 #include <iomanip>

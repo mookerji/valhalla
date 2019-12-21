@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
-#include "baldr/graphreader.h"
-#include "baldr/rapidjson_utils.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/encoded.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/util.h"
 #include <boost/property_tree/ptree.hpp>
 
 using namespace valhalla;

@@ -1,4 +1,4 @@
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
@@ -10,19 +10,19 @@
 #include <string>
 #include <vector>
 
-#include "config.h"
+#include "valhalla/config.h"
 
-#include "baldr/graphreader.h"
-#include "baldr/pathlocation.h"
-#include "loki/worker.h"
-#include "midgard/logging.h"
-#include "odin/directionsbuilder.h"
-#include "odin/util.h"
-#include "sif/costfactory.h"
-#include "thor/costmatrix.h"
-#include "thor/optimizer.h"
-#include "thor/timedistancematrix.h"
-#include "worker.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/sif/costfactory.h"
+#include "valhalla/thor/costmatrix.h"
+#include "valhalla/thor/optimizer.h"
+#include "valhalla/thor/timedistancematrix.h"
+#include "valhalla/worker.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

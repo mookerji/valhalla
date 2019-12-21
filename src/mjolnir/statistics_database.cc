@@ -1,7 +1,7 @@
 #include "statistics.h"
 #include <cstdint>
 
-#include "midgard/logging.h"
+#include "valhalla/midgard/logging.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/property_tree/ptree.hpp>

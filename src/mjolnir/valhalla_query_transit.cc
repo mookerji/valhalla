@@ -1,7 +1,7 @@
 #include <cstdint>
-#include <valhalla/proto/transit.pb.h>
+#include "valhalla/proto/transit.pb.h"
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/foreach.hpp>
@@ -17,11 +17,11 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 
-#include "baldr/graphreader.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
-#include "mjolnir/servicedays.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/mjolnir/servicedays.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

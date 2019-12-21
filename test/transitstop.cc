@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "baldr/transitstop.h"
+#include "valhalla/baldr/transitstop.h"
 
 using namespace std;
 using namespace valhalla::baldr;

@@ -1,6 +1,6 @@
-#include "baldr/verbal_text_formatter_us_co.h"
-#include "baldr/verbal_text_formatter.h"
-#include "baldr/verbal_text_formatter_us.h"
+#include "valhalla/baldr/verbal_text_formatter_us_co.h"
+#include "valhalla/baldr/verbal_text_formatter.h"
+#include "valhalla/baldr/verbal_text_formatter_us.h"
 #include "test.h"
 
 using namespace std;

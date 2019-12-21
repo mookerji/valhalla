@@ -1,13 +1,13 @@
 #include <unordered_map>
 #include <vector>
 
-#include "baldr/json.h"
-#include "midgard/aabb2.h"
-#include "midgard/logging.h"
-#include "odin/util.h"
-#include "tyr/serializers.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/odin/util.h"
+#include "valhalla/tyr/serializers.h"
 
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

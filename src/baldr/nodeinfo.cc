@@ -1,9 +1,9 @@
-#include "baldr/nodeinfo.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/nodeinfo.h"
+#include "valhalla/midgard/logging.h"
 #include <cmath>
 
-#include <baldr/datetime.h>
-#include <baldr/graphtile.h>
+#include <valhalla/baldr/datetime.h>
+#include <valhalla/baldr/graphtile.h>
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

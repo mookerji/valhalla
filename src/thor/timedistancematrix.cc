@@ -1,5 +1,5 @@
-#include "thor/timedistancematrix.h"
-#include "midgard/logging.h"
+#include "valhalla/thor/timedistancematrix.h"
+#include "valhalla/midgard/logging.h"
 #include <algorithm>
 #include <vector>
 

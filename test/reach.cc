@@ -1,10 +1,10 @@
 #include "test.h"
 
-#include "baldr/graphreader.h"
-#include "baldr/rapidjson_utils.h"
-#include "loki/reach.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/loki/reach.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
 
 #include <algorithm>
 #include <boost/property_tree/ptree.hpp>

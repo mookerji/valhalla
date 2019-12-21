@@ -1,11 +1,11 @@
-#include "mjolnir/pbfgraphparser.h"
-#include "mjolnir/osmpbfparser.h"
-#include "mjolnir/util.h"
+#include "valhalla/mjolnir/pbfgraphparser.h"
+#include "valhalla/mjolnir/osmpbfparser.h"
+#include "valhalla/mjolnir/util.h"
 
-#include "graph_lua_proc.h"
-#include "mjolnir/idtable.h"
-#include "mjolnir/luatagtransform.h"
-#include "mjolnir/osmaccess.h"
+#include "valhalla/mjolnir/graph_lua_proc.h"
+#include "valhalla/mjolnir/idtable.h"
+#include "valhalla/mjolnir/luatagtransform.h"
+#include "valhalla/mjolnir/osmaccess.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/format.hpp>
@@ -15,17 +15,17 @@
 #include <thread>
 #include <utility>
 
-#include "baldr/complexrestriction.h"
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/aabb2.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/polyline2.h"
-#include "midgard/sequence.h"
-#include "midgard/tiles.h"
-#include "mjolnir/timeparsing.h"
+#include "valhalla/baldr/complexrestriction.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/polyline2.h"
+#include "valhalla/midgard/sequence.h"
+#include "valhalla/midgard/tiles.h"
+#include "valhalla/mjolnir/timeparsing.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

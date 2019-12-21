@@ -1,6 +1,6 @@
-#include "thor/worker.h"
+#include "valhalla/thor/worker.h"
 
-#include "tyr/serializers.h"
+#include "valhalla/tyr/serializers.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::midgard;

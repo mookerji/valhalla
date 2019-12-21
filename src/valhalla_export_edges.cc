@@ -1,19 +1,19 @@
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <cstdint>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphreader.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
 
 #include <algorithm>
 #include <iostream>
 #include <unordered_map>
 
-#include "config.h"
+#include "valhalla/config.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

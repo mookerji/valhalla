@@ -6,9 +6,9 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/operations.hpp>
 
-#include "midgard/logging.h"
-#include "mjolnir/osmdata.h"
-#include "mjolnir/util.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/osmdata.h"
+#include "valhalla/mjolnir/util.h"
 
 using namespace valhalla::mjolnir;
 

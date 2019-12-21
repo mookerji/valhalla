@@ -1,8 +1,8 @@
 #include <vector>
 
-#include "meili/geometry_helpers.h"
-#include "meili/map_matcher.h"
-#include "midgard/logging.h"
+#include "valhalla/meili/geometry_helpers.h"
+#include "valhalla/meili/map_matcher.h"
+#include "valhalla/midgard/logging.h"
 
 namespace {
 

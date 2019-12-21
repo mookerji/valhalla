@@ -2,15 +2,15 @@
 #include <unordered_set>
 #include <vector>
 
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/nodetransition.h"
-#include "baldr/pathlocation.h"
-#include "midgard/distanceapproximator.h"
-#include "sif/costconstants.h"
-#include "sif/dynamiccost.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/nodetransition.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/sif/costconstants.h"
+#include "valhalla/sif/dynamiccost.h"
 
-#include "meili/routing.h"
+#include "valhalla/meili/routing.h"
 
 namespace valhalla {
 

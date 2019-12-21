@@ -1,5 +1,5 @@
-#include "odin/sign.h"
-#include "odin/util.h"
+#include "valhalla/odin/sign.h"
+#include "valhalla/odin/util.h"
 
 namespace valhalla {
 namespace odin {

@@ -1,5 +1,5 @@
-#include "meili/transition_cost_model.h"
-#include "meili/routing.h"
+#include "valhalla/meili/transition_cost_model.h"
+#include "valhalla/meili/routing.h"
 
 namespace {
 inline float GreatCircleDistance(const valhalla::meili::Measurement& left,

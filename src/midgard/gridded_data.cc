@@ -1,10 +1,10 @@
-#include "midgard/gridded_data.h"
-#include "midgard/logging.h"
-#include "midgard/point2.h"
-#include "midgard/pointll.h"
-#include "midgard/polyline2.h"
-#include "midgard/tiles.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/gridded_data.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/point2.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/polyline2.h"
+#include "valhalla/midgard/tiles.h"
+#include "valhalla/midgard/util.h"
 
 #include <algorithm>
 #include <cmath>

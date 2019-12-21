@@ -2,10 +2,10 @@
 #include <tuple>
 #include <vector>
 
-#include "midgard/linesegment2.h"
-#include "midgard/point2.h"
+#include "valhalla/midgard/linesegment2.h"
+#include "valhalla/midgard/point2.h"
 
-#include "meili/grid_traversal.h"
+#include "valhalla/meili/grid_traversal.h"
 #include "test.h"
 
 using namespace valhalla;

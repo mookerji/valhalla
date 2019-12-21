@@ -18,7 +18,7 @@
 #include <valhalla/midgard/encoded.h>
 #include <valhalla/midgard/logging.h>
 #include <valhalla/midgard/sequence.h>
-#include <valhalla/proto/transit.pb.h>
+#include "valhalla/proto/transit.pb.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::midgard;

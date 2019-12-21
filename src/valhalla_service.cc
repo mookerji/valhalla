@@ -9,18 +9,18 @@
 #include <thread>
 #include <unordered_set>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 
 #include <prime_server/http_protocol.hpp>
 #include <prime_server/prime_server.hpp>
 using namespace prime_server;
 
-#include "midgard/logging.h"
+#include "valhalla/midgard/logging.h"
 
-#include "loki/worker.h"
-#include "odin/worker.h"
-#include "thor/worker.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/odin/worker.h"
+#include "valhalla/thor/worker.h"
 
 int main(int argc, char** argv) {
 

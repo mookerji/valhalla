@@ -1,9 +1,9 @@
-#include "midgard/pointll.h"
-#include "midgard/constants.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
-#include "midgard/vector2.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/midgard/vector2.h"
 
 #include <cmath>
 #include <limits>

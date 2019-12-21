@@ -11,31 +11,31 @@
 #include <thread>
 #include <unordered_set>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/format.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/tokenizer.hpp>
 
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/graphtile.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/sequence.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/sequence.h"
 
-#include "mjolnir/admin.h"
-#include "mjolnir/graphtilebuilder.h"
-#include "mjolnir/servicedays.h"
-#include "mjolnir/transitpbf.h"
-#include "mjolnir/validatetransit.h"
+#include "valhalla/mjolnir/admin.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/servicedays.h"
+#include "valhalla/mjolnir/transitpbf.h"
+#include "valhalla/mjolnir/validatetransit.h"
 
-#include <valhalla/proto/transit.pb.h>
+#include "valhalla/proto/transit.pb.h"
 
 using namespace boost::property_tree;
 using namespace valhalla::midgard;

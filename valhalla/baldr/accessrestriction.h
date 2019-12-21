@@ -2,7 +2,7 @@
 #define VALHALLA_BALDR_ACCESSRESTRICTION_H_
 
 #include <cstdint>
-#include <valhalla/baldr/graphconstants.h>
+#include "valhalla/baldr/graphconstants.h"
 
 namespace valhalla {
 namespace baldr {

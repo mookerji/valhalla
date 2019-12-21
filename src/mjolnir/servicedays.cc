@@ -1,5 +1,5 @@
-#include "mjolnir/servicedays.h"
-#include "baldr/datetime.h"
+#include "valhalla/mjolnir/servicedays.h"
+#include "valhalla/baldr/datetime.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::mjolnir;

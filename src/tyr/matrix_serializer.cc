@@ -1,8 +1,8 @@
 #include <cstdint>
 
-#include "baldr/json.h"
-#include "thor/costmatrix.h"
-#include "tyr/serializers.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/thor/costmatrix.h"
+#include "valhalla/tyr/serializers.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

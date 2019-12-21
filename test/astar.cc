@@ -2,35 +2,35 @@
 #include <cstdint>
 #include <fstream>
 
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/location.h"
-#include "baldr/rapidjson_utils.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "loki/search.h"
-#include "loki/worker.h"
-#include "midgard/pointll.h"
-#include "midgard/vector2.h"
-#include "mjolnir/graphbuilder.h"
-#include "mjolnir/graphenhancer.h"
-#include "mjolnir/graphtilebuilder.h"
-#include "mjolnir/graphvalidator.h"
-#include "mjolnir/pbfgraphparser.h"
-#include "odin/directionsbuilder.h"
-#include "odin/worker.h"
-#include "sif/costconstants.h"
-#include "sif/dynamiccost.h"
-#include "sif/pedestriancost.h"
-#include "thor/astar.h"
-#include "thor/attributes_controller.h"
-#include "thor/triplegbuilder.h"
-#include "thor/worker.h"
-#include "tyr/serializers.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/location.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/loki/search.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/vector2.h"
+#include "valhalla/mjolnir/graphbuilder.h"
+#include "valhalla/mjolnir/graphenhancer.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/graphvalidator.h"
+#include "valhalla/mjolnir/pbfgraphparser.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/odin/worker.h"
+#include "valhalla/sif/costconstants.h"
+#include "valhalla/sif/dynamiccost.h"
+#include "valhalla/sif/pedestriancost.h"
+#include "valhalla/thor/astar.h"
+#include "valhalla/thor/attributes_controller.h"
+#include "valhalla/thor/triplegbuilder.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/tyr/serializers.h"
 
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/trip.pb.h"
 
 #include <boost/algorithm/string/join.hpp>
 #include <boost/filesystem.hpp>
@@ -52,8 +52,8 @@ namespace vk = valhalla::loki;
 namespace vj = valhalla::mjolnir;
 namespace vo = valhalla::odin;
 
-#include "mjolnir/directededgebuilder.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/directededgebuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
 namespace {
 

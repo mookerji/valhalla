@@ -6,12 +6,12 @@
 #include <string>
 #include <vector>
 
-#include "config.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
-#include "sif/edgelabel.h"
+#include "valhalla/config.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/sif/edgelabel.h"
 
-#include "baldr/double_bucket_queue.h"
+#include "valhalla/baldr/double_bucket_queue.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

@@ -1,7 +1,7 @@
 #include "test.h"
 
-#include "baldr/complexrestriction.h"
-#include "mjolnir/complexrestrictionbuilder.h"
+#include "valhalla/baldr/complexrestriction.h"
+#include "valhalla/mjolnir/complexrestrictionbuilder.h"
 
 using namespace std;
 using namespace valhalla::baldr;

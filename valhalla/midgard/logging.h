@@ -28,7 +28,13 @@ public:
 bool RegisterLogger(const std::string& name, LoggerCreator function_ptr);
 
 // the Log levels we support
-enum class LogLevel : char { TRACE, DEBUG, INFO, WARN, ERROR };
+enum class LogLevel : char {
+  TRACE=0,
+  DEBUG_,
+  INFO,
+  WARN,
+  ERROR
+};
 
 // logger base class, not pure virtual so you can use as a null logger if you want
 class Logger {
@@ -114,7 +120,7 @@ void Configure(const LoggingConfig& config);
 #define LOG_INFO(x)                                                                                  \
   ::valhalla::midgard::logging::GetLogger().Log(x, ::valhalla::midgard::logging::LogLevel::INFO)
 #define LOG_DEBUG(x)                                                                                 \
-  ::valhalla::midgard::logging::GetLogger().Log(x, ::valhalla::midgard::logging::LogLevel::DEBUG)
+  ::valhalla::midgard::logging::GetLogger().Log(x, ::valhalla::midgard::logging::LogLevel::DEBUG_)
 #define LOG_TRACE(x)                                                                                 \
   ::valhalla::midgard::logging::GetLogger().Log(x, ::valhalla::midgard::logging::LogLevel::TRACE)
 // some level and up
@@ -154,7 +160,7 @@ void Configure(const LoggingConfig& config);
 #endif
 #ifdef LOGGING_LEVEL_DEBUG
 #define LOG_DEBUG(x)                                                                                 \
-  ::valhalla::midgard::logging::GetLogger().Log(x, ::valhalla::midgard::logging::LogLevel::DEBUG)
+  ::valhalla::midgard::logging::GetLogger().Log(x, ::valhalla::midgard::logging::LogLevel::DEBUG_)
 #else
 #define LOG_DEBUG(x)
 #endif

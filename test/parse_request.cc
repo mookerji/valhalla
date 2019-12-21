@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 
-#include "sif/costconstants.h"
-#include "worker.h"
+#include "valhalla/sif/costconstants.h"
+#include "valhalla/worker.h"
 
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 
 #include "test.h"
 

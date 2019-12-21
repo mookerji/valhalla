@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
-#include <midgard/logging.h>
+#include <valhalla/midgard/logging.h>
 #include <vector>
 
 namespace valhalla {

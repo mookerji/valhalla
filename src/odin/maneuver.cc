@@ -1,18 +1,18 @@
 #include <iostream>
 #include <list>
 
-#include "baldr/streetnames.h"
-#include "baldr/streetnames_us.h"
-#include "midgard/constants.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/streetnames.h"
+#include "valhalla/baldr/streetnames_us.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
-#include "odin/maneuver.h"
-#include "odin/transitrouteinfo.h"
+#include "valhalla/odin/maneuver.h"
+#include "valhalla/odin/transitrouteinfo.h"
 
-#include <valhalla/proto/directions.pb.h>
-#include <valhalla/proto/options.pb.h>
-#include <valhalla/proto/tripcommon.pb.h>
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/proto/tripcommon.pb.h"
 
 using namespace valhalla::odin;
 using namespace valhalla::baldr;

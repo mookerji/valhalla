@@ -4,8 +4,8 @@
 #include <limits>
 #include <list>
 
-#include "midgard/util.h"
-#include "midgard/vector2.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/midgard/vector2.h"
 
 namespace valhalla {
 namespace midgard {

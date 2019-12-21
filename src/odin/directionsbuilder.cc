@@ -1,15 +1,15 @@
 #include <iostream>
 #include <unordered_map>
 
-#include "midgard/logging.h"
-#include "odin/directionsbuilder.h"
-#include "odin/enhancedtrippath.h"
-#include "odin/maneuversbuilder.h"
-#include "odin/narrative_builder_factory.h"
-#include "odin/narrativebuilder.h"
-#include "proto/directions.pb.h"
-#include "proto/options.pb.h"
-#include "worker.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/odin/directionsbuilder.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/odin/maneuversbuilder.h"
+#include "valhalla/odin/narrative_builder_factory.h"
+#include "valhalla/odin/narrativebuilder.h"
+#include "valhalla/proto/directions.pb.h"
+#include "valhalla/proto/options.pb.h"
+#include "valhalla/worker.h"
 
 namespace {
 // Minimum drive edge length (~10 feet)

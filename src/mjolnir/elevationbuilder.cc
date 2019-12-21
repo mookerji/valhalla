@@ -1,4 +1,4 @@
-#include "mjolnir/util.h"
+#include "valhalla/mjolnir/util.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/format.hpp>
@@ -7,18 +7,18 @@
 #include <thread>
 #include <utility>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/polyline2.h"
-#include "midgard/util.h"
-#include "skadi/sample.h"
-#include "skadi/util.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/polyline2.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/skadi/sample.h"
+#include "valhalla/skadi/util.h"
 
-#include "mjolnir/elevationbuilder.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/elevationbuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

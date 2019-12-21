@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <valhalla/baldr/rapidjson_utils.h>
-#include <valhalla/proto/options.pb.h>
+#include "valhalla/proto/options.pb.h"
 #include <valhalla/sif/dynamiccost.h>
 
 namespace valhalla {

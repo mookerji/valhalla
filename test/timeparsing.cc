@@ -7,10 +7,10 @@
 
 #include <boost/algorithm/string/split.hpp>
 
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/timedomain.h"
-#include "mjolnir/timeparsing.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/timedomain.h"
+#include "valhalla/mjolnir/timeparsing.h"
 
 using namespace std;
 using namespace valhalla::baldr;

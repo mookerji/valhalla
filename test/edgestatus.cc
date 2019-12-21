@@ -1,8 +1,8 @@
 #include "test.h"
 
-#include "baldr/graphtile.h"
-#include "config.h"
-#include "thor/edgestatus.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/config.h"
+#include "valhalla/thor/edgestatus.h"
 
 using namespace std;
 using namespace valhalla::baldr;

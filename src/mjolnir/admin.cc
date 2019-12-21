@@ -1,6 +1,6 @@
-#include "mjolnir/admin.h"
-#include "baldr/datetime.h"
-#include "midgard/logging.h"
+#include "valhalla/mjolnir/admin.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/midgard/logging.h"
 #include <boost/filesystem/operations.hpp>
 #include <spatialite.h>
 #include <sqlite3.h>

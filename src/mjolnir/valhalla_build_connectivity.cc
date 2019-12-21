@@ -5,13 +5,13 @@
 #include <string>
 #include <vector>
 
-#include "baldr/connectivity_map.h"
-#include "baldr/tilehierarchy.h"
-#include "config.h"
+#include "valhalla/baldr/connectivity_map.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/config.h"
 
 using namespace valhalla::baldr;
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>

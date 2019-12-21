@@ -1,12 +1,12 @@
-#include "baldr/datetime.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 #include <algorithm>
 #include <exception>
 #include <vector>
 
-#include "thor/route_matcher.h"
+#include "valhalla/thor/route_matcher.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::sif;

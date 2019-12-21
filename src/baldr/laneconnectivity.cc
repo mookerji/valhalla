@@ -1,4 +1,4 @@
-#include "baldr/laneconnectivity.h"
+#include "valhalla/baldr/laneconnectivity.h"
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <string.h>

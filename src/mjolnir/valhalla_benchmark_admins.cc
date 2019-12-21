@@ -11,9 +11,9 @@
 #include <unordered_set>
 #include <vector>
 
-#include "config.h"
+#include "valhalla/config.h"
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
@@ -29,18 +29,18 @@
 
 #include <spatialite.h>
 
-#include "baldr/admininfo.h"
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/graphtile.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/aabb2.h"
-#include "midgard/constants.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/admininfo.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/util.h"
 
 namespace bpo = boost::program_options;
 using namespace valhalla::midgard;

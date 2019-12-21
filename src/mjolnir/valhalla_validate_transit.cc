@@ -1,24 +1,24 @@
 #include <string>
 #include <vector>
 
-#include "baldr/graphid.h"
-#include "config.h"
-#include "mjolnir/graphbuilder.h"
-#include "mjolnir/validatetransit.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/config.h"
+#include "valhalla/mjolnir/graphbuilder.h"
+#include "valhalla/mjolnir/validatetransit.h"
 
 using namespace valhalla::mjolnir;
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/filesystem/operations.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <ostream>
 
-#include "midgard/aabb2.h"
-#include "midgard/logging.h"
-#include "midgard/point2.h"
-#include "midgard/polyline2.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/point2.h"
+#include "valhalla/midgard/polyline2.h"
 
 namespace bpo = boost::program_options;
 

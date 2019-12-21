@@ -9,7 +9,7 @@
 
 #include <valhalla/baldr/graphid.h>
 #include <valhalla/baldr/graphreader.h>
-#include <valhalla/proto/api.pb.h>
+#include "valhalla/proto/api.pb.h"
 #include <valhalla/sif/dynamiccost.h>
 #include <valhalla/thor/edgestatus.h>
 #include <valhalla/thor/pathinfo.h>

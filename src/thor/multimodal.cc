@@ -1,7 +1,7 @@
-#include "thor/multimodal.h"
-#include "baldr/datetime.h"
-#include "midgard/logging.h"
-#include "worker.h"
+#include "valhalla/thor/multimodal.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/worker.h"
 #include <algorithm>
 #include <map>
 

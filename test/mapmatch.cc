@@ -5,19 +5,19 @@
 #include <utility>
 #include <vector>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 
-#include "baldr/json.h"
-#include "loki/worker.h"
-#include "midgard/distanceapproximator.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
-#include "odin/worker.h"
-#include "thor/worker.h"
-#include "tyr/actor.h"
-#include "worker.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/loki/worker.h"
+#include "valhalla/midgard/distanceapproximator.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
+#include "valhalla/odin/worker.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/tyr/actor.h"
+#include "valhalla/worker.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

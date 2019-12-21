@@ -1,15 +1,15 @@
-#include "baldr/graphreader.h"
+#include "valhalla/baldr/graphreader.h"
 
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <sys/stat.h>
 
-#include "midgard/logging.h"
-#include "midgard/sequence.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/sequence.h"
 
-#include "baldr/connectivity_map.h"
-#include "filesystem.h"
+#include "valhalla/baldr/connectivity_map.h"
+#include "valhalla/filesystem.h"
 
 using namespace valhalla::midgard;
 

@@ -1,6 +1,6 @@
-#include "midgard/vector2.h"
-#include "midgard/point2.h"
-#include "midgard/util.h"
+#include "valhalla/midgard/vector2.h"
+#include "valhalla/midgard/point2.h"
+#include "valhalla/midgard/util.h"
 #include "test.h"
 
 using namespace std;

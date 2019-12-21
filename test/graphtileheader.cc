@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "baldr/graphtileheader.h"
+#include "valhalla/baldr/graphtileheader.h"
 
 using namespace std;
 using namespace valhalla::baldr;

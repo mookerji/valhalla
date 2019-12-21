@@ -1,21 +1,21 @@
-#include "mjolnir/graphfilter.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/graphfilter.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
 
-#include "baldr/graphconstants.h"
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/graphtile.h"
-#include "baldr/tilehierarchy.h"
-#include "filesystem.h"
-#include "midgard/encoded.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
-#include "midgard/sequence.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/graphtile.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/encoded.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/sequence.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::mjolnir;

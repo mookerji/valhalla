@@ -1,5 +1,5 @@
-#include "baldr/json.h"
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include "test.h"
 
 #include <cstdint>

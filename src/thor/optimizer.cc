@@ -1,5 +1,5 @@
-#include "thor/optimizer.h"
-#include "midgard/logging.h"
+#include "valhalla/thor/optimizer.h"
+#include "valhalla/midgard/logging.h"
 
 namespace valhalla {
 namespace thor {

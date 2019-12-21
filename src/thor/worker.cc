@@ -6,14 +6,14 @@
 #include <unordered_map>
 #include <vector>
 
-#include "baldr/json.h"
-#include "midgard/constants.h"
-#include "midgard/logging.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/logging.h"
 #include <boost/property_tree/ptree.hpp>
 
-#include "thor/isochrone.h"
-#include "thor/worker.h"
-#include "tyr/actor.h"
+#include "valhalla/thor/isochrone.h"
+#include "valhalla/thor/worker.h"
+#include "valhalla/tyr/actor.h"
 
 using namespace valhalla;
 using namespace valhalla::tyr;

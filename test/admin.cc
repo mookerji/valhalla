@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "baldr/admin.h"
+#include "valhalla/baldr/admin.h"
 #include <memory>
 
 using namespace std;

@@ -1,10 +1,10 @@
-#include "mjolnir/ferry_connections.h"
+#include "valhalla/mjolnir/ferry_connections.h"
 
 #include <queue>
 #include <unordered_map>
 
-#include "baldr/graphconstants.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/midgard/util.h"
 
 namespace valhalla {
 namespace mjolnir {

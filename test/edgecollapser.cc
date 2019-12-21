@@ -5,14 +5,14 @@
 #include <unordered_map>
 #include <vector>
 
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/property_tree/ptree.hpp>
 
-#include "baldr/directededge.h"
-#include "baldr/graphreader.h"
-#include "baldr/merge.h"
-#include "baldr/nodeinfo.h"
-#include "baldr/tilehierarchy.h"
+#include "valhalla/baldr/directededge.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/merge.h"
+#include "valhalla/baldr/nodeinfo.h"
+#include "valhalla/baldr/tilehierarchy.h"
 
 namespace vb = valhalla::baldr;
 

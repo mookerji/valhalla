@@ -1,4 +1,4 @@
-#include "baldr/rapidjson_utils.h"
+#include "valhalla/baldr/rapidjson_utils.h"
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
@@ -11,13 +11,13 @@
 #include <tuple>
 #include <vector>
 
-#include "config.h"
+#include "valhalla/config.h"
 
-#include "baldr/graphreader.h"
-#include "baldr/pathlocation.h"
-#include "midgard/aabb2.h"
-#include "midgard/logging.h"
-#include "midgard/pointll.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/midgard/aabb2.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/pointll.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

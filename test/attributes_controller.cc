@@ -1,8 +1,8 @@
 
 #include "test.h"
 
-#include "config.h"
-#include "thor/attributes_controller.h"
+#include "valhalla/config.h"
+#include "valhalla/thor/attributes_controller.h"
 
 using namespace std;
 using namespace valhalla::thor;

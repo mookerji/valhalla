@@ -1,5 +1,5 @@
-#include "thor/optimizer.h"
-#include "config.h"
+#include "valhalla/thor/optimizer.h"
+#include "valhalla/config.h"
 #include "test.h"
 #include <algorithm>
 #include <cstdint>

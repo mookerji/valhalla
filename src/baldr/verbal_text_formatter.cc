@@ -1,6 +1,5 @@
-
-#include "baldr/verbal_text_formatter.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/verbal_text_formatter.h"
+#include "valhalla/midgard/util.h"
 
 #include <string>
 

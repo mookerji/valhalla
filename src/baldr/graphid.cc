@@ -1,6 +1,6 @@
 #include <limits>
 
-#include "baldr/graphid.h"
+#include "valhalla/baldr/graphid.h"
 
 namespace valhalla {
 namespace baldr {

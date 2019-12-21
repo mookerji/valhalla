@@ -1,6 +1,6 @@
 #include "test.h"
 
-#include "baldr/transitroute.h"
+#include "valhalla/baldr/transitroute.h"
 
 using namespace std;
 using namespace valhalla::baldr;

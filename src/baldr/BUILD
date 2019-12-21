@@ -1,0 +1,60 @@
+package(default_visibility=["//visibility:public"])
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+load("//:conf/flags.bzl", "LLVM_LAZY_FLAGS")
+
+cc_library(
+    name="baldr",
+    srcs=[
+        "accessrestriction.cc",
+        "admin.cc",
+        "compression_utils.cc",
+        "connectivity_map.cc",
+        "curler.cc",
+        "datetime.cc",
+        "directededge.cc",
+        "edgeinfo.cc",
+        "graphid.cc",
+        "graphreader.cc",
+        "graphtile.cc",
+        "graphtileheader.cc",
+        "edgetracker.cc",
+        "merge.cc",
+        "nodeinfo.cc",
+        "location.cc",
+        "pathlocation.cc",
+        "tilehierarchy.cc",
+        "turn.cc",
+        "streetname.cc",
+        "streetnames.cc",
+        "streetnames_factory.cc",
+        "streetname_us.cc",
+        "streetnames_us.cc",
+        "transitdeparture.cc",
+        "transitroute.cc",
+        "transitschedule.cc",
+        "transittransfer.cc",
+        "laneconnectivity.cc",
+        "verbal_text_formatter.cc",
+        "verbal_text_formatter_us.cc",
+        "verbal_text_formatter_us_co.cc",
+        "verbal_text_formatter_us_tx.cc",
+        "verbal_text_formatter_factory.cc",
+    ],
+    hdrs=[
+        "//valhalla:headers",
+    ],
+    copts=LLVM_LAZY_FLAGS,
+    deps=[
+        "@boost//:algorithm",
+        "@boost//:lexical_cast",
+        "@boost//:property_tree",
+        "@boost//:variant",
+        "@boost//:filesystem",
+        "@rapidjson",
+        "@date",
+        "//valhalla/proto:cc_proto_tripcommon",
+        "//valhalla/proto:cc_proto_options",
+    ],
+)

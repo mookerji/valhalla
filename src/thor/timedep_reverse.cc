@@ -1,7 +1,7 @@
-#include "baldr/datetime.h"
-#include "midgard/constants.h"
-#include "midgard/logging.h"
-#include "thor/timedep.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/thor/timedep.h"
 #include <algorithm>
 #include <iostream> // TODO remove if not needed
 #include <map>

@@ -1,10 +1,10 @@
-#include "baldr/graphreader.h"
-#include "baldr/predictedspeeds.h"
-#include "baldr/rapidjson_utils.h"
-#include "filesystem.h"
-#include "midgard/logging.h"
-#include "mjolnir/graphtilebuilder.h"
-#include "mjolnir/util.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/predictedspeeds.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/filesystem.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/util.h"
 
 #include <cmath>
 #include <cstdint>
@@ -24,7 +24,7 @@
 #include <string>
 #include <thread>
 
-#include "config.h"
+#include "valhalla/config.h"
 
 namespace vm = valhalla::midgard;
 namespace vb = valhalla::baldr;

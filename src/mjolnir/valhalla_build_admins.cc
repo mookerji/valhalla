@@ -2,12 +2,12 @@
 #include <string>
 #include <vector>
 
-#include "baldr/graphconstants.h"
-#include "mjolnir/adminconstants.h"
-#include "mjolnir/osmpbfparser.h"
-#include "mjolnir/pbfadminparser.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/mjolnir/adminconstants.h"
+#include "valhalla/mjolnir/osmpbfparser.h"
+#include "valhalla/mjolnir/pbfadminparser.h"
 
-#include "config.h"
+#include "valhalla/config.h"
 
 // sqlite must be included before spatialite
 #include <sqlite3.h>
@@ -40,9 +40,9 @@
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 
-#include "baldr/rapidjson_utils.h"
-#include "midgard/logging.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/midgard/util.h"
 
 using namespace geos::geom;
 using namespace geos::io;

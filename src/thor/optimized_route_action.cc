@@ -1,12 +1,12 @@
-#include "thor/worker.h"
+#include "valhalla/thor/worker.h"
 
-#include "midgard/constants.h"
-#include "midgard/logging.h"
-#include "sif/autocost.h"
-#include "sif/bicyclecost.h"
-#include "sif/pedestriancost.h"
-#include "thor/costmatrix.h"
-#include "thor/optimizer.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/sif/autocost.h"
+#include "valhalla/sif/bicyclecost.h"
+#include "valhalla/sif/pedestriancost.h"
+#include "valhalla/thor/costmatrix.h"
+#include "valhalla/thor/optimizer.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

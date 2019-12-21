@@ -1,6 +1,6 @@
-#include "baldr/rapidjson_utils.h"
-#include "midgard/logging.h"
-#include "odin/util.h"
+#include "valhalla/baldr/rapidjson_utils.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/odin/util.h"
 #include "test.h"
 #include <locale>
 #include <regex>

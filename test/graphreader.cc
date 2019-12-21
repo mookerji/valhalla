@@ -1,9 +1,9 @@
 #include "test.h"
 #include <cstdint>
 
-#include "baldr/connectivity_map.h"
-#include "baldr/graphreader.h"
-#include "baldr/tilehierarchy.h"
+#include "valhalla/baldr/connectivity_map.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/tilehierarchy.h"
 
 #include <boost/filesystem.hpp>
 #include <fcntl.h>

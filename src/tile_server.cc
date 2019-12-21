@@ -2,7 +2,7 @@
 
 #include "valhalla/filesystem.h"
 
-#include "baldr/compression_utils.h"
+#include "valhalla/baldr/compression_utils.h"
 
 #include <prime_server/http_protocol.hpp>
 #include <prime_server/http_util.hpp>

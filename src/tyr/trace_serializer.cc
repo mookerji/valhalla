@@ -1,10 +1,10 @@
 #include <cstdint>
 
-#include "baldr/json.h"
-#include "odin/enhancedtrippath.h"
-#include "thor/attributes_controller.h"
-#include "thor/match_result.h"
-#include "tyr/serializers.h"
+#include "valhalla/baldr/json.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/thor/attributes_controller.h"
+#include "valhalla/thor/match_result.h"
+#include "valhalla/tyr/serializers.h"
 
 using namespace valhalla;
 using namespace valhalla::midgard;

@@ -1,5 +1,5 @@
-#include "baldr/tilehierarchy.h"
-#include "baldr/graphtileheader.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/baldr/graphtileheader.h"
 
 using namespace valhalla::midgard;
 

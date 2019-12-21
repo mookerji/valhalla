@@ -1,4 +1,4 @@
-#include "loki/search.h"
+#include "valhalla/loki/search.h"
 #include "test.h"
 #include <cstdint>
 
@@ -6,20 +6,20 @@
 #include <boost/property_tree/ptree.hpp>
 #include <unordered_set>
 
-#include "baldr/graphid.h"
-#include "baldr/graphreader.h"
-#include "baldr/location.h"
-#include "baldr/pathlocation.h"
-#include "baldr/tilehierarchy.h"
-#include "midgard/pointll.h"
-#include "midgard/vector2.h"
+#include "valhalla/baldr/graphid.h"
+#include "valhalla/baldr/graphreader.h"
+#include "valhalla/baldr/location.h"
+#include "valhalla/baldr/pathlocation.h"
+#include "valhalla/baldr/tilehierarchy.h"
+#include "valhalla/midgard/pointll.h"
+#include "valhalla/midgard/vector2.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;
 using namespace valhalla::loki;
 
-#include "mjolnir/directededgebuilder.h"
-#include "mjolnir/graphtilebuilder.h"
+#include "valhalla/mjolnir/directededgebuilder.h"
+#include "valhalla/mjolnir/graphtilebuilder.h"
 
 namespace {
 

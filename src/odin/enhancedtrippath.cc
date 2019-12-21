@@ -2,17 +2,17 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "baldr/turn.h"
-#include "baldr/turnlanes.h"
-#include "midgard/constants.h"
-#include "midgard/util.h"
+#include "valhalla/baldr/turn.h"
+#include "valhalla/baldr/turnlanes.h"
+#include "valhalla/midgard/constants.h"
+#include "valhalla/midgard/util.h"
 
-#include "worker.h"
+#include "valhalla/worker.h"
 
-#include "odin/enhancedtrippath.h"
-#include "odin/util.h"
+#include "valhalla/odin/enhancedtrippath.h"
+#include "valhalla/odin/util.h"
 
-#include <valhalla/proto/trip.pb.h>
+#include "valhalla/proto/trip.pb.h"
 
 using namespace valhalla::midgard;
 using namespace valhalla::baldr;

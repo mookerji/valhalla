@@ -9,11 +9,11 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/range/algorithm/remove_if.hpp>
 
-#include "baldr/datetime.h"
-#include "baldr/graphconstants.h"
-#include "baldr/timedomain.h"
-#include "midgard/logging.h"
-#include "mjolnir/timeparsing.h"
+#include "valhalla/baldr/datetime.h"
+#include "valhalla/baldr/graphconstants.h"
+#include "valhalla/baldr/timedomain.h"
+#include "valhalla/midgard/logging.h"
+#include "valhalla/mjolnir/timeparsing.h"
 
 using namespace valhalla::baldr;
 using namespace valhalla::mjolnir;
