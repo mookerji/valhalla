@@ -8,6 +8,7 @@ set(sources
   transition_cost_model.cc
   map_matcher.cc
   map_matcher_factory.cc
+  demo.cc
   match_route.cc)
 
 valhalla_module(NAME meili

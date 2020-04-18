@@ -188,15 +188,18 @@ endif()
 
 target_include_directories(valhalla
   PUBLIC
-    ${VALHALLA_SOURCE_DIR}
-    ${VALHALLA_SOURCE_DIR}/valhalla # TODO: this path must be removed and changed to #include <valhalla/...> in headers
-    ${VALHALLA_BINARY_DIR}
-    ${VALHALLA_BINARY_DIR}/valhalla  # TODO: this path must be removed and changed to #include <valhalla/...> in headers
-    ${VALHALLA_SOURCE_DIR}/third_party/rapidjson/include
-    ${VALHALLA_SOURCE_DIR}/third_party/date/include
-    $<$<BOOL:${MSVC}>:${VALHALLA_SOURCE_DIR}/third_party/dirent/include>
+  ${VALHALLA_SOURCE_DIR}
+  # TODO: this path must be removed and changed to #include <valhalla/...> in headers
+  ${VALHALLA_SOURCE_DIR}/valhalla
+  ${VALHALLA_BINARY_DIR}
+  # TODO: this path must be removed and changed to #include <valhalla/...> in headers
+  ${VALHALLA_BINARY_DIR}/valhalla
+  ${VALHALLA_SOURCE_DIR}/third_party/rapidjson/include
+  ${VALHALLA_SOURCE_DIR}/third_party/date/include
+
+  $<$<BOOL:${MSVC}>:${VALHALLA_SOURCE_DIR}/third_party/dirent/include>
   PRIVATE
-    ${libvalhalla_include_directories})
+  ${libvalhalla_include_directories})
 
 target_link_libraries(valhalla
   PUBLIC

@@ -96,4 +96,4 @@ private:
 
 } // namespace valhalla
 
-#endif // MMP_CANDIDATE_SEARCH_H_
+#endif
