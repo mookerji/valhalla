@@ -112,6 +112,7 @@ private:
 class HiddenMarkovModel {
 public:
   HiddenMarkovModel() {
+
   }
 
   bool IsInitialized() {
@@ -130,6 +131,9 @@ public:
 
 private:
   VL_DISALLOW_COPY_AND_ASSIGN(HiddenMarkovModel);
+
+  TransmissionLikelihood trasmission_likelihood_;
+  EmissionLikelihood emission_likelihood_;
 };
 
 } // namespace matching

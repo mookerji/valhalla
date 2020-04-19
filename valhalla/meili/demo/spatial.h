@@ -20,6 +20,7 @@
 #include <valhalla/midgard/linesegment2.h>
 #include <valhalla/midgard/pointll.h>
 #include <valhalla/midgard/tiles.h>
+#include <valhalla/sif/costfactory.h>
 #include <valhalla/sif/dynamiccost.h>
 
 #include <valhalla/meili/demo/configuration.h>
@@ -27,6 +28,7 @@
 
 using namespace valhalla::baldr;
 using namespace valhalla::midgard;
+using namespace valhalla::sif;
 
 namespace valhalla {
 
@@ -40,21 +42,19 @@ struct Measurement {
   };
 
   Data data{};
-
-  // Parse measurement from a line
-  explicit Measurement(std::string line) {
-    DLOG(INFO) << "measurement line: " << line;
-    // TODO: Parsing needs to be pulled out to another function
-    std::vector<float> records;
-    std::istringstream ss(line);
-    size_t num_cols = 0;
-    for (std::string col; std::getline(ss, col, ','); ++num_cols) {
-      CHECK(num_cols < 2) << "Only 'lng,lat' per line.";
-      records.emplace_back(std::stof(col));
-    }
-    data = Data{PointLL(records[0], records[1])};
-  }
 };
+
+Measurement ReadMeasurement(std::string line) {
+  DLOG(INFO) << "measurement line: " << line;
+  std::vector<float> records;
+  std::istringstream ss(line);
+  size_t num_cols = 0;
+  for (std::string col; std::getline(ss, col, ','); ++num_cols) {
+    CHECK(num_cols < 2) << "Only 'lng,lat' per line.";
+    records.emplace_back(std::stof(col));
+  }
+  return Measurement::Data{PointLL(records[0], records[1])};
+}
 
 struct Tracepoint {
   PointLL location;
@@ -65,12 +65,12 @@ struct Tracepoint {
   unsigned alternatives_count;
 };
 
-class TrajectoryMeasurements {
+class Trajectory {
 
 public:
-  TrajectoryMeasurements() = default;
+  Trajectory() = default;
 
-  TrajectoryMeasurements(std::vector<Measurement> meas) : measurements_(meas) {
+  Trajectory(std::vector<Measurement> meas) : measurements_(meas) {
   }
 
   Measurement& operator[](unsigned i) {
@@ -94,7 +94,7 @@ public:
   }
 
 private:
-  VL_DISALLOW_COPY_AND_ASSIGN(TrajectoryMeasurements);
+  VL_DISALLOW_COPY_AND_ASSIGN(Trajectory);
   std::vector<Measurement> measurements_;
 };
 
@@ -108,7 +108,7 @@ std::vector<Measurement> LoadMeasurements(std::string filename) {
     if (line.empty()) {
       continue;
     }
-    measurements.emplace_back(Measurement(line));
+    measurements.emplace_back(ReadMeasurement(line));
   }
   return measurements;
 }
@@ -121,6 +121,8 @@ public:
   RoadNetworkIndex() = default;
 
   RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph) : graph_(graph) {
+
+    cost_factory_.RegisterStandardCostingModels();
   }
 
   bool IsInitialized() {
@@ -128,11 +130,13 @@ public:
   }
 
   void GetNearestEdges(PointLL point, float radius) {
+    CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
   }
 
   // TODO: src, src_edge, dst, dst_edge
   float GetNetworkDistanceMeters() {
+    CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     return 0;
   }
@@ -144,6 +148,7 @@ public:
 private:
   VL_DISALLOW_COPY_AND_ASSIGN(RoadNetworkIndex);
   std::shared_ptr<GraphReader> graph_;
+  CostFactory<DynamicCost> cost_factory_;
 };
 
 } // namespace matching

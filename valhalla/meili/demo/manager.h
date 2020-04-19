@@ -23,7 +23,7 @@ private:
 
   Configuration configuration_;
   RoadNetworkIndex road_index_;
-  TrajectoryMeasurements measurements_;
+  Trajectory measurements_;
   HiddenMarkovModel trellis_;
 };
 } // namespace matching

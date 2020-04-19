@@ -19,12 +19,12 @@ int main(int argc, char* argv[]) {
   // Load Configuration
   boost::property_tree::ptree root_config;
   rapidjson::read_json(argv[1], root_config);
-  const matching::Configuration matching_config(root_config.get_child("meili"));
+  const matching::Config matching_config = matching::ReadConfig(root_config.get_child("meili"));
   // Load road networking graph
   std::shared_ptr<baldr::GraphReader> graph_reader =
       std::make_shared<baldr::GraphReader>(root_config.get_child("mjolnir"));
   // Load measurements
-  const matching::TrajectoryMeasurements meas(matching::LoadMeasurements(argv[2]));
+  const matching::Trajectory meas(matching::LoadMeasurements(argv[2]));
 
   // Initiate map matcher
   return 0;

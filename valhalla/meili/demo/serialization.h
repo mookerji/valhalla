@@ -42,7 +42,7 @@ template <> std::string ToGeoJSON(const Tracepoint& geo) {
   return "Tracepoint";
 }
 
-template <> std::string ToGeoJSON(const TrajectoryMeasurements& geo) {
+template <> std::string ToGeoJSON(const Trajectory& geo) {
   return "Measurements";
 }
 

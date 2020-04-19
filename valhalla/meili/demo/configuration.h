@@ -22,10 +22,12 @@ const std::string kDefaultCostModel = "auto";
 // Configuration
 
 // TODO(mookerji): Should this be captured in a protobuf somewhere?
-struct Configuration {
+struct Config {
 
   struct CandidateSearch {
     double search_radius_meters = kDefaultSearchRadiusMeters;
+    size_t cache_size = kCacheSize;
+    size_t grid_size = kGridSize;
   };
 
   struct TransitionLikelihood {
@@ -40,29 +42,21 @@ struct Configuration {
     std::string mode = kDefaultCostModel;
   };
 
-  struct Grid {
-    size_t cache_size = kCacheSize;
-    size_t grid_size = kGridSize;
-  };
-
-  explicit Configuration() = default;
-
-  explicit Configuration(const boost::property_tree::ptree& config)
-      : candidate_search(CandidateSearch{config.get<float>("default.search_radius")}),
-        transition(TransitionLikelihood{config.get<float>("default.beta")}),
-        emission(EmissionLikelihood{config.get<float>("default.sigma_z")}),
-        costing(CostModel{config.get<std::string>("mode")}),
-        grid(Grid{config.get<size_t>("grid.cache_size"), config.get<size_t>("grid.size")})
-
-  {
-  }
-
   CandidateSearch candidate_search{};
   TransitionLikelihood transition{};
   EmissionLikelihood emission{};
   CostModel costing{};
-  Grid grid{};
 };
+
+// TODO(mookerji): Do some kind of validation here
+Config ReadConfig(const boost::property_tree::ptree& conf) {
+  return Config{Config::CandidateSearch{conf.get<float>("default.search_radius"),
+                                        conf.get<size_t>("grid.cache_size"),
+                                        conf.get<size_t>("grid.size")},
+                Config::TransitionLikelihood{conf.get<float>("default.beta")},
+                Config::EmissionLikelihood{conf.get<float>("default.sigma_z")},
+                Config::CostModel{conf.get<std::string>("mode")}};
+}
 
 } // namespace matching
 } // namespace valhalla
