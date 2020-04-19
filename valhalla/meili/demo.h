@@ -33,6 +33,7 @@
   TypeName& operator=(const TypeName&) = delete;                                                     \
   TypeName& operator=(TypeName&&) = delete;
 
+using namespace valhalla::baldr;
 using namespace valhalla::midgard;
 
 namespace valhalla {
@@ -282,7 +283,10 @@ std::vector<Measurement> LoadMeasurements(std::string filename) {
 class RoadNetworkIndex {
 
 public:
-  RoadNetworkIndex() {
+
+  RoadNetworkIndex() = default;
+
+  RoadNetworkIndex(GraphReader graph) {
   }
 
   void GetNearestEdges(PointLL point, float radius) {
@@ -301,6 +305,7 @@ public:
 
 private:
   VL_DISALLOW_COPY_AND_ASSIGN(RoadNetworkIndex);
+  std::shared_ptr<GraphReader> graph_;
 };
 
 // Serialization to Valhalla and OSRM-style responses

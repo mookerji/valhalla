@@ -1,4 +1,5 @@
 #include <boost/property_tree/ptree.hpp>
+#include <glog/logging.h>
 
 #include <iostream>
 
@@ -9,12 +10,12 @@
 using namespace valhalla;
 
 int main(int argc, char* argv[]) {
+  google::InitGoogleLogging(argv[0]);
   if (argc < 3) {
     std::cout << "usage: map_matching CONFIG DATA" << std::endl;
     return 1;
   }
   // Load Configuration
-
   boost::property_tree::ptree root_config;
   rapidjson::read_json(argv[1], root_config);
   const matching::Configuration matching_config(root_config.get_child("meili"));
