@@ -2,6 +2,7 @@
 #include <glog/logging.h>
 
 #include <iostream>
+#include <memory>
 
 #include "baldr/graphreader.h"
 #include "baldr/rapidjson_utils.h"
@@ -20,7 +21,8 @@ int main(int argc, char* argv[]) {
   rapidjson::read_json(argv[1], root_config);
   const matching::Configuration matching_config(root_config.get_child("meili"));
   // Load road networking graph
-  const baldr::GraphReader graph(root_config.get_child("mjolnir"));
+  std::shared_ptr<baldr::GraphReader> graph_reader =
+      std::make_shared<baldr::GraphReader>(root_config.get_child("mjolnir"));
   // Load measurements
   const matching::TrajectoryMeasurements meas(matching::LoadMeasurements(argv[2]));
 

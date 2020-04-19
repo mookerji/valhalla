@@ -45,7 +45,10 @@ namespace matching {
 constexpr double kDefaultSearchRadiusMeters = 50;
 constexpr double kSigmaZ = 5;
 constexpr double kBeta = 3;
-const std::string kDefaultCostModel = "auto";
+constexpr size_t kCacheSize = 100240;
+constexpr size_t kGridSize = 500;
+
+ const std::string kDefaultCostModel = "auto";
 
 // Configuration
 
@@ -69,8 +72,8 @@ struct Configuration {
   };
 
   struct Grid {
-    size_t cache_size = 100240;
-    size_t grid_size = 500;
+    size_t cache_size = kCacheSize;
+    size_t grid_size = kGridSize;
   };
 
   explicit Configuration() = default;
@@ -283,10 +286,9 @@ std::vector<Measurement> LoadMeasurements(std::string filename) {
 class RoadNetworkIndex {
 
 public:
-
   RoadNetworkIndex() = default;
 
-  RoadNetworkIndex(GraphReader graph) {
+  RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph) : graph_(graph) {
   }
 
   void GetNearestEdges(PointLL point, float radius) {
