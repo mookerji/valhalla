@@ -2,22 +2,27 @@
 
 #include <iostream>
 
+#include "baldr/graphreader.h"
 #include "baldr/rapidjson_utils.h"
 #include "meili/demo.h"
 
 using namespace valhalla;
 
 int main(int argc, char* argv[]) {
-  if (argc < 2) {
-    std::cout << "usage: map_matching CONFIG" << std::endl;
+  if (argc < 3) {
+    std::cout << "usage: map_matching CONFIG DATA" << std::endl;
     return 1;
   }
-  boost::property_tree::ptree valhalla_config;
-  rapidjson::read_json(argv[1], valhalla_config);
-  const matching::Configuration matching_config(valhalla_config.get_child("meili"));
+  // Load Configuration
 
-  // Load road network configuration
+  boost::property_tree::ptree root_config;
+  rapidjson::read_json(argv[1], root_config);
+  const matching::Configuration matching_config(root_config.get_child("meili"));
+  // Load road networking graph
+  const baldr::GraphReader graph(root_config.get_child("mjolnir"));
   // Load measurements
+  const matching::TrajectoryMeasurements meas(matching::LoadMeasurements(argv[2]));
+
   // Initiate map matcher
   return 0;
 }

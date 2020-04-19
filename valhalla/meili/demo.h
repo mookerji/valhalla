@@ -2,7 +2,10 @@
 #define MMP_DEMO_H_
 
 #include <cmath>
+#include <fstream>
 #include <memory>
+#include <sstream>
+#include <string>
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
@@ -23,6 +26,7 @@
 
 // Macros
 
+// TODO(mookerji): Separate into DISALLOW_COPY, DISALLOW_ASSIGN, DISALLOW_MOVE, etc.
 #define VL_DISALLOW_COPY_AND_ASSIGN(TypeName)                                                        \
   TypeName(const TypeName&) = delete;                                                                \
   TypeName(TypeName&&) = delete;                                                                     \
@@ -98,6 +102,7 @@ public:
   }
 
   double operator()(const PointLL& point) const {
+    CHECK(false) << "Not implemented";
     CHECK(sigma_z_ > 0);
     // TODO:
     // project
@@ -118,6 +123,7 @@ public:
   }
 
   double operator()() const {
+    CHECK(false) << "Not implemented";
     CHECK(beta_ > 0);
     return 0;
   }
@@ -140,18 +146,22 @@ public:
   ViterbiPath() = default;
 
   double GetScore() const {
+    CHECK(false) << "Not implemented";
     return 0;
   }
 
   double GetWeight() const {
+    CHECK(false) << "Not implemented";
     return 0;
   }
 
   double GetDistanceMeters() const {
+    CHECK(false) << "Not implemented";
     return 0;
   }
 
   double GetDurationSec() const {
+    CHECK(false) << "Not implemented";
     return 0;
   }
 
@@ -178,6 +188,7 @@ public:
   }
 
   bool IsInitialized() {
+    CHECK(false) << "Not implemented";
     return false;
   }
 
@@ -198,16 +209,32 @@ private:
 
 struct Measurement {
   struct Data {
-    midgard::PointLL lnglat;
+    PointLL lnglat;
   };
 
-  Data data;
+  Data data{};
+
+  // Parse measurement from a line
+  explicit Measurement(std::string line) {
+    DLOG(INFO) << "measurement line: " << line;
+    // TODO: Parsing needs to be pulled out to another function
+    std::vector<float> records;
+    std::istringstream ss(line);
+    size_t num_cols = 0;
+    for (std::string col; std::getline(ss, col, ','); ++num_cols) {
+      CHECK(num_cols < 2) << "Only 'lng,lat' per line.";
+      records.emplace_back(std::stof(col));
+    }
+    data = Data{PointLL(records[0], records[1])};
+  }
 };
 
 class TrajectoryMeasurements {
 
 public:
-  TrajectoryMeasurements() {
+  TrajectoryMeasurements() = default;
+
+  TrajectoryMeasurements(std::vector<Measurement> meas) : measurements_(meas) {
   }
 
   Measurement& operator[](unsigned i) {
@@ -218,14 +245,37 @@ public:
     return measurements_.at(i);
   }
 
+  const void Add(const Measurement& meas) {
+    measurements_.emplace_back(meas);
+  }
+
   size_t size() const {
     return measurements_.size();
+  }
+
+  bool empty() const {
+    return measurements_.empty();
   }
 
 private:
   VL_DISALLOW_COPY_AND_ASSIGN(TrajectoryMeasurements);
   std::vector<Measurement> measurements_;
 };
+
+std::vector<Measurement> LoadMeasurements(std::string filename) {
+  DLOG(INFO) << "Loading from ..." << filename;
+  std::vector<Measurement> measurements;
+  std::fstream fs(filename, std::fstream::in);
+  std::string line;
+  while (!fs.eof()) {
+    std::getline(fs, line);
+    if (line.empty()) {
+      continue;
+    }
+    measurements.emplace_back(Measurement(line));
+  }
+  return measurements;
+}
 
 // Seaching the road network
 
