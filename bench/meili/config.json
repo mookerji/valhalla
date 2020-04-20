@@ -1,6 +1,6 @@
 {
   "mjolnir": {
-    "tile_dir": "test/data/utrecht_tiles",
+    "tile_dir": "/Users/buromookerji/projects/mapbox/valhalla/build/test/data/utrecht_tiles",
     "concurrency": 1
   },
   "loki": {

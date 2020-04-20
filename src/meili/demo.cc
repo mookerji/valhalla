@@ -27,13 +27,16 @@ int main(int argc, char* argv[]) {
   std::shared_ptr<baldr::GraphReader> graph_reader =
       std::make_shared<baldr::GraphReader>(root_config.get_child("mjolnir"));
 
+  const auto& tiles = graph_reader->GetTileSet();
+  DLOG(INFO) << "tiles size: " << tiles.size();
+
   // Load measurements
   const matching::Trajectory meas(matching::ReadMeasurements(argv[2]));
 
   // Initiate map matcher
   const matching::RoadNetworkIndex road_network(graph_reader, matching_config.candidate_search,
                                                 &costing, travelmode);
-  const auto& result = road_network.GetNearestEdges(midgard::PointLL(5.0889813,52.0913261));
+  const auto& result = road_network.GetNearestEdges(midgard::PointLL(5.09806,52.09110));
   DLOG(INFO) << "result size: " << result.size();
 
   return 0;

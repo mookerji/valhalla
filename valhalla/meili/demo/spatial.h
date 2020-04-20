@@ -146,12 +146,13 @@ public:
   }
 
   bool IsInitialized() const {
-    return !graph_reader_ && !candidate_index_ && !mode_costing_;
+    return graph_reader_ && candidate_index_ && mode_costing_;
   }
 
   // TODO(mookerji): Type here should be matching::Measurement
+  // TODO(mookerji): Return type needs to be a new type to define, like matching::EdgeCandidate.
   std::vector<PathLocation> GetNearestEdges(PointLL point) const {
-    //CHECK(IsInitialized());
+    CHECK(IsInitialized());
     const float search_radius_sq = std::pow(search_conf_.search_radius_meters, 2);
     return candidate_index_->Query(point, search_radius_sq, costing()->GetEdgeFilter());
   }
