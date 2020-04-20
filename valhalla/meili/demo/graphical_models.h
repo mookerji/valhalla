@@ -112,7 +112,6 @@ private:
 class HiddenMarkovModel {
 public:
   HiddenMarkovModel() {
-
   }
 
   bool IsInitialized() {

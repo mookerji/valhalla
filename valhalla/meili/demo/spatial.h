@@ -14,6 +14,8 @@
 #include <valhalla/baldr/graphreader.h>
 #include <valhalla/baldr/location.h>
 #include <valhalla/baldr/pathlocation.h>
+#include <valhalla/baldr/tilehierarchy.h>
+#include <valhalla/meili/candidate_search.h>
 #include <valhalla/meili/geometry_helpers.h>
 #include <valhalla/meili/grid_range_query.h>
 #include <valhalla/midgard/distanceapproximator.h>
@@ -26,6 +28,7 @@
 #include <valhalla/meili/demo/configuration.h>
 #include <valhalla/meili/demo/macros.h>
 
+using namespace valhalla;
 using namespace valhalla::baldr;
 using namespace valhalla::midgard;
 using namespace valhalla::sif;
@@ -53,16 +56,17 @@ Measurement ReadMeasurement(std::string line) {
     CHECK(num_cols < 2) << "Only 'lng,lat' per line.";
     records.emplace_back(std::stof(col));
   }
-  return Measurement::Data{PointLL(records[0], records[1])};
+  return Measurement{PointLL(records[0], records[1])};
 }
 
 struct Tracepoint {
   PointLL location;
   float distance;
   std::string name;
-  unsigned waypoint_index;
-  unsigned matchings_index;
-  unsigned alternatives_count;
+
+  size_t waypoint_index;
+  size_t matchings_index;
+  size_t alternatives_count;
 };
 
 class Trajectory {
@@ -73,11 +77,11 @@ public:
   Trajectory(std::vector<Measurement> meas) : measurements_(meas) {
   }
 
-  Measurement& operator[](unsigned i) {
+  Measurement& operator[](size_t i) {
     return measurements_.at(i);
   }
 
-  const Measurement& operator[](unsigned i) const {
+  const Measurement& operator[](size_t i) const {
     return measurements_.at(i);
   }
 
@@ -98,7 +102,7 @@ private:
   std::vector<Measurement> measurements_;
 };
 
-std::vector<Measurement> LoadMeasurements(std::string filename) {
+std::vector<Measurement> ReadMeasurements(std::string filename) {
   DLOG(INFO) << "Loading from ..." << filename;
   std::vector<Measurement> measurements;
   std::fstream fs(filename, std::fstream::in);
@@ -115,27 +119,47 @@ std::vector<Measurement> LoadMeasurements(std::string filename) {
 
 // Seaching the road network
 
+float GetLocalTileSize() {
+  // NOTE(mookerji): copied from map_matcher.h
+  return (baldr::TileHierarchy::levels().rbegin()->second.tiles).TileSize();
+}
+
 class RoadNetworkIndex {
 
 public:
   RoadNetworkIndex() = default;
 
-  RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph) : graph_(graph) {
-
-    cost_factory_.RegisterStandardCostingModels();
+  RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph,
+                   const Config::CandidateSearch& search_conf,
+                   const sif::cost_ptr_t* mode_costing,
+                   TravelMode travelmode)
+      : graph_reader_(graph), search_conf_(search_conf), mode_costing_(mode_costing),
+        travelmode_(travelmode) {
+    // TODO(mookerji): refactor into a separate initialization step. this is probably do much work
+    // to do in the constructor.
+    const float local_tile_size = GetLocalTileSize();
+    CHECK(local_tile_size > 0);
+    const float cell_width = local_tile_size / search_conf_.grid_size;
+    const float cell_height = local_tile_size / search_conf_.grid_size;
+    candidate_index_ =
+        std::make_shared<meili::CandidateGridQuery>(*graph_reader_, cell_width, cell_height);
   }
 
   bool IsInitialized() {
-    CHECK(false) << "Not implemented";
+    return !graph_reader_ && !candidate_index_ && !mode_costing_;
   }
 
-  void GetNearestEdges(PointLL point, float radius) {
+  std::vector<PathLocation> GetNearestEdges(PointLL point) {
     CHECK(IsInitialized());
-    CHECK(false) << "Not implemented";
+    const float search_radius_sq = std::pow(search_conf_.search_radius_meters, 2);
+    return candidate_index_->Query(point, search_radius_sq, costing()->GetEdgeFilter());
   }
 
   // TODO: src, src_edge, dst, dst_edge
-  float GetNetworkDistanceMeters() {
+  float GetNetworkDistanceMeters(PointLL src,
+                                 const PathLocation& src_edge,
+                                 PointLL dst,
+                                 const PathLocation& dst_edge) {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     return 0;
@@ -144,11 +168,19 @@ public:
   // TODO:
   // Get edge by ID
   //
-
 private:
+  cost_ptr_t costing() const {
+    return mode_costing_[static_cast<size_t>(travelmode_)];
+  }
+
   VL_DISALLOW_COPY_AND_ASSIGN(RoadNetworkIndex);
-  std::shared_ptr<GraphReader> graph_;
-  CostFactory<DynamicCost> cost_factory_;
+  std::shared_ptr<GraphReader> graph_reader_;
+  std::shared_ptr<meili::CandidateGridQuery> candidate_index_;
+  Config::CandidateSearch search_conf_;
+  // TODO(mookerji): Figure this stuff out
+  // NOTE: std::shared_ptr<cost_t> mode_costing_;
+  const cost_ptr_t* mode_costing_;
+  TravelMode travelmode_;
 };
 
 } // namespace matching
