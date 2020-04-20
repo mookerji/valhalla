@@ -145,21 +145,23 @@ public:
         std::make_shared<meili::CandidateGridQuery>(*graph_reader_, cell_width, cell_height);
   }
 
-  bool IsInitialized() {
+  bool IsInitialized() const {
     return !graph_reader_ && !candidate_index_ && !mode_costing_;
   }
 
-  std::vector<PathLocation> GetNearestEdges(PointLL point) {
-    CHECK(IsInitialized());
+  // TODO(mookerji): Type here should be matching::Measurement
+  std::vector<PathLocation> GetNearestEdges(PointLL point) const {
+    //CHECK(IsInitialized());
     const float search_radius_sq = std::pow(search_conf_.search_radius_meters, 2);
     return candidate_index_->Query(point, search_radius_sq, costing()->GetEdgeFilter());
   }
 
   // TODO: src, src_edge, dst, dst_edge
+    // TODO(mookerji): Type here should be matching::Measurement, etc.
   float GetNetworkDistanceMeters(PointLL src,
                                  const PathLocation& src_edge,
                                  PointLL dst,
-                                 const PathLocation& dst_edge) {
+                                 const PathLocation& dst_edge) const {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     return 0;

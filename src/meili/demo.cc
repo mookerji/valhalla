@@ -33,6 +33,8 @@ int main(int argc, char* argv[]) {
   // Initiate map matcher
   const matching::RoadNetworkIndex road_network(graph_reader, matching_config.candidate_search,
                                                 &costing, travelmode);
+  const auto& result = road_network.GetNearestEdges(midgard::PointLL(5.0889813,52.0913261));
+  DLOG(INFO) << "result size: " << result.size();
 
   return 0;
 }

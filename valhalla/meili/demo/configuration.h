@@ -69,7 +69,9 @@ cost_ptr_t MakeCosting(Config::CostModel conf) {
     options.add_costing_options();
   }
   Costing costing;
+  DLOG(INFO) << "Costing mode: " << conf.mode;
   CHECK(Costing_Enum_Parse(conf.mode, &costing)) << "No costing method found";
+  options.set_costing(costing);
   CostFactory<DynamicCost> factory;
   factory.RegisterStandardCostingModels();
   return factory.Create(options);
