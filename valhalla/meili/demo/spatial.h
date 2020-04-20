@@ -151,17 +151,17 @@ public:
 
   // TODO(mookerji): Type here should be matching::Measurement
   // TODO(mookerji): Return type needs to be a new type to define, like matching::EdgeCandidate.
-  std::vector<PathLocation> GetNearestEdges(PointLL point) const {
+  std::vector<PathLocation> GetNearestEdges(Measurement point) const {
     CHECK(IsInitialized());
     const float search_radius_sq = std::pow(search_conf_.search_radius_meters, 2);
-    return candidate_index_->Query(point, search_radius_sq, costing()->GetEdgeFilter());
+    return candidate_index_->Query(point.data.lnglat, search_radius_sq, costing()->GetEdgeFilter());
   }
 
   // TODO: src, src_edge, dst, dst_edge
-    // TODO(mookerji): Type here should be matching::Measurement, etc.
-  float GetNetworkDistanceMeters(PointLL src,
+  // TODO(mookerji): Type here should be matching::Measurement, etc.
+  float GetNetworkDistanceMeters(Measurement src,
                                  const PathLocation& src_edge,
-                                 PointLL dst,
+                                 Measurement dst,
                                  const PathLocation& dst_edge) const {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";

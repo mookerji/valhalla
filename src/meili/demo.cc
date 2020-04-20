@@ -9,6 +9,8 @@
 #include "meili/demo.h"
 
 using namespace valhalla;
+using namespace valhalla::midgard;
+using namespace valhalla::sif;
 
 int main(int argc, char* argv[]) {
   google::InitGoogleLogging(argv[0]);
@@ -20,8 +22,8 @@ int main(int argc, char* argv[]) {
   boost::property_tree::ptree root_config;
   rapidjson::read_json(argv[1], root_config);
   const matching::Config matching_config = matching::ReadConfig(root_config.get_child("meili"));
-  sif::cost_ptr_t costing = matching::MakeCosting(matching_config.costing);
-  sif::TravelMode travelmode = costing->travel_mode();
+  cost_ptr_t costing = matching::MakeCosting(matching_config.costing);
+  TravelMode travelmode = costing->travel_mode();
 
   // Load road networking graph
   std::shared_ptr<baldr::GraphReader> graph_reader =
@@ -36,7 +38,8 @@ int main(int argc, char* argv[]) {
   // Initiate map matcher
   const matching::RoadNetworkIndex road_network(graph_reader, matching_config.candidate_search,
                                                 &costing, travelmode);
-  const auto& result = road_network.GetNearestEdges(midgard::PointLL(5.09806,52.09110));
+  const auto& result =
+      road_network.GetNearestEdges(matching::Measurement{PointLL(5.09806, 52.09110)});
   DLOG(INFO) << "result size: " << result.size();
 
   return 0;
