@@ -129,11 +129,11 @@ class RoadNetworkIndex {
 public:
   RoadNetworkIndex() = default;
 
-  RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph,
+  RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph_reader,
                    const Config::CandidateSearch& search_conf,
-                   const sif::cost_ptr_t* mode_costing,
+                   const cost_ptr_t* mode_costing,
                    TravelMode travelmode)
-      : graph_reader_(graph), search_conf_(search_conf), mode_costing_(mode_costing),
+      : graph_reader_(graph_reader), search_conf_(search_conf), mode_costing_(mode_costing),
         travelmode_(travelmode) {
     // TODO(mookerji): refactor into a separate initialization step. this is probably do much work
     // to do in the constructor.

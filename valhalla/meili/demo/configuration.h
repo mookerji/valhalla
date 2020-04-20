@@ -5,6 +5,11 @@
 
 #include <boost/property_tree/ptree.hpp>
 
+#include <valhalla/sif/costfactory.h>
+#include <valhalla/sif/dynamiccost.h>
+
+using namespace valhalla::sif;
+
 namespace valhalla {
 
 namespace matching {
@@ -56,6 +61,18 @@ Config ReadConfig(const boost::property_tree::ptree& conf) {
                 Config::TransitionLikelihood{conf.get<float>("default.beta")},
                 Config::EmissionLikelihood{conf.get<float>("default.sigma_z")},
                 Config::CostModel{conf.get<std::string>("mode")}};
+}
+
+cost_ptr_t MakeCosting(Config::CostModel conf) {
+  Options options;
+  for (int i = 0; i < Costing_MAX; ++i) {
+    options.add_costing_options();
+  }
+  Costing costing;
+  CHECK(Costing_Enum_Parse(conf.mode, &costing)) << "No costing method found";
+  CostFactory<DynamicCost> factory;
+  factory.RegisterStandardCostingModels();
+  return factory.Create(options);
 }
 
 } // namespace matching
