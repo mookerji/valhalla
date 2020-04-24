@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
   const auto& result =
       road_network.GetNearestEdges(matching::Measurement{PointLL(5.09806, 52.09110)});
   DLOG(INFO) << "result size: " << result.size();
+  DLOG(INFO) << "results: " << result;
 
   return 0;
 }

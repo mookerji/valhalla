@@ -28,7 +28,7 @@ public:
   EmissionLikelihood(double sigma_z = kSigmaZ) : sigma_z_(sigma_z) {
   }
 
-  double operator()(const PointLL& point) const {
+  double operator()(const Measurement& point) const {
     CHECK(false) << "Not implemented";
     CHECK(sigma_z_ > 0);
     // TODO:

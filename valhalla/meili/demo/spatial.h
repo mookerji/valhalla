@@ -2,6 +2,7 @@
 #define MMP_DEMO_SPATIAL_H_
 
 #include <fstream>
+#include <iostream>
 #include <memory>
 #include <sstream>
 #include <string>
@@ -47,6 +48,29 @@ struct Measurement {
   Data data{};
 };
 
+std::ostream& operator<<(std::ostream& os, const Measurement& meas) {
+  os << "Point[" << meas.data.lnglat.lat() << "," << meas.data.lnglat.lng() << "]";
+  return os;
+}
+
+struct RoadCandidate {
+  PathLocation segment;
+};
+
+std::ostream& operator<<(std::ostream& os, const PathLocation& path) {
+  os << "PathLocation[";
+  for (const auto& edge : path.edges) {
+    os << "edge.id=" << edge.id << ","
+       << "percent_along=" << edge.percent_along << "|";
+  }
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const RoadCandidate& meas) {
+  os << "RoadCandidate[" << meas.segment << "]";
+  return os;
+}
+
 Measurement ReadMeasurement(std::string line) {
   DLOG(INFO) << "measurement line: " << line;
   std::vector<float> records;
@@ -74,7 +98,7 @@ class Trajectory {
 public:
   Trajectory() = default;
 
-  Trajectory(std::vector<Measurement> meas) : measurements_(meas) {
+  Trajectory(const std::vector<Measurement>& meas) : measurements_(meas) {
   }
 
   Measurement& operator[](size_t i) {
@@ -117,6 +141,41 @@ std::vector<Measurement> ReadMeasurements(std::string filename) {
   return measurements;
 }
 
+class RoadCandidateList {
+public:
+  RoadCandidateList(const std::vector<RoadCandidate>& candidates) : candidates_(candidates) {
+  }
+
+  RoadCandidate& operator[](size_t i) {
+    return candidates_.at(i);
+  }
+
+  const RoadCandidate& operator[](size_t i) const {
+    return candidates_.at(i);
+  }
+
+  size_t size() const {
+    return candidates_.size();
+  }
+
+  bool empty() const {
+    return candidates_.empty();
+  }
+
+private:
+  // VL_DISALLOW_COPY_AND_ASSIGN(RoadCandidateList);
+  std::vector<RoadCandidate> candidates_;
+};
+
+std::ostream& operator<<(std::ostream& os, const RoadCandidateList& list) {
+  os << "RoadCandidateList[";
+  for (size_t i = 0; i < list.size(); ++i) {
+    os << list[i] << ",";
+  }
+  os << "]";
+  return os;
+}
+
 // Seaching the road network
 
 float GetLocalTileSize() {
@@ -149,24 +208,31 @@ public:
     return graph_reader_ && candidate_index_ && mode_costing_;
   }
 
-  // TODO(mookerji): Type here should be matching::Measurement
-  // TODO(mookerji): Return type needs to be a new type to define, like matching::EdgeCandidate.
-  std::vector<PathLocation> GetNearestEdges(Measurement point) const {
+  RoadCandidateList GetNearestEdges(const Measurement& point) const {
     CHECK(IsInitialized());
     const float search_radius_sq = std::pow(search_conf_.search_radius_meters, 2);
-    return candidate_index_->Query(point.data.lnglat, search_radius_sq, costing()->GetEdgeFilter());
+    const std::vector<PathLocation>& paths =
+        candidate_index_->Query(point.data.lnglat, search_radius_sq, costing()->GetEdgeFilter());
+    std::vector<RoadCandidate> candidates;
+    candidates.reserve(paths.size());
+    for (const auto& path : paths) {
+      candidates.push_back(RoadCandidate{path});
+    }
+    return RoadCandidateList(candidates);
   }
 
   // TODO: src, src_edge, dst, dst_edge
   // TODO(mookerji): Type here should be matching::Measurement, etc.
   float GetNetworkDistanceMeters(Measurement src,
-                                 const PathLocation& src_edge,
+                                 const RoadCandidate& src_edge,
                                  Measurement dst,
-                                 const PathLocation& dst_edge) const {
+                                 const RoadCandidate& dst_edge) const {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     return 0;
   }
+
+  // GetGeometry
 
   // TODO:
   // Get edge by ID
