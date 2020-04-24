@@ -203,6 +203,7 @@ public:
   }
 
   RoadCandidateList GetNearestEdges(const Measurement& point) const {
+    DLOG(INFO) << "GetNearestEdges" << point;
     CHECK(IsInitialized());
     CHECK(point.data.lnglat.IsValid());
     const AABB2<PointLL>& range \
@@ -213,6 +214,9 @@ public:
     const GraphTile* tile = nullptr;
     const EdgeFilter& edgefilter = costing()->GetEdgeFilter();
     for (const auto& edge_id : edge_ids) {
+      if (!edge_id.Is_Valid()) {
+        continue;
+      }
       const DirectedEdge* edge = graph_reader_->directededge(edge_id, tile);
       if (!edge) {
         continue;
@@ -226,6 +230,8 @@ public:
     return RoadCandidateList(candidates);
   }
 
+
+
   // TODO: src, src_edge, dst, dst_edge
   // TODO(mookerji): Type here should be matching::Measurement, etc.
   float GetNetworkDistanceMeters(Measurement src,
@@ -237,7 +243,13 @@ public:
     return 0;
   }
 
-  // GetGeometry
+  std::vector<PointLL> GetGeometry(const RoadCandidate& edge) const {
+    const GraphTile* tile = nullptr;
+    // TODO: handle exception here
+    const EdgeInfo edge_info = graph_reader_->edgeinfo(edge.edge_id, tile);
+    return edge_info.shape();
+
+  }
 
   // TODO:
   // Get edge by ID

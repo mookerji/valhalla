@@ -33,16 +33,24 @@ int main(int argc, char* argv[]) {
   DLOG(INFO) << "tiles size: " << tiles.size();
 
   // Load measurements
-  const matching::Trajectory meas(matching::ReadMeasurements(argv[2]));
+  const matching::Trajectory traj(matching::ReadMeasurements(argv[2]));
 
   // Initiate map matcher
   const matching::RoadNetworkIndex road_network(graph_reader, matching_config.candidate_search,
                                                 &costing, travelmode);
-  const auto& result =
-      road_network.GetNearestEdges(matching::Measurement{PointLL(5.09806, 52.09110)});
-  DLOG(INFO) << "result size: " << result.size();
-  DLOG(INFO) << "results: " << result;
-  CHECK(result.size() > 0) << "No candidates found!";
+
+  for (size_t i = 0; i < traj.size(); ++i) {
+    const matching::Measurement& point = traj[i];
+    const matching::RoadCandidateList& candidates = road_network.GetNearestEdges(point);
+    DLOG(INFO) << "result size: " << candidates.size();
+    DLOG(INFO) << "results: " << candidates;
+    CHECK(candidates.size() > 0) << "No candidates found!";
+  }
+  //  const auto& result =
+  //     road_network.GetNearestEdges(matching::Measurement{PointLL(5.09806, 52.09110)});
+  // DLOG(INFO) << "result size: " << result.size();
+  // DLOG(INFO) << "results: " << result;
+  // CHECK(result.size() > 0) << "No candidates found!";
 
   return 0;
 }
