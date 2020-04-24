@@ -74,7 +74,7 @@ Measurement ReadMeasurement(std::string line) {
     CHECK(num_cols < 2) << "Only 'lng,lat' per line.";
     records.emplace_back(std::stof(col));
   }
-  return Measurement{PointLL(records[0], records[1])};
+  return Measurement{PointLL(records[1], records[0])};
 }
 
 struct Tracepoint {
@@ -157,7 +157,7 @@ public:
   }
 
 private:
-  //VL_DISALLOW_COPY_AND_ASSIGN(RoadCandidateList);
+  // VL_DISALLOW_COPY_AND_ASSIGN(RoadCandidateList);
   std::vector<RoadCandidate> candidates_;
 };
 
@@ -206,8 +206,8 @@ public:
     DLOG(INFO) << "GetNearestEdges" << point;
     CHECK(IsInitialized());
     CHECK(point.data.lnglat.IsValid());
-    const AABB2<PointLL>& range \
-      = midgard::ExpandMeters(point.data.lnglat, search_conf_.search_radius_meters);
+    const AABB2<PointLL>& range =
+        midgard::ExpandMeters(point.data.lnglat, search_conf_.search_radius_meters);
     const std::unordered_set<GraphId>& edge_ids = candidate_index_->RangeQuery(range);
     std::vector<RoadCandidate> candidates;
     candidates.reserve(edge_ids.size());
@@ -227,10 +227,10 @@ public:
       }
       candidates.push_back(RoadCandidate{edge_id});
     }
+    // NOTE: Note that CandidateQuery::Query precomputes projections of points to edges
+    // that we may want to add back as a performance-optimization
     return RoadCandidateList(candidates);
   }
-
-
 
   // TODO: src, src_edge, dst, dst_edge
   // TODO(mookerji): Type here should be matching::Measurement, etc.
@@ -248,7 +248,13 @@ public:
     // TODO: handle exception here
     const EdgeInfo edge_info = graph_reader_->edgeinfo(edge.edge_id, tile);
     return edge_info.shape();
+  }
 
+  Shape7Decoder<PointLL> GetGeometryLazy(const RoadCandidate& edge) const {
+    const GraphTile* tile = nullptr;
+    // TODO: handle exception here
+    const EdgeInfo edge_info = graph_reader_->edgeinfo(edge.edge_id, tile);
+    return edge_info.lazy_shape();
   }
 
   // TODO:

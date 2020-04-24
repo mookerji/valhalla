@@ -36,21 +36,21 @@ int main(int argc, char* argv[]) {
   const matching::Trajectory traj(matching::ReadMeasurements(argv[2]));
 
   // Initiate map matcher
-  const matching::RoadNetworkIndex road_network(graph_reader, matching_config.candidate_search,
-                                                &costing, travelmode);
+  const auto& road_network =
+      std::make_shared<matching::RoadNetworkIndex>(graph_reader, matching_config.candidate_search,
+                                                   &costing, travelmode);
 
+  matching::EmissionLikelihood emission_model(road_network);
   for (size_t i = 0; i < traj.size(); ++i) {
     const matching::Measurement& point = traj[i];
-    const matching::RoadCandidateList& candidates = road_network.GetNearestEdges(point);
+    const matching::RoadCandidateList& candidates = road_network->GetNearestEdges(point);
+    for (size_t j = 0; j < candidates.size(); ++j) {
+      DLOG(INFO) << "result size: " << emission_model(point, candidates[j]);
+    }
     DLOG(INFO) << "result size: " << candidates.size();
     DLOG(INFO) << "results: " << candidates;
-    CHECK(candidates.size() > 0) << "No candidates found!";
+    // CHECK(candidates.size() > 0) << "No candidates found!";52.09110,5.09806
   }
-  //  const auto& result =
-  //     road_network.GetNearestEdges(matching::Measurement{PointLL(5.09806, 52.09110)});
-  // DLOG(INFO) << "result size: " << result.size();
-  // DLOG(INFO) << "results: " << result;
-  // CHECK(result.size() > 0) << "No candidates found!";
 
   return 0;
 }

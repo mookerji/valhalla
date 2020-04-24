@@ -4,11 +4,14 @@
 #include <cmath>
 #include <memory>
 #include <string>
+#include <tuple>
 #include <vector>
 
 #include <glog/logging.h>
 
+#include <valhalla/midgard/constants.h>
 #include <valhalla/midgard/pointll.h>
+#include <valhalla/midgard/util.h>
 
 #include <valhalla/meili/demo/configuration.h>
 #include <valhalla/meili/demo/macros.h>
@@ -25,31 +28,50 @@ namespace matching {
 class EmissionLikelihood {
 
 public:
-  EmissionLikelihood(double sigma_z = kSigmaZ) : sigma_z_(sigma_z) {
+  EmissionLikelihood(const std::shared_ptr<RoadNetworkIndex>& road_network, double sigma_z = kSigmaZ)
+      : road_network_(road_network), sigma_z_(sigma_z) {
   }
 
-  double operator()(const Measurement& point) const {
-    CHECK(false) << "Not implemented";
-    CHECK(sigma_z_ > 0);
-    // TODO:
-    // project
-    // distance
-    const double l2_distance = 0;
+  bool IsInitialized() const {
+    return road_network_ != nullptr;
+  }
 
-    return -0.5 * std::pow(l2_distance / sigma_z_, 2) - 0.5;
+  float operator()(const Measurement& point, const RoadCandidate& candidate) const {
+    CHECK(IsInitialized());
+    CHECK(sigma_z_ > 0);
+    // Handle projection (see NOTE in RoadNetworkindex::GetNearestEdges)
+    Shape7Decoder<PointLL> geometry = road_network_->GetGeometryLazy(candidate);
+    if (geometry.empty()) {
+      return -std::numeric_limits<float>::infinity();
+    }
+    projector_t projector(point.data.lnglat);
+    const auto& snapping_result = meili::helpers::Project(projector, geometry);
+    float l2_distance = std::sqrt(std::get<1>(snapping_result));
+    return -0.5 * std::pow(l2_distance / sigma_z_, 2) -
+           0.5 * std::log(2 * kPi * std::pow(sigma_z_, 2));
   }
 
 private:
   double sigma_z_;
+  std::shared_ptr<RoadNetworkIndex> road_network_;
 };
 
 class TransmissionLikelihood {
 
 public:
-  TransmissionLikelihood(double beta = kBeta) : beta_(beta) {
+  TransmissionLikelihood(const std::shared_ptr<RoadNetworkIndex>& road_network, double beta = kBeta)
+      : road_network_(road_network), beta_(beta) {
   }
 
-  double operator()() const {
+  bool IsInitialized() const {
+    return road_network_ != nullptr;
+  }
+
+  double operator()(Measurement src,
+                    const RoadCandidate& src_edge,
+                    Measurement dst,
+                    const RoadCandidate& dst_edge) const {
+    CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     CHECK(beta_ > 0);
     return 0;
@@ -57,7 +79,7 @@ public:
 
 private:
   double beta_;
-  std::shared_ptr<RoadNetworkIndex> network_;
+  std::shared_ptr<RoadNetworkIndex> road_network_;
 };
 
 // Graphical Models
@@ -131,8 +153,8 @@ public:
 private:
   VL_DISALLOW_COPY_AND_ASSIGN(HiddenMarkovModel);
 
-  TransmissionLikelihood trasmission_likelihood_;
-  EmissionLikelihood emission_likelihood_;
+  // TransmissionLikelihood trasmission_likelihood_;
+  // EmissionLikelihood emission_likelihood_;
 };
 
 } // namespace matching
