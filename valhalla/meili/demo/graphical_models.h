@@ -139,7 +139,7 @@ private:
 
 class HiddenMarkovModel {
 public:
-  HiddenMarkovModel() {
+  HiddenMarkovModel(const Trajectory& trajectory) {
   }
 
   bool IsInitialized() {
