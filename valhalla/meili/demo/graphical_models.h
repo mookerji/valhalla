@@ -39,15 +39,16 @@ public:
   float operator()(const Measurement& point, const RoadCandidate& candidate) const {
     CHECK(IsInitialized());
     CHECK(sigma_z_ > 0);
-    // Handle projection (see NOTE in RoadNetworkindex::GetNearestEdges)
+    // Handle projection (see NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep these
+    // pre-computed in the feature).
     Shape7Decoder<PointLL> geometry = road_network_->GetGeometryLazy(candidate);
     if (geometry.empty()) {
       return -std::numeric_limits<float>::infinity();
     }
     projector_t projector(point.data.lnglat);
     const auto& snapping_result = meili::helpers::Project(projector, geometry);
-    float l2_distance = std::sqrt(std::get<1>(snapping_result));
-    return -0.5 * std::pow(l2_distance / sigma_z_, 2) -
+    const float l2_distance_meters = std::sqrt(std::get<1>(snapping_result));
+    return -0.5 * std::pow(l2_distance_meters / sigma_z_, 2) -
            0.5 * std::log(2 * kPi * std::pow(sigma_z_, 2));
   }
 
@@ -67,14 +68,19 @@ public:
     return road_network_ != nullptr;
   }
 
-  double operator()(Measurement src,
+  double operator()(const Measurement src,
                     const RoadCandidate& src_edge,
-                    Measurement dst,
+                    const Measurement dst,
                     const RoadCandidate& dst_edge) const {
     CHECK(IsInitialized());
-    CHECK(false) << "Not implemented";
     CHECK(beta_ > 0);
-    return 0;
+    const float l2_distance_meters = src.data.lnglat.Distance(dst.data.lnglat);
+    CHECK(l2_distance_meters > 0);
+    const float l1_distance_meters =
+        road_network_->GetNetworkDistanceMeters(src, src_edge, dst, dst_edge);
+    CHECK(l1_distance_meters > 0);
+    const float d = std::fabs(l2_distance_meters - l1_distance_meters);
+    return -d / beta_ - std::log(beta_);
   }
 
 private:
