@@ -6,6 +6,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 #include <glog/logging.h>
@@ -19,10 +20,12 @@
 #include <valhalla/meili/candidate_search.h>
 #include <valhalla/meili/geometry_helpers.h>
 #include <valhalla/meili/grid_range_query.h>
+#include <valhalla/midgard/aabb2.h>
 #include <valhalla/midgard/distanceapproximator.h>
 #include <valhalla/midgard/linesegment2.h>
 #include <valhalla/midgard/pointll.h>
 #include <valhalla/midgard/tiles.h>
+#include <valhalla/midgard/util.h>
 #include <valhalla/sif/costfactory.h>
 #include <valhalla/sif/dynamiccost.h>
 
@@ -54,20 +57,11 @@ std::ostream& operator<<(std::ostream& os, const Measurement& meas) {
 }
 
 struct RoadCandidate {
-  PathLocation segment;
+  GraphId edge_id;
 };
 
-std::ostream& operator<<(std::ostream& os, const PathLocation& path) {
-  os << "PathLocation[";
-  for (const auto& edge : path.edges) {
-    os << "edge.id=" << edge.id << ","
-       << "percent_along=" << edge.percent_along << "|";
-  }
-  return os;
-}
-
 std::ostream& operator<<(std::ostream& os, const RoadCandidate& meas) {
-  os << "RoadCandidate[" << meas.segment << "]";
+  os << "RoadCandidate[edge_id=" << meas.edge_id << "]";
   return os;
 }
 
@@ -163,14 +157,14 @@ public:
   }
 
 private:
-  // VL_DISALLOW_COPY_AND_ASSIGN(RoadCandidateList);
+  //VL_DISALLOW_COPY_AND_ASSIGN(RoadCandidateList);
   std::vector<RoadCandidate> candidates_;
 };
 
 std::ostream& operator<<(std::ostream& os, const RoadCandidateList& list) {
   os << "RoadCandidateList[";
   for (size_t i = 0; i < list.size(); ++i) {
-    os << list[i] << ",";
+    os << list[i] << ", ";
   }
   os << "]";
   return os;
@@ -210,13 +204,24 @@ public:
 
   RoadCandidateList GetNearestEdges(const Measurement& point) const {
     CHECK(IsInitialized());
-    const float search_radius_sq = std::pow(search_conf_.search_radius_meters, 2);
-    const std::vector<PathLocation>& paths =
-        candidate_index_->Query(point.data.lnglat, search_radius_sq, costing()->GetEdgeFilter());
+    CHECK(point.data.lnglat.IsValid());
+    const AABB2<PointLL>& range \
+      = midgard::ExpandMeters(point.data.lnglat, search_conf_.search_radius_meters);
+    const std::unordered_set<GraphId>& edge_ids = candidate_index_->RangeQuery(range);
     std::vector<RoadCandidate> candidates;
-    candidates.reserve(paths.size());
-    for (const auto& path : paths) {
-      candidates.push_back(RoadCandidate{path});
+    candidates.reserve(edge_ids.size());
+    const GraphTile* tile = nullptr;
+    const EdgeFilter& edgefilter = costing()->GetEdgeFilter();
+    for (const auto& edge_id : edge_ids) {
+      const DirectedEdge* edge = graph_reader_->directededge(edge_id, tile);
+      if (!edge) {
+        continue;
+      }
+      const bool ignore_edge = edgefilter(edge) == 0;
+      if (ignore_edge) {
+        continue;
+      }
+      candidates.push_back(RoadCandidate{edge_id});
     }
     return RoadCandidateList(candidates);
   }

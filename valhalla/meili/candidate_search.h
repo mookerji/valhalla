@@ -64,6 +64,8 @@ public:
                                            filter);
   }
 
+  std::unordered_set<baldr::GraphId> RangeQuery(const midgard::AABB2<midgard::PointLL>& range) const;
+
   std::unordered_map<baldr::GraphId, grid_t>::size_type size() const {
     return grid_cache_.size();
   }
@@ -78,8 +80,6 @@ private:
   const grid_t* GetGrid(const int32_t bin_id,
                         const midgard::Tiles<midgard::PointLL>& tiles,
                         const midgard::Tiles<midgard::PointLL>& bins) const;
-
-  std::unordered_set<baldr::GraphId> RangeQuery(const midgard::AABB2<midgard::PointLL>& range) const;
 
   uint32_t bin_level_;
 

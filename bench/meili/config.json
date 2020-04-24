@@ -57,7 +57,7 @@
       "max_route_time_factor": 5,
       "max_search_radius": 200,
       "route": true,
-      "search_radius": 15,
+      "search_radius": 50,
       "sigma_z": 4.07,
       "turn_penalty_factor": 200
     }
