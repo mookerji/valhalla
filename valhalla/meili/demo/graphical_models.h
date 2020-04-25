@@ -28,12 +28,14 @@ namespace matching {
 class EmissionLikelihood {
 
 public:
-  EmissionLikelihood(const std::shared_ptr<RoadNetworkIndex>& road_network, double sigma_z = kSigmaZ)
-      : road_network_(road_network), sigma_z_(sigma_z) {
+  EmissionLikelihood() = default;
+
+  EmissionLikelihood(std::shared_ptr<RoadNetworkIndex> roads, double sigma_z = kSigmaZ)
+      : roads_(roads), sigma_z_(sigma_z) {
   }
 
   bool IsInitialized() const {
-    return road_network_ != nullptr;
+    return roads_ != nullptr;
   }
 
   float operator()(const Measurement& point, const RoadCandidate& candidate) const {
@@ -41,7 +43,7 @@ public:
     CHECK(sigma_z_ > 0);
     // Handle projection (see NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep these
     // pre-computed in the feature).
-    Shape7Decoder<PointLL> geometry = road_network_->GetGeometryLazy(candidate);
+    Shape7Decoder<PointLL> geometry = roads_->GetGeometryLazy(candidate);
     if (geometry.empty()) {
       return -std::numeric_limits<float>::infinity();
     }
@@ -54,18 +56,20 @@ public:
 
 private:
   double sigma_z_;
-  std::shared_ptr<RoadNetworkIndex> road_network_;
+  std::shared_ptr<RoadNetworkIndex> roads_;
 };
 
-class TransmissionLikelihood {
+class TransitionLikelihood {
 
 public:
-  TransmissionLikelihood(const std::shared_ptr<RoadNetworkIndex>& road_network, double beta = kBeta)
-      : road_network_(road_network), beta_(beta) {
+  TransitionLikelihood() = default;
+
+  TransitionLikelihood(std::shared_ptr<RoadNetworkIndex> roads, double beta = kBeta)
+      : roads_(roads), beta_(beta) {
   }
 
   bool IsInitialized() const {
-    return road_network_ != nullptr;
+    return roads_ != nullptr;
   }
 
   double operator()(const Measurement src,
@@ -76,8 +80,7 @@ public:
     CHECK(beta_ > 0);
     const float l2_distance_meters = src.data.lnglat.Distance(dst.data.lnglat);
     CHECK(l2_distance_meters > 0);
-    const float l1_distance_meters =
-        road_network_->GetNetworkDistanceMeters(src, src_edge, dst, dst_edge);
+    const float l1_distance_meters = roads_->GetNetworkDistanceMeters(src, src_edge, dst, dst_edge);
     CHECK(l1_distance_meters > 0);
     const float d = std::fabs(l2_distance_meters - l1_distance_meters);
     return -d / beta_ - std::log(beta_);
@@ -85,14 +88,15 @@ public:
 
 private:
   double beta_;
-  std::shared_ptr<RoadNetworkIndex> road_network_;
+  std::shared_ptr<RoadNetworkIndex> roads_;
 };
 
 // Graphical Models
 
 struct StateNode {
-  size_t measurement_id = 1;
-  size_t edge_id = 2;
+  size_t measurement_id{0};
+  GraphId edge_id;
+  bool is_virtual{false};
 };
 
 class ViterbiPath {
@@ -137,30 +141,52 @@ private:
   std::vector<StateNode> nodes_;
 };
 
+// TODO(mookerji): implement trellis structure and search
+
 class HiddenMarkovModel {
 public:
-  HiddenMarkovModel(const Trajectory& trajectory) {
+  HiddenMarkovModel(const Config& config,
+                    std::shared_ptr<Trajectory> trajectory,
+                    std::shared_ptr<RoadNetworkIndex> roads)
+      : config_(config), trajectory_(trajectory), roads_(roads) {
+    transition_likelihood_ = TransitionLikelihood(roads_, config_.transition.beta);
+    emission_likelihood_ = EmissionLikelihood(roads_, config_.emission.sigma_z);
   }
 
-  bool IsInitialized() {
-    CHECK(false) << "Not implemented";
-    return false;
+  bool IsInitialized() const {
+    return roads_ && trajectory_ && transition_likelihood_.IsInitialized() &&
+           emission_likelihood_.IsInitialized();
   }
 
   // ViterbiPath Decode() {
   //   return;
   // }
 
-  float GetEdgeLikeliHood() {
+  float GetEdgeLikelihood(StateNode src, StateNode dst) {
     CHECK(IsInitialized());
-    return 0.;
+    CHECK(false) << "Not implemented";
+    if (src.is_virtual) {
+      return 1;
+    }
+    if (dst.is_virtual) {
+      // return -emission_likelihood()
+    }
+    const float transition_weight = 0;
+    const float emission_weight = 0;
+    return -transition_weight - emission_weight;
   }
 
 private:
   VL_DISALLOW_COPY_AND_ASSIGN(HiddenMarkovModel);
 
-  // TransmissionLikelihood trasmission_likelihood_;
-  // EmissionLikelihood emission_likelihood_;
+  Config config_;
+  std::shared_ptr<RoadNetworkIndex> roads_;
+  std::shared_ptr<Trajectory> trajectory_;
+
+  TransitionLikelihood transition_likelihood_;
+  EmissionLikelihood emission_likelihood_;
+  StateNode start_node_;
+  StateNode end_node_;
 };
 
 } // namespace matching

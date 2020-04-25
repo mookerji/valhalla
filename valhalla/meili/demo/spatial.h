@@ -182,7 +182,7 @@ class RoadNetworkIndex {
 public:
   RoadNetworkIndex() = default;
 
-  RoadNetworkIndex(const std::shared_ptr<GraphReader>& graph_reader,
+  RoadNetworkIndex(std::shared_ptr<GraphReader> graph_reader,
                    const Config::CandidateSearch& search_conf,
                    const cost_ptr_t* mode_costing,
                    TravelMode travelmode)

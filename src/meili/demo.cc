@@ -36,14 +36,14 @@ int main(int argc, char* argv[]) {
   const matching::Trajectory traj(matching::ReadMeasurements(argv[2]));
 
   // Initiate map matcher
-  const auto& road_network =
+  const auto& roads =
       std::make_shared<matching::RoadNetworkIndex>(graph_reader, matching_config.candidate_search,
                                                    &costing, travelmode);
 
-  matching::EmissionLikelihood emission_model(road_network);
+  matching::EmissionLikelihood emission_model(roads);
   for (size_t i = 0; i < traj.size(); ++i) {
     const matching::Measurement& point = traj[i];
-    const matching::RoadCandidateList& candidates = road_network->GetNearestEdges(point);
+    const matching::RoadCandidateList& candidates = roads->GetNearestEdges(point);
     for (size_t j = 0; j < candidates.size(); ++j) {
       DLOG(INFO) << "result size: " << emission_model(point, candidates[j]);
     }
