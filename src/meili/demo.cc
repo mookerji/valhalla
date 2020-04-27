@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
                                                    matching_config.routing, &costing, travelmode);
 
   matching::EmissionLikelihood emission_model(roads);
+  matching::TransitionLikelihood transition_model(roads);
   for (size_t i = 0; i < traj.size(); ++i) {
     const matching::Measurement& point = traj[i];
     matching::RoadCandidateList candidates = roads->GetNearestEdges(point);
@@ -55,6 +56,10 @@ int main(int argc, char* argv[]) {
       const float distance =
           roads->GetNetworkDistanceMeters(traj[i], candidates[0], traj[i + 1], candidates[0]);
       DLOG(INFO) << "distance: " << distance;
+      if (distance >= 0 && distance < 100000) {
+        DLOG(INFO) << "transition_model: "
+                   << transition_model(traj[i], candidates[0], traj[i + 1], candidates[0]);
+      }
     }
   }
 

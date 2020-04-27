@@ -330,9 +330,9 @@ public:
     if (paths.empty()) {
       return std::numeric_limits<float>::infinity();
     }
-    CHECK(paths.size() == 1) << "GetBestPath path size " << path.size();
+    CHECK(paths.size() == 1) << "GetBestPath path size " << paths.size();
     float route_distance_meters = 0;
-    for (const auto& leg : path.at(0)) {
+    for (const auto& leg : paths.at(0)) {
       const GraphTile* tile = nullptr;
       const DirectedEdge* edge = graph_reader_->directededge(leg.edgeid, tile);
       if (!edge) {
