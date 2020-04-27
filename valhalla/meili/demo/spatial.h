@@ -195,11 +195,44 @@ float GetLocalTileSize() {
   return (baldr::TileHierarchy::levels().rbegin()->second.tiles).TileSize();
 }
 
-valhalla::Location PointLLToLocation(PointLL ll) {
-  valhalla::Location loc;
-  loc.mutable_ll()->set_lng(ll.lng());
-  loc.mutable_ll()->set_lat(ll.lat());
-  return loc;
+std::ostream& operator<<(std::ostream& os, const PathInfo& info) {
+  os << "PathInfo[elapsed_time=" << info.elapsed_time << ", edgeid=" << info.edgeid
+     << ", elapsed_cost=" << info.elapsed_cost
+     << ", has_time_restrictions=" << info.has_time_restrictions << ", turn_cost=" << info.turn_cost
+     << "]";
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<PathInfo>>& paths) {
+  os << "vector<vector<PathInfo>>[";
+  for (const auto& path : paths) {
+    os << "[";
+    for (const auto& leg : path) {
+      os << leg << ", ";
+    }
+    os << "]";
+  }
+  os << "]";
+  return os;
+}
+
+float GetPathDistanceMeters(const std::vector<PathInfo>& path,
+                            std::shared_ptr<GraphReader> graph_reader) {
+  if (path.empty()) {
+    return std::numeric_limits<float>::infinity();
+  }
+  float route_distance_meters = 0;
+  for (const auto& leg : path) {
+    const GraphTile* tile = nullptr;
+    const DirectedEdge* edge = graph_reader->directededge(leg.edgeid, tile);
+    if (!edge) {
+      continue;
+    }
+    route_distance_meters += edge->length();
+  }
+  // TODO: something needs to be done here w.r.t. trimming of distances
+  CHECK(route_distance_meters > 0);
+  return route_distance_meters;
 }
 
 class RoadNetworkIndex {
@@ -324,6 +357,7 @@ public:
     valhalla::Location destination;
     PathLocation::toPBF(dst_snapped, &destination, *graph_reader_);
     cost_ptr_t mode_costing = costing();
+    // TODO: default choice for the time being.
     BidirectionalAStar astar;
     const Paths& paths =
         astar.GetBestPath(origin, destination, *graph_reader_, &mode_costing, travelmode_);
@@ -331,17 +365,8 @@ public:
       return std::numeric_limits<float>::infinity();
     }
     CHECK(paths.size() == 1) << "GetBestPath path size " << paths.size();
-    float route_distance_meters = 0;
-    for (const auto& leg : paths.at(0)) {
-      const GraphTile* tile = nullptr;
-      const DirectedEdge* edge = graph_reader_->directededge(leg.edgeid, tile);
-      if (!edge) {
-        continue;
-      }
-      route_distance_meters += edge->length();
-    }
-    // TODO: something needs to be done here w.r.t. trimming of distances
-    return route_distance_meters;
+    DLOG(INFO) << "GetNetworkDistanceMeters paths=" << paths;
+    return GetPathDistanceMeters(paths[0], graph_reader_);
   }
 
   std::vector<PointLL> GetGeometry(const RoadCandidate& edge) const {
@@ -376,15 +401,15 @@ private:
     const DirectedEdge* edge = graph_reader_->directededge(road.edge_id, tile);
     CHECK(edge != nullptr);
     PathLocation pl({meas.data.lnglat.x(), meas.data.lnglat.y()});
-    pl.edges.reserve(1);
     const float distance_along_fraction =
         edge->forward() ? std::get<3>(snapping) : 1.f - std::get<3>(snapping);
     CHECK(0 <= distance_along_fraction <= 1) << "distance_along_fraction must be a <= 1";
     const PointLL& projected = std::get<0>(snapping);
     const float distance_score = std::get<1>(snapping);
+    CHECK(distance_score >= 0);
     DLOG(INFO) << "ToPathLocation distance_along=" << distance_along_fraction
                << " distance_score=" << distance_score;
-    CHECK(distance_score >= 0);
+    pl.edges.reserve(1);
     pl.edges.push_back(
         PathLocation::PathEdge(road.edge_id, distance_along_fraction, projected, distance_score));
     return pl;
