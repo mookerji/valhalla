@@ -344,8 +344,9 @@ public:
                << "src=" << src << " src_edge=" << src_edge << " dst=" << dst
                << " dst_edge=" << dst_edge;
     CHECK(IsInitialized());
-    // NOTE: See NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep these
-    // pre-computed in the feature).
+    // NOTE: See NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep these pre-computed
+    // in the feature) by adding a projection step (via ToPathLocation) for each measurement and
+    // candidate.
     const PathLocation& src_snapped = ToPathLocation(src, src_edge);
     const PathLocation& dst_snapped = ToPathLocation(dst, dst_edge);
     bool no_path = src_snapped.edges.empty() || dst_snapped.edges.empty();
