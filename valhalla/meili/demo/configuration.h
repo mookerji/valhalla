@@ -16,13 +16,16 @@ namespace matching {
 
 // Constants
 
-constexpr double kDefaultSearchRadiusMeters = 50;
-constexpr double kSigmaZ = 5;
-constexpr double kBeta = 3;
+constexpr float kDefaultSearchRadiusMeters = 50;
 constexpr size_t kCacheSize = 100240;
 constexpr size_t kGridSize = 500;
+constexpr float kSigmaZ = 5;
+constexpr float kBeta = 3;
 
 const std::string kDefaultCostModel = "auto";
+constexpr float kMaxInterCandidateDistanceMeters = 100;
+constexpr float kMaxInterCandidateTimeSeconds = 100;
+constexpr float kRoutingSearchRadiusMeters = 200;
 
 // Configuration
 
@@ -30,27 +33,30 @@ const std::string kDefaultCostModel = "auto";
 struct Config {
 
   struct CandidateSearch {
-    double search_radius_meters = kDefaultSearchRadiusMeters;
+    float search_radius_meters = kDefaultSearchRadiusMeters;
     size_t cache_size = kCacheSize;
     size_t grid_size = kGridSize;
   };
 
   struct TransitionLikelihood {
-    double beta = kBeta;
+    float beta = kBeta;
   };
 
   struct EmissionLikelihood {
-    double sigma_z = kSigmaZ;
+    float sigma_z = kSigmaZ;
   };
 
-  struct CostModel {
-    std::string mode = kDefaultCostModel;
+  struct Routing {
+    std::string cost_mode = kDefaultCostModel;
+    float max_intercandidate_distance_meters = kMaxInterCandidateDistanceMeters;
+    float max_intercandidate_time_seconds = kMaxInterCandidateTimeSeconds;
+    float search_radius_meters = kRoutingSearchRadiusMeters;
   };
 
   CandidateSearch candidate_search{};
   TransitionLikelihood transition{};
   EmissionLikelihood emission{};
-  CostModel costing{};
+  Routing routing{};
 };
 
 // TODO(mookerji): Do some kind of validation here
@@ -60,17 +66,17 @@ Config ReadConfig(const boost::property_tree::ptree& conf) {
                                         conf.get<size_t>("grid.size")},
                 Config::TransitionLikelihood{conf.get<float>("default.beta")},
                 Config::EmissionLikelihood{conf.get<float>("default.sigma_z")},
-                Config::CostModel{conf.get<std::string>("mode")}};
+                Config::Routing{conf.get<std::string>("mode")}};
 }
 
-cost_ptr_t MakeCosting(Config::CostModel conf) {
+cost_ptr_t MakeCosting(Config::Routing conf) {
   Options options;
   for (int i = 0; i < Costing_MAX; ++i) {
     options.add_costing_options();
   }
   Costing costing;
-  DLOG(INFO) << "Costing mode: " << conf.mode;
-  CHECK(Costing_Enum_Parse(conf.mode, &costing)) << "No costing method found";
+  DLOG(INFO) << "Costing mode: " << conf.cost_mode;
+  CHECK(Costing_Enum_Parse(conf.cost_mode, &costing)) << "No costing method found";
   options.set_costing(costing);
   CostFactory<DynamicCost> factory;
   factory.RegisterStandardCostingModels();

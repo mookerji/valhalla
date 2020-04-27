@@ -41,8 +41,8 @@ public:
   float operator()(const Measurement& point, const RoadCandidate& candidate) const {
     CHECK(IsInitialized());
     CHECK(sigma_z_ > 0);
-    // Handle projection (see NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep these
-    // pre-computed in the feature).
+    // NOTE: Handle projection (see NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep
+    // these pre-computed in the feature).
     Shape7Decoder<PointLL> geometry = roads_->GetGeometryLazy(candidate);
     if (geometry.empty()) {
       return -std::numeric_limits<float>::infinity();
