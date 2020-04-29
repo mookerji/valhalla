@@ -63,5 +63,9 @@ int main(int argc, char* argv[]) {
     }
   }
 
+  matching::MapMatchingManager manager(matching_config, roads);
+  const matching::ViterbiPath& path = manager.Match(traj);
+  DLOG(INFO) << "Score: " << path.GetScore();
+
   return 0;
 }

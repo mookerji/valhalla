@@ -15,6 +15,7 @@
 
 #include <valhalla/meili/demo/configuration.h>
 #include <valhalla/meili/demo/macros.h>
+#include <valhalla/meili/demo/measurement.h>
 #include <valhalla/meili/demo/spatial.h>
 
 using namespace valhalla::midgard;
@@ -137,7 +138,7 @@ public:
   }
 
 private:
-  VL_DISALLOW_COPY_AND_ASSIGN(ViterbiPath);
+  // VL_DISALLOW_COPY_AND_ASSIGN(ViterbiPath);
   std::vector<StateNode> nodes_;
 };
 
@@ -145,22 +146,23 @@ private:
 
 class HiddenMarkovModel {
 public:
-  HiddenMarkovModel(const Config& config,
-                    std::shared_ptr<Trajectory> trajectory,
-                    std::shared_ptr<RoadNetworkIndex> roads)
-      : config_(config), trajectory_(trajectory), roads_(roads) {
+  HiddenMarkovModel(const Config& config, std::shared_ptr<RoadNetworkIndex> roads)
+      : config_(config), roads_(roads) {
     transition_likelihood_ = TransitionLikelihood(roads_, config_.transition.beta);
     emission_likelihood_ = EmissionLikelihood(roads_, config_.emission.sigma_z);
   }
 
   bool IsInitialized() const {
-    return roads_ && trajectory_ && transition_likelihood_.IsInitialized() &&
-           emission_likelihood_.IsInitialized();
+    return roads_ && transition_likelihood_.IsInitialized() && emission_likelihood_.IsInitialized();
   }
 
-  // ViterbiPath Decode() {
-  //   return;
-  // }
+  void InitModel(const Trajectory& traj) {
+    return;
+  }
+
+  ViterbiPath Decode() {
+    return {};
+  }
 
   float GetEdgeLikelihood(StateNode src, StateNode dst) {
     CHECK(IsInitialized());
@@ -181,7 +183,6 @@ private:
 
   Config config_;
   std::shared_ptr<RoadNetworkIndex> roads_;
-  std::shared_ptr<Trajectory> trajectory_;
 
   TransitionLikelihood transition_likelihood_;
   EmissionLikelihood emission_likelihood_;
