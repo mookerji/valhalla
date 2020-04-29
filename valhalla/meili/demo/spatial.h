@@ -209,45 +209,6 @@ public:
     return RoadCandidateList(candidates);
   }
 
-  // TODO/QUESTION(mookerji): Why doesn't this use standard A* search? This function likely will
-  // need to be heavily revisited in the future.
-  float GetNetworkDistanceMetersBroken(Measurement src,
-                                       const RoadCandidate& src_edge,
-                                       Measurement dst,
-                                       const RoadCandidate& dst_edge) {
-    DLOG(INFO) << "GetNetworkDistanceMeters arg="
-               << "src=" << src << " src_edge=" << src_edge << " dst=" << dst
-               << " dst_edge=" << dst_edge;
-    CHECK(IsInitialized());
-    // NOTE: See NOTE in RoadNetworkindex::GetNearestEdges; we may want to keep these
-    // pre-computed in the feature).
-    // NOTE: Duplicating!
-    std::vector<baldr::PathLocation> locations = {
-        ToPathLocation(src, src_edge),
-        ToPathLocation(dst, dst_edge),
-    };
-    bool no_path = locations[0].edges.empty() || locations[1].edges.empty();
-    if (no_path) {
-      DLOG(INFO) << "GetNetworkDistanceMeters no_path!";
-      return std::numeric_limits<float>::infinity();
-    }
-    const DistanceApproximator approximator(src.data.lnglat);
-    meili::labelset_ptr_t label_set =
-        std::make_shared<meili::LabelSet>(routing_conf_.max_intercandidate_distance_meters);
-    const uint16_t origin_index = 0;
-    const std::unordered_map<uint16_t, uint32_t>& results =
-        meili::find_shortest_path(*graph_reader_, locations, origin_index, label_set, approximator,
-                                  routing_conf_.search_radius_meters, costing(), nullptr,
-                                  turn_cost_table_, routing_conf_.max_intercandidate_distance_meters,
-                                  routing_conf_.max_intercandidate_time_seconds);
-    CHECK(results.size() == 2) << "find_shortest_path results.size() = " << results.size();
-    const auto& it = results.find(1);
-    CHECK(it != results.end()) << "Something is wrong here";
-    const float distance_meters = label_set->label(it->second).cost().cost;
-    CHECK(distance_meters >= 0);
-    return distance_meters;
-  }
-
   // Like GetNetworkDistanceMetersBroken, but uses AStar
   float GetNetworkDistanceMeters(Measurement src,
                                  const RoadCandidate& src_edge,
