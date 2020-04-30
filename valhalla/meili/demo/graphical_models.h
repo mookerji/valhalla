@@ -2,6 +2,7 @@
 #define MMP_DEMO_GRAPHICAL_MODELS_H_
 
 #include <cmath>
+#include <functional>
 #include <memory>
 #include <string>
 #include <tuple>
@@ -17,6 +18,7 @@
 #include <valhalla/meili/demo/macros.h>
 #include <valhalla/meili/demo/measurement.h>
 #include <valhalla/meili/demo/spatial.h>
+#include <valhalla/meili/demo/utils.h>
 
 using namespace valhalla::midgard;
 
@@ -49,7 +51,7 @@ public:
       return -std::numeric_limits<float>::infinity();
     }
     projector_t projector(point.data.lnglat);
-    const auto& snapping_result = meili::helpers::Project(projector, geometry);
+    const Projection& snapping_result = meili::helpers::Project(projector, geometry);
     const float l2_distance_meters = std::sqrt(std::get<1>(snapping_result));
     return -0.5 * std::pow(l2_distance_meters / sigma_z_, 2) -
            0.5 * std::log(2 * kPi * std::pow(sigma_z_, 2));
@@ -94,10 +96,37 @@ private:
 
 // Graphical Models
 
-struct StateNode {
-  size_t measurement_id{0};
-  GraphId edge_id;
-  bool is_virtual{false};
+class Trellis {
+
+  using Weight = float;
+
+public:
+  Trellis() = default;
+
+  struct StateNode {
+    Measurement measurement;
+    RoadCandidate candidate;
+    bool is_virtual{false};
+
+    bool operator==(const StateNode& o) {
+      return measurement.measurement_id == o.measurement.measurement_id
+
+             && candidate.edge_id == o.candidate.edge_id && is_virtual == o.is_virtual;
+    }
+  };
+
+private:
+  struct StateNodeHash {
+    size_t operator()(const StateNode& node) const {
+      size_t seed = 0;
+      hash_combine(seed, std::hash<size_t>{}(node.measurement.measurement_id));
+      hash_combine(seed, std::hash<size_t>{}(node.candidate.edge_id));
+      hash_combine(seed, std::hash<bool>{}(node.is_virtual));
+      return seed;
+    }
+  };
+
+  std::unordered_map<StateNode, std::vector<std::pair<Weight, StateNode>>, StateNodeHash> graph_;
 };
 
 class ViterbiPath {
@@ -125,11 +154,11 @@ public:
     return 0;
   }
 
-  StateNode& operator[](unsigned i) {
+  Trellis::StateNode& operator[](unsigned i) {
     return nodes_.at(i);
   }
 
-  const StateNode& operator[](unsigned i) const {
+  const Trellis::StateNode& operator[](unsigned i) const {
     return nodes_.at(i);
   }
 
@@ -139,7 +168,7 @@ public:
 
 private:
   // VL_DISALLOW_COPY_AND_ASSIGN(ViterbiPath);
-  std::vector<StateNode> nodes_;
+  std::vector<Trellis::StateNode> nodes_;
 };
 
 // TODO(mookerji): implement trellis structure and search
@@ -157,14 +186,21 @@ public:
   }
 
   void InitModel(const Trajectory& traj) {
-    return;
+    for (size_t i = 0; i < traj.size(); ++i) {
+      const Measurement& point = traj[i];
+      RoadCandidateList candidates = roads_->GetNearestEdges(point);
+      candidates.set_measurement_id(i);
+      for (size_t j = 0; j < candidates.size(); ++j) {
+        continue;
+      }
+    }
   }
 
   ViterbiPath Decode() {
     return {};
   }
 
-  float GetEdgeLikelihood(StateNode src, StateNode dst) {
+  float GetEdgeLikelihood(Trellis::StateNode src, Trellis::StateNode dst) {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     if (src.is_virtual) {
@@ -186,8 +222,8 @@ private:
 
   TransitionLikelihood transition_likelihood_;
   EmissionLikelihood emission_likelihood_;
-  StateNode start_node_;
-  StateNode end_node_;
+  Trellis::StateNode start_node_;
+  Trellis::StateNode end_node_;
 };
 
 } // namespace matching

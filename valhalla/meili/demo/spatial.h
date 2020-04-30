@@ -47,9 +47,41 @@ namespace valhalla {
 
 namespace matching {
 
+// Projection result from meili/geometry_helpers.h
+// Tuple items: snapped point, sqaured distance, segment index, offset
+using Projection = std::tuple<PointLL, float, typename std::vector<PointLL>::size_type, float>;
+using Paths = std::vector<std::vector<PathInfo>>;
+
 struct RoadCandidate {
   GraphId edge_id;
 };
+
+// TODO(mookerji): Eventually move this to a class, ala:
+// class RoadCandidate {
+//   public:
+//   RoadCandidate(const GraphId& edge_id) : {}
+//     private:
+//   GraphId edge_id;
+//   PathLocation graph_location;
+// };
+
+std::ostream& operator<<(std::ostream& os, const PathLocation::PathEdge& edge) {
+  os << "PathEdge[id=" << edge.id << ", percent_along=" << edge.percent_along
+     << ", projected=" << edge.projected << ", side_of_street=" << edge.sos
+     << ", is_begin_node=" << edge.begin_node() << ", is_end_node=" << edge.end_node()
+     << ", distance=" << edge.distance << ", outbound_reach" << edge.outbound_reach
+     << ", inbound_reach" << edge.inbound_reach << "]";
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const PathLocation& pl) {
+  os << "PathLocation[edges=[";
+  for (const auto& edge : pl.edges) {
+    os << edge << ", ";
+  }
+  os << "]]";
+  return os;
+}
 
 std::ostream& operator<<(std::ostream& os, const RoadCandidate& meas) {
   os << "RoadCandidate[edge_id=" << meas.edge_id << "]";
@@ -151,11 +183,6 @@ float GetPathDistanceMeters(const std::vector<PathInfo>& path,
 class RoadNetworkIndex {
 
 public:
-  // Projection result from meili/geometry_helpers.h
-  // Tuple items: snapped point, sqaured distance, segment index, offset
-  using Projection = std::tuple<PointLL, float, typename std::vector<PointLL>::size_type, float>;
-  using Paths = std::vector<std::vector<PathInfo>>;
-
   RoadNetworkIndex() = default;
 
   RoadNetworkIndex(std::shared_ptr<GraphReader> graph_reader,

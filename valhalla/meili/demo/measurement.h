@@ -31,9 +31,13 @@ struct Measurement {
   size_t measurement_id = -1;
 };
 
+std::ostream& operator<<(std::ostream& os, const PointLL& pt) {
+  os << "Point[lat=" << pt.lat() << ", lng=" << pt.lng() << "]";
+  return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const Measurement& meas) {
-  os << "Point[lat=" << meas.data.lnglat.lat() << ", lng=" << meas.data.lnglat.lng()
-     << ", measurement_id=" << meas.measurement_id << "]";
+  os << "Measurement[data=" << meas.data.lnglat << ", measurement_id=" << meas.measurement_id << "]";
   return os;
 }
 
