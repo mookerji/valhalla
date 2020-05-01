@@ -6,6 +6,7 @@
 #include <memory>
 #include <string>
 #include <tuple>
+#include <unordered_map>
 #include <vector>
 
 #include <glog/logging.h>
@@ -98,35 +99,71 @@ private:
 
 class Trellis {
 
-  using Weight = float;
-
 public:
   Trellis() = default;
 
-  struct StateNode {
-    Measurement measurement;
+  struct Node {
+    Measurement obs;
     RoadCandidate candidate;
     bool is_virtual{false};
-
-    bool operator==(const StateNode& o) {
-      return measurement.measurement_id == o.measurement.measurement_id
-
-             && candidate.edge_id == o.candidate.edge_id && is_virtual == o.is_virtual;
-    }
   };
 
+  struct Edge {
+    Node left;
+    Node right;
+  };
+
+  bool HasNode(const Node& node) {
+    return adjacency_list_.find(node) != adjacency_list_.end();
+  }
+
+  void AddNode(const Node& node) {
+    if (HasNode(node)) {
+      return;
+    }
+    adjacency_list_[node] = {};
+  }
+
+  bool AddEdge(const Edge& edge) {
+    if (!HasNode(edge.left)) {
+      AddNode(edge.left);
+    }
+    if (!HasNode(edge.right)) {
+      AddNode(edge.right);
+    }
+    return adjacency_list_[edge.left].emplace(edge.right).second;
+  }
+
+  std::vector<Node> GetShortestPath(const Node& start, const Node& end) {
+    CHECK(false) << "Not implemented";
+    return {};
+  }
+
 private:
-  struct StateNodeHash {
-    size_t operator()(const StateNode& node) const {
+  VL_DISALLOW_COPY_AND_ASSIGN(Trellis);
+
+  struct NodeHash {
+    size_t operator()(const Node& node) const {
       size_t seed = 0;
-      hash_combine(seed, std::hash<size_t>{}(node.measurement.measurement_id));
+      hash_combine(seed, std::hash<size_t>{}(node.obs.measurement_id));
       hash_combine(seed, std::hash<size_t>{}(node.candidate.edge_id));
       hash_combine(seed, std::hash<bool>{}(node.is_virtual));
       return seed;
     }
   };
 
-  std::unordered_map<StateNode, std::vector<std::pair<Weight, StateNode>>, StateNodeHash> graph_;
+  struct NodeEq {
+    size_t operator()(const Node& n1, const Node& n2) const {
+      return n1.obs.measurement_id == n2.obs.measurement_id
+
+             && n1.candidate.edge_id == n2.candidate.edge_id && n1.is_virtual == n2.is_virtual;
+    }
+  };
+
+  // TODO(mookerji): maybe this should be a vector?
+  using EdgeSet = std::unordered_set<Node, NodeHash, NodeEq>;
+
+  std::unordered_map<Node, EdgeSet, NodeHash, NodeEq> adjacency_list_;
 };
 
 class ViterbiPath {
@@ -154,11 +191,11 @@ public:
     return 0;
   }
 
-  Trellis::StateNode& operator[](unsigned i) {
+  Trellis::Node& operator[](unsigned i) {
     return nodes_.at(i);
   }
 
-  const Trellis::StateNode& operator[](unsigned i) const {
+  const Trellis::Node& operator[](unsigned i) const {
     return nodes_.at(i);
   }
 
@@ -168,7 +205,7 @@ public:
 
 private:
   // VL_DISALLOW_COPY_AND_ASSIGN(ViterbiPath);
-  std::vector<Trellis::StateNode> nodes_;
+  std::vector<Trellis::Node> nodes_;
 };
 
 // TODO(mookerji): implement trellis structure and search
@@ -186,6 +223,7 @@ public:
   }
 
   void InitModel(const Trajectory& traj) {
+    CHECK(IsInitialized());
     for (size_t i = 0; i < traj.size(); ++i) {
       const Measurement& point = traj[i];
       RoadCandidateList candidates = roads_->GetNearestEdges(point);
@@ -200,7 +238,7 @@ public:
     return {};
   }
 
-  float GetEdgeLikelihood(Trellis::StateNode src, Trellis::StateNode dst) {
+  float GetEdgeLikelihood(Trellis::Node src, Trellis::Node dst) {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     if (src.is_virtual) {
@@ -222,8 +260,9 @@ private:
 
   TransitionLikelihood transition_likelihood_;
   EmissionLikelihood emission_likelihood_;
-  Trellis::StateNode start_node_;
-  Trellis::StateNode end_node_;
+  Trellis::Node start_node_{};
+  Trellis::Node end_node_{};
+  Trellis trellis_{};
 };
 
 } // namespace matching
