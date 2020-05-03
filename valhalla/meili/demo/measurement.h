@@ -63,12 +63,12 @@ struct Tracepoint {
   size_t alternatives_count;
 };
 
-class Trajectory {
+class ObservationSet {
 
 public:
-  Trajectory() = default;
+  ObservationSet() = default;
 
-  Trajectory(const std::vector<Measurement>& meas) : measurements_(meas) {
+  ObservationSet(const std::vector<Measurement>& meas) : measurements_(meas) {
   }
 
   Measurement& operator[](size_t i) {
@@ -92,7 +92,7 @@ public:
   }
 
 private:
-  VL_DISALLOW_COPY_AND_ASSIGN(Trajectory);
+  VL_DISALLOW_COPY_AND_ASSIGN(ObservationSet);
   std::vector<Measurement> measurements_;
 };
 

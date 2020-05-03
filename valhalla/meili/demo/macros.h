@@ -3,11 +3,17 @@
 
 // Macros
 
-// TODO(mookerji): Separate into DISALLOW_COPY, DISALLOW_ASSIGN, DISALLOW_MOVE, etc.
-#define VL_DISALLOW_COPY_AND_ASSIGN(TypeName)                                                        \
-  TypeName(const TypeName&) = delete;                                                                \
+#define VL_DISALLOW_COPY(TypeName) TypeName(const TypeName&) = delete
+
+#define VL_DISALLOW_ASSIGN(TypeName) TypeName& operator=(const TypeName&) = delete
+
+#define VL_DISALLOW_MOVE(TypeName)                                                                   \
   TypeName(TypeName&&) = delete;                                                                     \
-  TypeName& operator=(const TypeName&) = delete;                                                     \
   TypeName& operator=(TypeName&&) = delete;
+
+#define VL_DISALLOW_COPY_AND_ASSIGN(TypeName)                                                        \
+  VL_DISALLOW_COPY(TypeName);                                                                        \
+  VL_DISALLOW_ASSIGN(TypeName);                                                                      \
+  VL_DISALLOW_MOVE(TypeName);
 
 #endif // MMP_DEMO_MACROS_H_

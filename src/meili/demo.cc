@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
   DLOG(INFO) << "tiles size: " << tiles.size();
 
   // Load measurements
-  const matching::Trajectory traj(matching::ReadMeasurements(argv[2]));
+  const matching::ObservationSet traj(matching::ReadMeasurements(argv[2]));
 
   // Initiate map matcher
   const auto& roads =
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
   }
 
   matching::MapMatchingManager manager(matching_config, roads);
-  const matching::ViterbiPath& path = manager.Match(traj);
+  const matching::StateSequence& path = manager.Match(traj);
   DLOG(INFO) << "Score: " << path.GetScore();
 
   return 0;

@@ -26,7 +26,7 @@ public:
   }
 
   // TODO(mookerji): Look into return types, and having this be a statically allocated working area.
-  ViterbiPath Match(const Trajectory& trajectory) {
+  StateSequence Match(const ObservationSet& trajectory) {
     CHECK(IsInitialized());
     HiddenMarkovModel trellis(config_, roads_);
     trellis.InitModel(trajectory);

@@ -97,10 +97,10 @@ private:
 
 // Graphical Models
 
-class Trellis {
+class DirectedGraph {
 
 public:
-  Trellis() = default;
+  DirectedGraph() = default;
 
   struct Node {
     Measurement obs;
@@ -124,14 +124,14 @@ public:
     adjacency_list_[node] = {};
   }
 
-  bool AddEdge(const Edge& edge) {
+  void AddEdge(const Edge& edge) {
     if (!HasNode(edge.left)) {
       AddNode(edge.left);
     }
     if (!HasNode(edge.right)) {
       AddNode(edge.right);
     }
-    return adjacency_list_[edge.left].emplace(edge.right).second;
+    adjacency_list_[edge.left].emplace_back(edge.right);
   }
 
   std::vector<Node> GetShortestPath(const Node& start, const Node& end) {
@@ -140,7 +140,7 @@ public:
   }
 
 private:
-  VL_DISALLOW_COPY_AND_ASSIGN(Trellis);
+  VL_DISALLOW_COPY_AND_ASSIGN(DirectedGraph);
 
   struct NodeHash {
     size_t operator()(const Node& node) const {
@@ -161,15 +161,15 @@ private:
   };
 
   // TODO(mookerji): maybe this should be a vector?
-  using EdgeSet = std::unordered_set<Node, NodeHash, NodeEq>;
+  // using EdgeSet = std::unordered_set<Node, NodeHash, NodeEq>;
 
-  std::unordered_map<Node, EdgeSet, NodeHash, NodeEq> adjacency_list_;
+  std::unordered_map<Node, std::vector<Node>, NodeHash, NodeEq> adjacency_list_;
 };
 
-class ViterbiPath {
+class StateSequence {
 
 public:
-  ViterbiPath() = default;
+  StateSequence() = default;
 
   double GetScore() const {
     CHECK(false) << "Not implemented";
@@ -191,11 +191,11 @@ public:
     return 0;
   }
 
-  Trellis::Node& operator[](unsigned i) {
+  DirectedGraph::Node& operator[](unsigned i) {
     return nodes_.at(i);
   }
 
-  const Trellis::Node& operator[](unsigned i) const {
+  const DirectedGraph::Node& operator[](unsigned i) const {
     return nodes_.at(i);
   }
 
@@ -204,8 +204,8 @@ public:
   }
 
 private:
-  // VL_DISALLOW_COPY_AND_ASSIGN(ViterbiPath);
-  std::vector<Trellis::Node> nodes_;
+  // VL_DISALLOW_COPY_AND_ASSIGN(StateSequence);
+  std::vector<DirectedGraph::Node> nodes_;
 };
 
 // TODO(mookerji): implement trellis structure and search
@@ -222,7 +222,7 @@ public:
     return roads_ && transition_likelihood_.IsInitialized() && emission_likelihood_.IsInitialized();
   }
 
-  void InitModel(const Trajectory& traj) {
+  void InitModel(const ObservationSet& traj) {
     CHECK(IsInitialized());
     for (size_t i = 0; i < traj.size(); ++i) {
       const Measurement& point = traj[i];
@@ -234,11 +234,11 @@ public:
     }
   }
 
-  ViterbiPath Decode() {
+  StateSequence Decode() {
     return {};
   }
 
-  float GetEdgeLikelihood(Trellis::Node src, Trellis::Node dst) {
+  float GetEdgeLikelihood(DirectedGraph::Node src, DirectedGraph::Node dst) {
     CHECK(IsInitialized());
     CHECK(false) << "Not implemented";
     if (src.is_virtual) {
@@ -260,9 +260,9 @@ private:
 
   TransitionLikelihood transition_likelihood_;
   EmissionLikelihood emission_likelihood_;
-  Trellis::Node start_node_{};
-  Trellis::Node end_node_{};
-  Trellis trellis_{};
+  DirectedGraph::Node start_node_{};
+  DirectedGraph::Node end_node_{};
+  DirectedGraph trellis_{};
 };
 
 } // namespace matching
