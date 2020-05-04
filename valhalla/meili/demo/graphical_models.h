@@ -113,6 +113,8 @@ public:
     Node right;
   };
 
+  using WeightFunction = std::function<float(const Node& src, const Node& dst)>;
+
   bool HasNode(const Node& node) {
     return adjacency_list_.find(node) != adjacency_list_.end();
   }
@@ -134,9 +136,17 @@ public:
     adjacency_list_[edge.left].emplace_back(edge.right);
   }
 
-  std::vector<Node> GetShortestPath(const Node& start, const Node& end) {
+  std::vector<Node> GetShortestPath(const Node& start, const Node& end, WeightFunction edge_weight) {
     CHECK(false) << "Not implemented";
     return {};
+  }
+
+  size_t size() const {
+    return adjacency_list_.size();
+  }
+
+  bool empty() const {
+    return adjacency_list_.empty();
   }
 
 private:
@@ -166,10 +176,14 @@ private:
   std::unordered_map<Node, std::vector<Node>, NodeHash, NodeEq> adjacency_list_;
 };
 
+// TODO(mookerji): replace with a typedef?
 class StateSequence {
 
 public:
   StateSequence() = default;
+
+  StateSequence(const std::vector<DirectedGraph::Node> nodes) : nodes_(nodes) {
+  }
 
   double GetScore() const {
     CHECK(false) << "Not implemented";
@@ -203,6 +217,10 @@ public:
     return nodes_.size();
   }
 
+  bool empty() const {
+    return nodes_.empty();
+  }
+
 private:
   // VL_DISALLOW_COPY_AND_ASSIGN(StateSequence);
   std::vector<DirectedGraph::Node> nodes_;
@@ -224,32 +242,57 @@ public:
 
   void InitModel(const ObservationSet& traj) {
     CHECK(IsInitialized());
+    start_node_ = DirectedGraph::Node{{}, {}, true};
+    trellis_.AddNode(start_node_);
+    std::vector<DirectedGraph::Node> prev_layer = {start_node_};
+    std::vector<DirectedGraph::Node> current_layer = {};
     for (size_t i = 0; i < traj.size(); ++i) {
-      const Measurement& point = traj[i];
-      RoadCandidateList candidates = roads_->GetNearestEdges(point);
+      const Measurement& obs = traj[i];
+      RoadCandidateList candidates = roads_->GetNearestEdges(obs);
       candidates.set_measurement_id(i);
+      current_layer.clear();
+      current_layer.resize(candidates.size());
       for (size_t j = 0; j < candidates.size(); ++j) {
-        continue;
+        const RoadCandidate& candidate = candidates[j];
+        DirectedGraph::Node node{obs, candidate, false};
+        for (const auto& prev : prev_layer) {
+          trellis_.AddEdge(DirectedGraph::Edge{prev, node});
+        }
+        current_layer.push_back(node);
       }
+      prev_layer = current_layer;
+    }
+    end_node_ = DirectedGraph::Node{{}, {}, true};
+    for (const auto& prev : prev_layer) {
+      trellis_.AddEdge(DirectedGraph::Edge{prev, end_node_});
     }
   }
 
   StateSequence Decode() {
-    return {};
+    CHECK(IsInitialized());
+    if (trellis_.empty()) {
+      return {};
+    }
+    // TODO(mookerji/yz): Is there a better way to do this?
+    DirectedGraph::WeightFunction weight_function = [this](const DirectedGraph::Node& src,
+                                                           const DirectedGraph::Node& dst) {
+      return this->GetEdgeLikelihood(src, dst);
+    };
+    return StateSequence(trellis_.GetShortestPath(start_node_, end_node_, weight_function));
   }
 
-  float GetEdgeLikelihood(DirectedGraph::Node src, DirectedGraph::Node dst) {
+  float GetEdgeLikelihood(const DirectedGraph::Node& src, const DirectedGraph::Node& dst) {
     CHECK(IsInitialized());
-    CHECK(false) << "Not implemented";
     if (src.is_virtual) {
       return 1;
     }
     if (dst.is_virtual) {
-      // return -emission_likelihood()
+      return -emission_likelihood_(src.obs, src.candidate);
     }
-    const float transition_weight = 0;
-    const float emission_weight = 0;
-    return -transition_weight - emission_weight;
+    const float transition_weight =
+        -transition_likelihood_(src.obs, src.candidate, dst.obs, dst.candidate);
+    const float emission_weight = -emission_likelihood_(src.obs, src.candidate);
+    return transition_weight + emission_weight;
   }
 
 private:

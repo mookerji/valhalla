@@ -63,6 +63,7 @@ struct Tracepoint {
   size_t alternatives_count;
 };
 
+// TODO(mookerji): replace with a typedef?
 class ObservationSet {
 
 public:

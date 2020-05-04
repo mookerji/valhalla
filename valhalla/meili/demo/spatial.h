@@ -88,6 +88,7 @@ std::ostream& operator<<(std::ostream& os, const RoadCandidate& meas) {
   return os;
 }
 
+// TODO(mookerji): replace with a typedef to a tuple<int, vector>?
 class RoadCandidateList {
 public:
   RoadCandidateList(const std::vector<RoadCandidate>& candidates) : candidates_(candidates) {
