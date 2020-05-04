@@ -4,9 +4,11 @@
 #include <cmath>
 #include <functional>
 #include <memory>
+#include <queue>
 #include <string>
 #include <tuple>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include <glog/logging.h>
