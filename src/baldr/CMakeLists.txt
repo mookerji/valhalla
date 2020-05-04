@@ -109,4 +109,6 @@ valhalla_module(NAME baldr
     ${valhalla_protobuf_targets}
     Boost::boost
     CURL::CURL
-    ZLIB::ZLIB)
+    ZLIB::ZLIB
+    absl::flat_hash_map
+    )

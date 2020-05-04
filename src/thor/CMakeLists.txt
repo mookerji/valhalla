@@ -41,4 +41,5 @@ valhalla_module(NAME thor
     valhalla::meili
     ${valhalla_protobuf_targets}
     Boost::boost
+    absl::flat_hash_map
     libprime_server)

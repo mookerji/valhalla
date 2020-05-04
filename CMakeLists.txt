@@ -341,7 +341,13 @@ install(FILES COPYING CHANGELOG.md
 
 if(ENABLE_TESTS)
   add_subdirectory(test)
+  set(ABSL_USE_EXTERNAL_GOOGLETEST ON)
+else ()
+  set(ABSL_USE_GOOGLETEST_HEAD ON)
 endif()
+
+set(ABSL_RUN_TESTS OFF)
+add_subdirectory(third_party/abseil-cpp)
 
 # NOTE(mookerji): Windows CI seems to break on the gbench build, so shelve Win32 support for now.
 if(ENABLE_BENCHMARKS AND NOT WIN32)

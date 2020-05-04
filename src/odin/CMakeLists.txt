@@ -41,4 +41,5 @@ valhalla_module(NAME odin
     valhalla::proto
     ${valhalla_protobuf_targets}
     Boost::boost
+    absl::flat_hash_map
     libprime_server)

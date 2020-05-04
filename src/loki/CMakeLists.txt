@@ -31,4 +31,6 @@ valhalla_module(NAME loki
     valhalla::proto
     ${valhalla_protobuf_targets}
     Boost::boost
-    libprime_server)
+    libprime_server
+    absl::flat_hash_map
+    )

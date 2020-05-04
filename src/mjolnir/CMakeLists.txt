@@ -78,4 +78,5 @@ valhalla_module(NAME mjolnir
     SQLite3::SQLite3
     Lua::Lua
     Threads::Threads
+    absl::flat_hash_map
     ZLIB::ZLIB)

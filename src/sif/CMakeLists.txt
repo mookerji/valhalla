@@ -27,4 +27,5 @@ valhalla_module(NAME sif
     valhalla::baldr
     valhalla::proto
     ${valhalla_protobuf_targets}
+    absl::flat_hash_map
     Boost::boost)

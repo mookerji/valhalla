@@ -30,4 +30,5 @@ valhalla_module(NAME tyr
     valhalla::odin
     valhalla::proto
     ${valhalla_protobuf_targets}
+    absl::flat_hash_map
     Boost::boost)

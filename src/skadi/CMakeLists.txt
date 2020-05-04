@@ -14,4 +14,5 @@ valhalla_module(NAME skadi
   DEPENDS
     valhalla::baldr
     Boost::boost
+    absl::flat_hash_map
     ZLIB::ZLIB)
