@@ -3,8 +3,10 @@
 
 #include <cmath>
 #include <functional>
+#include <iostream>
 #include <memory>
-#include <queue>
+#include <sstream>
+#include <stack>
 #include <string>
 #include <tuple>
 #include <unordered_map>
@@ -108,6 +110,9 @@ public:
     Measurement obs;
     RoadCandidate candidate;
     bool is_virtual{false};
+    // HACK
+    // float score{std::numeric_limits<float>::infinity()};
+    // Node* predecessor{nullptr};
   };
 
   struct Edge {
@@ -126,6 +131,9 @@ public:
       return;
     }
     adjacency_list_[node] = {};
+    scores_[node] = std::numeric_limits<float>::infinity();
+    sorted_.push_back(node);
+    //predecessors_[node] = nullptr;
   }
 
   void AddEdge(const Edge& edge) {
@@ -138,9 +146,24 @@ public:
     adjacency_list_[edge.left].emplace_back(edge.right);
   }
 
+  void UpdateScore(const Node& node, float score) {
+    if (!HasNode(node)) {
+      AddNode(node);
+    }
+    scores_[node] = 0;
+  }
+
   std::vector<Node> GetShortestPath(const Node& start, const Node& end, WeightFunction edge_weight) {
-    CHECK(false) << "Not implemented";
-    return {};
+    // TODO(mookerji): We can eliminate the topo search step, presumably, since the graph is
+    // topo-sorted by construction.
+    DLOG(ERROR) << "shortest path!";
+    std::vector<Node> sorted = TopologicalSort(start);
+    for (Node& src : sorted) {
+      for (Node& dst : adjacency_list_[src]) {
+        RelaxEdges(src, dst, edge_weight);
+      }
+    }
+    return BacktrackPath(sorted.back());
   }
 
   size_t size() const {
@@ -151,7 +174,66 @@ public:
     return adjacency_list_.empty();
   }
 
+ friend std::ostream& operator<<(std::ostream& os, const DirectedGraph::Node& node) {
+  os << "DirectedGraph::Node[obs=" << node.obs << ", candidate=" << node.candidate << "]";
+  return os;
+}
+
 private:
+  // TODO(mookerji): SP implementation should probably be separated out from the directed
+  // graph.
+  void RelaxEdges(Node& u, Node& v, WeightFunction edge_weight) {
+    const float weight = edge_weight(u, v);
+    if (scores_[v] > scores_[u] + weight) {
+      scores_[v] = scores_[u] + weight;
+      predecessors_[v] = u;
+      DLOG(ERROR) << "UPDATED! " << predecessors_[v];
+    }
+  }
+
+  std::vector<Node> BacktrackPath(const Node& end) {
+    std::vector<Node> path;
+    path.reserve(size());
+    DLOG(INFO) << "pred " << predecessors_.size();
+    for (auto const& pair: predecessors_) {
+        std::cout << "{" << pair.first << ": " << pair.second << "}\n";
+    }
+    Node current = end;
+    while (predecessors_.find(current) != predecessors_.end()) {
+      DLOG(INFO) << "found " << predecessors_[current];
+      path.push_back(end);
+      current = predecessors_[current];
+    }
+    std::reverse(path.begin(), path.end());
+    return path;
+  }
+
+  // HACK(mookerji): Not actually a topo sort
+  std::vector<Node> TopologicalSort(const Node& start) {
+    DLOG(ERROR) << start;
+    for (auto const& n: sorted_) {
+        DLOG(ERROR) << "{" << n << "}\n";
+    }
+    return sorted_;
+    // std::vector<Node> sorted = {start};
+    // Node current = start;
+    // for (Node& dst : adjacency_list_[current]) {
+    //   sorted.push_back(dst);
+    //   current = adjacency_list_[current].front();
+    // }
+    // for (auto const& n: sorted) {
+    //     DLOG(ERROR) << "{" << n << "}\n";
+    // }
+    // DLOG(ERROR) << "----------------------------\n";
+    // DLOG(ERROR) << "----------------------------\n";
+    // DLOG(ERROR) << "----------------------------\n";
+    // for (auto const& pair: adjacency_list_) {
+    //     DLOG(ERROR) << "{" << pair.first << "}\n";
+    // }
+    // DLOG(ERROR) << "----------------------------\n";
+    //return sorted;
+  }
+
   VL_DISALLOW_COPY_AND_ASSIGN(DirectedGraph);
 
   struct NodeHash {
@@ -165,18 +247,19 @@ private:
   };
 
   struct NodeEq {
-    size_t operator()(const Node& n1, const Node& n2) const {
+    bool operator()(const Node& n1, const Node& n2) const {
       return n1.obs.measurement_id == n2.obs.measurement_id
 
              && n1.candidate.edge_id == n2.candidate.edge_id && n1.is_virtual == n2.is_virtual;
     }
   };
 
-  // TODO(mookerji): maybe this should be a vector?
-  // using EdgeSet = std::unordered_set<Node, NodeHash, NodeEq>;
-
   std::unordered_map<Node, std::vector<Node>, NodeHash, NodeEq> adjacency_list_;
+  std::unordered_map<Node, float, NodeHash, NodeEq> scores_;
+  std::unordered_map<Node, Node, NodeHash, NodeEq> predecessors_;
+  std::vector<Node> sorted_;
 };
+
 
 // TODO(mookerji): replace with a typedef?
 class StateSequence {
@@ -188,8 +271,8 @@ public:
   }
 
   double GetScore() const {
-    CHECK(false) << "Not implemented";
-    return 0;
+    CHECK(nodes_.size() > 0);
+    return nodes_.size();
   }
 
   double GetWeight() const {
@@ -244,8 +327,11 @@ public:
 
   void InitModel(const ObservationSet& traj) {
     CHECK(IsInitialized());
-    start_node_ = DirectedGraph::Node{{}, {}, true};
+    start_node_ = DirectedGraph::Node{Measurement{{}, 222}, {}, true};
     trellis_.AddNode(start_node_);
+    // HACK!
+    trellis_.UpdateScore(start_node_, 0);
+    //
     std::vector<DirectedGraph::Node> prev_layer = {start_node_};
     std::vector<DirectedGraph::Node> current_layer = {};
     for (size_t i = 0; i < traj.size(); ++i) {
@@ -264,7 +350,7 @@ public:
       }
       prev_layer = current_layer;
     }
-    end_node_ = DirectedGraph::Node{{}, {}, true};
+    end_node_ = DirectedGraph::Node{Measurement{{}, 2222}, {}, true};
     for (const auto& prev : prev_layer) {
       trellis_.AddEdge(DirectedGraph::Edge{prev, end_node_});
     }

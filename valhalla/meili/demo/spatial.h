@@ -29,6 +29,7 @@
 #include <valhalla/midgard/util.h>
 #include <valhalla/sif/costfactory.h>
 #include <valhalla/sif/dynamiccost.h>
+#include <valhalla/thor/astar.h>
 #include <valhalla/thor/bidirectional_astar.h>
 #include <valhalla/thor/pathinfo.h>
 
@@ -139,14 +140,6 @@ std::ostream& operator<<(std::ostream& os, const RoadCandidateList& list) {
 float GetLocalTileSize() {
   // NOTE(mookerji): copied from map_matcher.h
   return (baldr::TileHierarchy::levels().rbegin()->second.tiles).TileSize();
-}
-
-std::ostream& operator<<(std::ostream& os, const PathInfo& info) {
-  os << "PathInfo[elapsed_time=" << info.elapsed_time << ", edgeid=" << info.edgeid
-     << ", elapsed_cost=" << info.elapsed_cost
-     << ", has_time_restrictions=" << info.has_time_restrictions << ", turn_cost=" << info.turn_cost
-     << "]";
-  return os;
 }
 
 std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<PathInfo>>& paths) {
@@ -260,8 +253,10 @@ public:
     valhalla::Location destination;
     PathLocation::toPBF(dst_snapped, &destination, *graph_reader_);
     cost_ptr_t mode_costing = costing();
-    // TODO: default choice for the time being.
-    BidirectionalAStar astar;
+    // TODO: default choice for the time being, although it seems that BidirectionalAStar does not
+    // 'work' for all cases.
+    AStarPathAlgorithm astar;
+    // BidirectionalAStar astar;
     const Paths& paths =
         astar.GetBestPath(origin, destination, *graph_reader_, &mode_costing, travelmode_);
     if (paths.empty()) {
