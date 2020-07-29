@@ -707,6 +707,11 @@ std::vector<MatchResults> MapMatcher::OfflineMatch(const std::vector<Measurement
     return best_paths;
   }
 
+  // If only a single measurement is provided, return a nearest neighbor result
+  if (measurements.size() == 1) {
+    return NearestMatch(measurements.front());
+  }
+
   bool found_discontinuity = false;
 
   // Separate the measurements we are using for matching from the ones we'll just interpolate
@@ -821,6 +826,19 @@ std::vector<MatchResults> MapMatcher::OfflineMatch(const std::vector<Measurement
   }
 
   // Give back anywhere from 1 to k results
+  return best_paths;
+}
+
+std::vector<MatchResults> MapMatcher::NearestMatch(const Measurement& measurement, uint32_t k) {
+  std::vector<MatchResults> best_paths;
+  best_paths.reserve(k);
+  const float max_search_radius = config_.get<float>("max_search_radius");
+  const float sq_max_search_radius = max_search_radius * max_search_radius;
+  const StateId::Time time = AppendMeasurement(measurement, sq_max_search_radius);
+  // If no candidates are found, then we should 443, NoSegment error
+  if (container_.empty()) {
+    throw valhalla_exception_t{443};
+  }
   return best_paths;
 }
 

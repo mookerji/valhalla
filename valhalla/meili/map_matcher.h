@@ -88,6 +88,9 @@ private:
   void RemoveRedundancies(const std::vector<StateId>& result,
                           const std::vector<MatchResult>& results);
 
+  // Nearest-neighbor match
+  std::vector<MatchResults> NearestMatch(const Measurement& measurements, uint32_t k = 1);
+
   boost::property_tree::ptree config_;
 
   baldr::GraphReader& graphreader_;

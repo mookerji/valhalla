@@ -124,6 +124,10 @@ public:
     return static_cast<StateId::Time>(columns_.size());
   }
 
+  bool empty() const {
+    return columns_.empty();
+  }
+
   // Check to see if we have the minimum number of measurements and edge candidates to perform a map
   // match. We need at least one measurements with a non-zero number of edge candidates.
   bool HasMinimumCandidates() {
