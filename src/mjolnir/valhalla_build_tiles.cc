@@ -40,19 +40,23 @@ int main(int argc, char** argv) {
       "valhalla_build_tiles is a program that creates the route graph from an osm.pbf "
       "extract. Sample json configs are located in ../conf directory.\n\n");
 
-  options.add_options()("help,h", "Print this help message.")("version,v",
-                                                              "Print the version of this software.")(
-      "config,c", boost::program_options::value<std::string>(&config_file_path),
-      "Path to the json configuration file.")("inline-config,i",
-                                              boost::program_options::value<std::string>(
-                                                  &inline_config),
-                                              "Inline json config.")(
-      "start,s", boost::program_options::value<std::string>(&start_stage_str),
-      "Starting stage of the build pipeline")("end,e",
-                                              boost::program_options::value<std::string>(
-                                                  &end_stage_str),
-                                              "End stage of the build pipeline")
-
+  options.add_options()
+      //
+      ("help,h", "Print this help message.")
+      //
+      ("version,v", "Print the version of this software.")
+      //
+      ("config,c", boost::program_options::value<std::string>(&config_file_path),
+       "Path to the json configuration file.")
+      //
+      ("inline-config,i", boost::program_options::value<std::string>(&inline_config),
+       "Inline json config.")
+      //
+      ("start,s", boost::program_options::value<std::string>(&start_stage_str),
+       "Starting stage of the build pipeline")
+      //
+      ("end,e", boost::program_options::value<std::string>(&end_stage_str),
+       "End stage of the build pipeline")
       // positional arguments
       ("input_files",
        boost::program_options::value<std::vector<std::string>>(&input_files)->multitoken());
@@ -118,7 +122,6 @@ int main(int argc, char** argv) {
     return EXIT_FAILURE;
   }
   LOG_INFO("Start stage = " + to_string(start_stage) + " End stage = " + to_string(end_stage));
-
   if (input_files.size() == 0 &&
       (start_stage <= BuildStage::kParseNodes && end_stage >= BuildStage::kParseWays)) {
     std::cerr << "Input file is required\n\n" << options << "\n\n";

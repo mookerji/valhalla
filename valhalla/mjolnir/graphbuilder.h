@@ -1,19 +1,22 @@
 #ifndef VALHALLA_MJOLNIR_GRAPHBUILDER_H
 #define VALHALLA_MJOLNIR_GRAPHBUILDER_H
 
-#include <boost/property_tree/ptree.hpp>
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#include <valhalla/baldr/signinfo.h>
+#include <boost/property_tree/ptree.hpp>
 
+#include <valhalla/baldr/graphid.h>
+#include <valhalla/baldr/signinfo.h>
 #include <valhalla/mjolnir/osmdata.h>
 #include <valhalla/mjolnir/osmnode.h>
 #include <valhalla/mjolnir/osmway.h>
 
 namespace valhalla {
 namespace mjolnir {
+
+using Config = boost::property_tree::ptree;
 
 /**
  * Class used to construct temporary data used to build the initial graph.
@@ -34,7 +37,7 @@ public:
    * @param  complex_to_restriction_file    where to store the to complex restrictions so they are not
    * in memory
    */
-  static void Build(const boost::property_tree::ptree& pt,
+  static void Build(const Config& pt,
                     const OSMData& osmdata,
                     const std::string& ways_file,
                     const std::string& way_nodes_file,
@@ -42,6 +45,9 @@ public:
                     const std::string& edges_file,
                     const std::string& complex_from_restriction_file,
                     const std::string& complex_to_restriction_file);
+
+  static std::map<baldr::GraphId, size_t>
+  ListTiles(const Config& pt, const std::string& nodes_file, const std::string& edges_file);
 
   static std::string GetRef(const std::string& way_ref, const std::string& relation_ref);
 
