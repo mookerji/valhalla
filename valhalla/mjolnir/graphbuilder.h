@@ -2,6 +2,7 @@
 #define VALHALLA_MJOLNIR_GRAPHBUILDER_H
 
 #include <cstdint>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -46,9 +47,6 @@ public:
                     const std::string& complex_from_restriction_file,
                     const std::string& complex_to_restriction_file);
 
-  static std::map<baldr::GraphId, size_t>
-  ListTiles(const Config& pt, const std::string& nodes_file, const std::string& edges_file);
-
   static std::string GetRef(const std::string& way_ref, const std::string& relation_ref);
 
   static bool CreateSignInfoList(const OSMNode& node,
@@ -59,6 +57,30 @@ public:
                                  bool forward,
                                  bool ramp,
                                  bool tc);
+};
+
+struct TileManifest {
+
+  std::map<baldr::GraphId, size_t> tileset;
+
+  std::string ToString() const {
+    std::stringstream manifest;
+    manifest << "{\"tiles\": [ ";
+    for (const auto& tile : tileset) {
+      manifest << "{\"tileid\": " << std::to_string(tile.first.tileid()) << "},";
+    }
+    // HACK(mookerji): remove this
+    std::string result = manifest.str();
+    result.pop_back();
+    return result + "]}";
+  }
+
+  void ToFile(const std::string& filename) const {
+    std::ofstream handle;
+    handle.open(filename);
+    handle << ToString();
+    handle.close();
+  }
 };
 
 } // namespace mjolnir

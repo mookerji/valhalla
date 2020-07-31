@@ -1124,15 +1124,6 @@ void BuildLocalTiles(const unsigned int thread_count,
 namespace valhalla {
 namespace mjolnir {
 
-std::map<GraphId, size_t> GraphBuilder::ListTiles(const Config& config,
-                                                  const std::string& nodes_file,
-                                                  const std::string& edges_file) {
-  std::string tile_dir = config.get<std::string>("mjolnir.tile_dir");
-  const auto& tl = TileHierarchy::levels().rbegin();
-  uint8_t level = tl->second.level;
-  return SortGraph(nodes_file, edges_file, level);
-}
-
 // Build the graph from the input
 void GraphBuilder::Build(const Config& conf,
                          const OSMData& osmdata,
@@ -1158,7 +1149,11 @@ void GraphBuilder::Build(const Config& conf,
       conf.get<bool>("mjolnir.data_processing.infer_turn_channels", true));
 
   // Line up the nodes and then re-map the edges that the edges to them
-  auto tiles = SortGraph(nodes_file, edges_file, level);
+  const std::map<GraphId, size_t>& tiles = SortGraph(nodes_file, edges_file, level);
+  TileManifest manifest{tiles};
+  manifest.ToFile(edges_file + ".json");
+
+  // Output manifest
 
   // Reclassify links (ramps). Cannot do this when building tiles since the
   // edge list needs to be modified
